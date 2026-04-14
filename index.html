@@ -299,6 +299,8 @@
       color: #a0c8e8;
       border: 1px solid rgba(255,255,255,.06);
       box-shadow: 0 20px 60px rgba(26,46,74,.2);
+      white-space: pre;
+      overflow-x: auto;
     }
     .arch-diagram .c-green { color: var(--green-light); }
     .arch-diagram .c-blue  { color: #7ac0f4; }
@@ -327,6 +329,8 @@
       padding: 2rem;
       font-family: 'DM Mono', monospace; font-size: .8rem; line-height: 1.9;
       color: #a0c8e8;
+      white-space: pre;
+      overflow-x: auto;
     }
     .usecase-img-wrap .c-comment { color: #4a7a6a; }
     .usecase-img-wrap .c-kw  { color: #7ac0f4; }
@@ -594,24 +598,22 @@
         </div>
       </div>
 
-      <div class="arch-diagram">
-<span class="c-dim">┌─────────────────────────────────┐</span>
-<span class="c-white">  DisSModel Platform              </span>
+      <pre class="arch-diagram"><span class="c-dim">┌─────────────────────────────────┐</span>
+<span class="c-white">│  DisSModel Platform             │</span>
 <span class="c-dim">│                                 │</span>
-<span class="c-green">  FastAPI</span>
-<span class="c-blue">   ├── POST /submit_job           </span>
-<span class="c-blue">   ├── GET  /job/{id}             </span>
-<span class="c-blue">   └── POST /experiments/reproduce</span>
+<span class="c-green">│  FastAPI                        │</span>
+<span class="c-blue">│   ├── POST /submit_job          │</span>
+<span class="c-blue">│   ├── GET  /job/{id}            │</span>
+<span class="c-blue">│   └── POST /experiments/repro  │</span>
 <span class="c-dim">│                                 │</span>
-<span class="c-green">  Worker                          </span>
-<span class="c-blue">   ├── ExecutorRegistry           </span>
-<span class="c-blue">   ├── ModelExecutor ABC          </span>
-<span class="c-blue">   └── Dask Client                </span>
+<span class="c-green">│  Worker                         │</span>
+<span class="c-blue">│   ├── ExecutorRegistry          │</span>
+<span class="c-blue">│   ├── ModelExecutor ABC         │</span>
+<span class="c-blue">│   └── Dask Client               │</span>
 <span class="c-dim">├─────────────────────────────────┤</span>
-<span class="c-white">  Pangeo Ecosystem                </span>
-<span class="c-dim">  Intake · Dask · Zarr · MinIO    </span>
-<span class="c-dim">└─────────────────────────────────┘</span>
-      </div>
+<span class="c-white">│  Pangeo Ecosystem               │</span>
+<span class="c-dim">│  Intake · Dask · Zarr · MinIO   │</span>
+<span class="c-dim">└─────────────────────────────────┘</span></pre>
     </div>
   </div>
 </section>
@@ -620,8 +622,7 @@
 <section id="usecase">
   <div class="container">
     <div class="usecase-grid">
-      <div class="usecase-img-wrap">
-<span class="c-comment"># coastal-dynamics example</span>
+      <pre class="usecase-img-wrap"><span class="c-comment"># coastal-dynamics example</span>
 <span class="c-kw">from</span> <span class="c-white">dissmodel</span> <span class="c-kw">import</span> <span class="c-white">Environment</span>
 <span class="c-kw">from</span> <span class="c-white">dissmodel_ca</span> <span class="c-kw">import</span> <span class="c-white">RasterSubstrate</span>
 
@@ -639,8 +640,7 @@
 
 <span class="c-comment"># Run and record</span>
 <span class="c-white">record</span> = <span class="c-white">env</span>.<span class="c-fn">run</span>()
-<span class="c-comment"># → ExperimentRecord (citable)</span>
-      </div>
+<span class="c-comment"># → ExperimentRecord (citable)</span></pre>
 
       <div>
         <p class="section-label">Reference Application</p>
