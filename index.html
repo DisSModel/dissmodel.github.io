@@ -541,7 +541,7 @@
         <div class="repo-tags">
           <span class="repo-tag">FastAPI</span>
           <span class="repo-tag">Docker</span>
-          <span class="repo-tag">Pangeo</span>
+          <span class="repo-tag">JupyterLab</span>
         </div>
       </a>
 
@@ -591,8 +591,8 @@
           <div class="arch-point">
             <div class="arch-dot blue"></div>
             <div class="arch-point-text">
-              <h4>Pangeo-native infrastructure</h4>
-              <p>Built on Dask, Intake, and Zarr — DisSModel adds the experiment tracking layer that the Pangeo ecosystem doesn't have.</p>
+              <h4>Production-ready infrastructure</h4>
+              <p>Built on JupyterLab, FastAPI, Redis, and MinIO via Docker Compose. Pangeo integration is planned for a future release.</p>
             </div>
           </div>
         </div>
@@ -609,10 +609,10 @@
 <span class="c-green">│  Worker                         │</span>
 <span class="c-blue">│   ├── ExecutorRegistry          │</span>
 <span class="c-blue">│   ├── ModelExecutor ABC         │</span>
-<span class="c-blue">│   └── Dask Client               │</span>
+<span class="c-blue">│   └── Redis Queue               │</span>
 <span class="c-dim">├─────────────────────────────────┤</span>
-<span class="c-white">│  Pangeo Ecosystem               │</span>
-<span class="c-dim">│  Intake · Dask · Zarr · MinIO   │</span>
+<span class="c-white">│  Infrastructure                 │</span>
+<span class="c-dim">│  JupyterLab · MinIO · Redis     │</span>
 <span class="c-dim">└─────────────────────────────────┘</span></pre>
     </div>
   </div>
