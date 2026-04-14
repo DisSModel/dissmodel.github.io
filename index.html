@@ -320,25 +320,60 @@
 
     /* ── USE CASE ── */
     #usecase { background: #fff; }
-    .usecase-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
-    .usecase-img-wrap {
-      border-radius: 16px; overflow: hidden;
-      border: 1.5px solid var(--border);
-      box-shadow: 0 20px 60px rgba(26,46,74,.1);
+
+    .usecase-sub {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 2rem;
+      align-items: start;
+      margin-bottom: 1rem;
+    }
+    .usecase-sub-label p {
+      font-size: .88rem; color: var(--muted);
+      line-height: 1.6; margin-top: .6rem;
+    }
+    .sub-badge {
+      display: inline-block;
+      font-size: .75rem; font-weight: 700; letter-spacing: .08em;
+      text-transform: uppercase; padding: 4px 12px;
+      border-radius: 6px;
+    }
+    .sub-badge.blue   { background: #e8f0fb; color: var(--blue-mid); }
+    .sub-badge.green  { background: #e8f4e8; color: var(--green); }
+    .sub-badge.gray   { background: var(--border); color: var(--muted); }
+
+    .usecase-arrow {
+      font-size: 1.5rem; color: var(--border);
+      text-align: center; padding: .5rem 0 1.5rem;
+      padding-left: 280px;
+    }
+
+    .usecase-code {
       background: var(--blue-dark);
-      padding: 2rem;
-      font-family: 'DM Mono', monospace; font-size: .8rem; line-height: 1.9;
+      border-radius: 10px;
+      padding: 1.5rem 1.75rem;
+      font-family: 'DM Mono', monospace; font-size: .8rem; line-height: 1.85;
       color: #a0c8e8;
       white-space: pre;
       overflow-x: auto;
+      border: 1px solid rgba(255,255,255,.06);
+      box-shadow: 0 8px 30px rgba(26,46,74,.12);
     }
-    .usecase-img-wrap .c-comment { color: #4a7a6a; }
-    .usecase-img-wrap .c-kw  { color: #7ac0f4; }
-    .usecase-img-wrap .c-fn  { color: var(--green-light); }
-    .usecase-img-wrap .c-str { color: #f4c07a; }
-    .usecase-img-wrap .c-white { color: #e8f4ff; }
 
-    .usecase-points { display: flex; flex-direction: column; gap: 1.2rem; margin-top: 2rem; }
+    .tabs-wrap { width: 100%; }
+    .tab-btns { display: flex; gap: .5rem; margin-bottom: 0; }
+    .tab-btn {
+      background: var(--bg); border: 1.5px solid var(--border);
+      border-bottom: none;
+      color: var(--muted); font-family: 'Outfit', sans-serif;
+      font-size: .85rem; font-weight: 600;
+      padding: 7px 18px; border-radius: 8px 8px 0 0;
+      cursor: pointer; transition: all .2s;
+    }
+    .tab-btn.active  { background: var(--blue-dark); color: #fff; border-color: var(--blue-dark); }
+    .tab-btn:not(.active):hover { border-color: var(--blue-mid); color: var(--blue-mid); }
+    .tab-panel { border-radius: 0 8px 8px 8px !important; }
+
     .usecase-point {
       display: flex; gap: 1rem; align-items: flex-start;
       padding: 1rem 1.25rem;
@@ -348,6 +383,11 @@
     .usecase-point-icon { font-size: 1.3rem; }
     .usecase-point h4 { font-size: .9rem; font-weight: 600; margin-bottom: .15rem; }
     .usecase-point p  { font-size: .83rem; color: var(--muted); line-height: 1.5; }
+
+    @media (max-width: 768px) {
+      .usecase-sub { grid-template-columns: 1fr; }
+      .usecase-arrow { padding-left: 0; }
+    }
 
     /* ── FOOTER ── */
     footer {
@@ -621,59 +661,96 @@
 <!-- USE CASE -->
 <section id="usecase">
   <div class="container">
-    <div class="usecase-grid">
-      <pre class="usecase-img-wrap"><span class="c-comment"># coastal-dynamics example</span>
-<span class="c-kw">from</span> <span class="c-white">dissmodel</span> <span class="c-kw">import</span> <span class="c-white">Environment</span>
-<span class="c-kw">from</span> <span class="c-white">dissmodel_ca</span> <span class="c-kw">import</span> <span class="c-white">RasterSubstrate</span>
+    <p class="section-label">Reference Application</p>
+    <h2 class="section-title">Coastal dynamics on the Amazon coast</h2>
+    <p class="section-desc" style="margin-bottom:3.5rem;">
+      The <code>coastal-dynamics</code> repository demonstrates DisSModel on real data from Maranhão, Brazil —
+      flood propagation and mangrove migration. Models and executors are deliberately separate concerns.
+    </p>
 
-<span class="c-comment"># Load geographic data</span>
-<span class="c-white">env</span> = <span class="c-fn">Environment</span>(
-  <span class="c-white">start_time</span>=<span class="c-str">2008</span>,
-  <span class="c-white">end_time</span>=<span class="c-str">2030</span>
-)
+    <!-- 1. MODEL -->
+    <div class="usecase-sub">
+      <div class="usecase-sub-label">
+        <span class="sub-badge blue">Model</span>
+        <p>Pure simulation logic — no I/O, no infrastructure. Works standalone in a notebook or script.</p>
+      </div>
+      <pre class="usecase-code"><span class="c-kw">from</span> <span class="c-white">dissmodel</span> <span class="c-kw">import</span> <span class="c-white">Environment</span>
 
-<span class="c-comment"># Add coastal flood model</span>
-<span class="c-white">env</span>.<span class="c-fn">add</span>(<span class="c-fn">CoastalFloodModel</span>(
-  <span class="c-white">sea_level_rise</span>=<span class="c-str">0.5</span>,   <span class="c-comment"># m</span>
-  <span class="c-white">resolution</span>=<span class="c-str">100</span>        <span class="c-comment"># m</span>
-))
+<span class="c-white">env</span> = <span class="c-fn">Environment</span>(<span class="c-white">start_time</span>=<span class="c-str">2008</span>, <span class="c-white">end_time</span>=<span class="c-str">2030</span>)
 
-<span class="c-comment"># Run and record</span>
-<span class="c-white">record</span> = <span class="c-white">env</span>.<span class="c-fn">run</span>()
-<span class="c-comment"># → ExperimentRecord (citable)</span></pre>
+<span class="c-comment"># Models attach themselves to env on instantiation</span>
+<span class="c-fn">FloodModel</span>(<span class="c-white">gdf</span>=gdf, <span class="c-white">taxa_elevacao</span>=<span class="c-str">0.5</span>, <span class="c-white">attr_uso</span>=<span class="c-str">"uso"</span>, <span class="c-white">attr_alt</span>=<span class="c-str">"alt"</span>)
+<span class="c-fn">MangroveModel</span>(<span class="c-white">gdf</span>=gdf, <span class="c-white">altura_mare</span>=<span class="c-str">6.0</span>, <span class="c-white">attr_uso</span>=<span class="c-str">"uso"</span>, <span class="c-white">attr_alt</span>=<span class="c-str">"alt"</span>, <span class="c-white">attr_solo</span>=<span class="c-str">"solo"</span>)
 
-      <div>
-        <p class="section-label">Reference Application</p>
-        <h2 class="section-title">Coastal dynamics on the Amazon coast</h2>
-        <p class="section-desc">
-          The <code>coastal-dynamics</code> repository demonstrates DisSModel on real data from Maranhão, Brazil — combining flood propagation and mangrove migration in a single reproducible simulation.
-        </p>
+<span class="c-white">env</span>.<span class="c-fn">run</span>()</pre>
+    </div>
 
-        <div class="usecase-points">
-          <div class="usecase-point">
-            <div class="usecase-point-icon">🗺️</div>
-            <div>
-              <h4>Real geographic data</h4>
-              <p>Shapefile and GeoTIFF substrates with SIRGAS-2000 CRS, integrated via Intake catalog.</p>
-            </div>
-          </div>
-          <div class="usecase-point">
-            <div class="usecase-point-icon">🌿</div>
-            <div>
-              <h4>Mangrove migration model</h4>
-              <p>Vector-based CA simulating mangrove and apicum dynamics under sea-level rise scenarios.</p>
-            </div>
-          </div>
-          <div class="usecase-point">
-            <div class="usecase-point-icon">📄</div>
-            <div>
-              <h4>Citable experiments</h4>
-              <p>Every run produces a full provenance record — model commit, input checksum, output SHA256 — ready for Zenodo deposit.</p>
-            </div>
-          </div>
+    <!-- divider -->
+    <div class="usecase-arrow">↓</div>
+
+    <!-- 2. EXECUTOR -->
+    <div class="usecase-sub">
+      <div class="usecase-sub-label">
+        <span class="sub-badge green">ModelExecutor</span>
+        <p>Wraps the model with I/O, column mapping, provenance, and platform integration — without touching the model logic.</p>
+      </div>
+      <pre class="usecase-code"><span class="c-kw">class</span> <span class="c-fn">CoastalVectorExecutor</span>(<span class="c-white">ModelExecutor</span>):
+    name = <span class="c-str">"coastal_vector"</span>
+
+    <span class="c-kw">def</span> <span class="c-fn">load</span>(<span class="c-white">self</span>, record: <span class="c-white">ExperimentRecord</span>) -> <span class="c-white">GeoDataFrame</span>:
+        <span class="c-comment"># load data + apply column_map → canonical names</span>
+        ...
+
+    <span class="c-kw">def</span> <span class="c-fn">validate</span>(<span class="c-white">self</span>, record: <span class="c-white">ExperimentRecord</span>) -> <span class="c-white">None</span>:
+        <span class="c-comment"># stateless pre-flight checks, no data loading</span>
+        ...
+
+    <span class="c-kw">def</span> <span class="c-fn">run</span>(<span class="c-white">self</span>, data: <span class="c-white">GeoDataFrame</span>, record: <span class="c-white">ExperimentRecord</span>) -> <span class="c-white">GeoDataFrame</span>:
+        <span class="c-comment"># build env + models, call env.run()</span>
+        ...
+
+    <span class="c-kw">def</span> <span class="c-fn">save</span>(<span class="c-white">self</span>, result: <span class="c-white">GeoDataFrame</span>, record: <span class="c-white">ExperimentRecord</span>) -> <span class="c-white">ExperimentRecord</span>:
+        <span class="c-comment"># persist output, fill output_path + sha256</span>
+        ...</pre>
+    </div>
+
+    <!-- divider -->
+    <div class="usecase-arrow">↓</div>
+
+    <!-- 3. EXECUTION TABS -->
+    <div class="usecase-sub">
+      <div class="usecase-sub-label">
+        <span class="sub-badge gray">Run</span>
+        <p>The same executor runs locally via CLI or remotely via the platform API.</p>
+      </div>
+      <div class="tabs-wrap">
+        <div class="tab-btns">
+          <button class="tab-btn active" onclick="switchTab('local')">🖥️ Local / CLI</button>
+          <button class="tab-btn"        onclick="switchTab('api')"  >🌐 Platform API</button>
         </div>
+        <pre class="usecase-code tab-panel" id="tab-local"><span class="c-white">python</span> examples/main_vector.py run \
+  --input  examples/data/input/synthetic_grid_60x60_shp.zip \
+  --output examples/data/output/saida.gpkg \
+  --param  <span class="c-white">interactive</span>=<span class="c-str">true</span> \
+  --param  <span class="c-white">end_time</span>=<span class="c-str">20</span></pre>
+
+        <pre class="usecase-code tab-panel" id="tab-api" style="display:none;"><span class="c-fn">curl</span> -X POST http://localhost:8000/submit_job \
+  -H <span class="c-str">"X-API-Key: chave-sergio"</span> \
+  -H <span class="c-str">"Content-Type: application/json"</span> \
+  -d <span class="c-str">'{
+    "model_name":    "coastal_vector",
+    "input_dataset": "s3://dissmodel-inputs/mangue_grid.shp",
+    "parameters":    {"end_time": 88, "taxa_elevacao": 0.011}
+  }'</span>
+
+<span class="c-comment"># Check status</span>
+<span class="c-fn">curl</span> http://localhost:8000/job/<span class="c-white">abc123</span>
+
+<span class="c-comment"># Reproduce any past experiment exactly</span>
+<span class="c-fn">curl</span> -X POST http://localhost:8000/experiments/<span class="c-white">abc123</span>/reproduce</pre>
       </div>
     </div>
+
   </div>
 </section>
 
@@ -716,6 +793,14 @@
     const el = document.getElementById('copy-confirm');
     el.classList.add('show');
     setTimeout(() => el.classList.remove('show'), 2000);
+  }
+
+  function switchTab(tab) {
+    document.getElementById('tab-local').style.display = tab === 'local' ? 'block' : 'none';
+    document.getElementById('tab-api').style.display   = tab === 'api'   ? 'block' : 'none';
+    document.querySelectorAll('.tab-btn').forEach((btn, i) => {
+      btn.classList.toggle('active', (tab === 'local' && i === 0) || (tab === 'api' && i === 1));
+    });
   }
 </script>
 
