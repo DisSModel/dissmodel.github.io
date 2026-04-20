@@ -46,7 +46,6 @@
       font-size: 1.15rem; font-weight: 700; color: var(--blue-dark);
       text-decoration: none;
     }
-    .nav-logo svg { width: 32px; height: 32px; }
     .nav-links { display: flex; gap: 2rem; list-style: none; }
     .nav-links a {
       text-decoration: none; color: var(--muted);
@@ -72,7 +71,6 @@
       overflow: hidden;
     }
 
-    /* grid background */
     .hero::before {
       content: '';
       position: absolute; inset: 0;
@@ -84,7 +82,6 @@
       pointer-events: none;
     }
 
-    /* gradient blobs */
     .blob {
       position: absolute; border-radius: 50%;
       filter: blur(80px); pointer-events: none; opacity: .18;
@@ -121,7 +118,6 @@
       margin-bottom: 1.5rem;
       animation: fadeUp .7s .1s ease both;
     }
-    .hero-icon { width: 80px; height: 80px; }
 
     .hero h1 {
       font-size: clamp(2.8rem, 7vw, 5.5rem);
@@ -167,7 +163,6 @@
     }
     .btn-secondary:hover { border-color: var(--blue-mid); transform: translateY(-2px); }
 
-    /* pip badge */
     .pip-block {
       margin-top: 2.5rem;
       animation: fadeUp .7s .4s ease both;
@@ -263,8 +258,8 @@
     .repo-icon.blue { background: #e8f0fb; }
     .repo-icon.green { background: #e8f4e8; }
     .repo-icon.purple { background: #f0ebfb; }
-    .repo-icon.orange { background: #fdf0e8; }
     .repo-icon.teal { background: #e8f7f7; }
+    .repo-icon.orange { background: #fdf0e8; }
     .repo-card.featured .repo-icon { background: rgba(255,255,255,.15); }
 
     .repo-arrow { color: var(--muted); font-size: 1.1rem; transition: transform .2s; }
@@ -374,16 +369,6 @@
     .tab-btn:not(.active):hover { border-color: var(--blue-mid); color: var(--blue-mid); }
     .tab-panel { border-radius: 0 8px 8px 8px !important; }
 
-    .usecase-point {
-      display: flex; gap: 1rem; align-items: flex-start;
-      padding: 1rem 1.25rem;
-      background: var(--bg); border-radius: 10px;
-      border: 1px solid var(--border);
-    }
-    .usecase-point-icon { font-size: 1.3rem; }
-    .usecase-point h4 { font-size: .9rem; font-weight: 600; margin-bottom: .15rem; }
-    .usecase-point p  { font-size: .83rem; color: var(--muted); line-height: 1.5; }
-
     @media (max-width: 768px) {
       .usecase-sub { grid-template-columns: 1fr; }
       .usecase-arrow { padding-left: 0; }
@@ -415,12 +400,11 @@
       font-size: .8rem; color: #4a6a88;
     }
 
-    /* ── RESPONSIVE ── */
     @media (max-width: 768px) {
       nav { padding: 0 1.25rem; }
       .nav-links { display: none; }
       .repo-card.featured { grid-column: span 1; }
-      .arch-wrap, .usecase-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .arch-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: .75rem; text-align: center; }
     }
@@ -428,7 +412,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
     <img src="logo.png" alt="DisSModel" style="width:32px;height:32px;object-fit:contain;">
@@ -442,7 +425,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
@@ -477,7 +459,6 @@
   </div>
 </section>
 
-<!-- REPOS -->
 <section id="repos">
   <div class="container">
     <div class="repos-header">
@@ -488,7 +469,6 @@
 
     <div class="repos-grid">
 
-      <!-- FEATURED: core -->
       <a href="https://github.com/dissmodel/dissmodel" class="repo-card featured">
         <div class="repo-top">
           <div class="repo-icon blue">🧩</div>
@@ -505,7 +485,6 @@
         </div>
       </a>
 
-      <!-- CA -->
       <a href="https://github.com/dissmodel/dissmodel-ca" class="repo-card">
         <div class="repo-top">
           <div class="repo-icon green">⬡</div>
@@ -520,7 +499,6 @@
         </div>
       </a>
 
-      <!-- SYSDYN -->
       <a href="https://github.com/dissmodel/dissmodel-sysdyn" class="repo-card">
         <div class="repo-top">
           <div class="repo-icon purple">〜</div>
@@ -535,7 +513,6 @@
         </div>
       </a>
 
-      <!-- PLATFORM -->
       <a href="https://github.com/dissmodel/dissmodel-platform" class="repo-card">
         <div class="repo-top">
           <div class="repo-icon teal">⚙</div>
@@ -550,18 +527,20 @@
         </div>
       </a>
 
-      <!-- COASTAL -->
-      <a href="https://github.com/dissmodel/coastal-dynamics" class="repo-card">
+      <a href="https://github.com/DisSModel/brmangue-dissmodel" class="repo-card">
         <div class="repo-top">
-          <div class="repo-icon orange">🌊</div>
+          <div class="repo-icon green">🌿</div>
           <span class="repo-arrow">↗</span>
         </div>
-        <div class="repo-name">coastal-dynamics</div>
-        <p class="repo-desc">Reference application: flood propagation and mangrove migration simulations on real geographic data from the Brazilian Amazon coast.</p>
+        <div class="repo-name">brmangue-dissmodel</div>
+        <p class="repo-desc">
+          Spatially explicit simulation of sea-level rise impacts on mangrove ecosystems, implementing the model by <strong>Bezerra et al. (2014)</strong> on the DisSModel framework.
+        </p>
         <div class="repo-tags">
           <span class="repo-tag">LUCC</span>
           <span class="repo-tag">mangrove</span>
-          <span class="repo-tag">Brazil</span>
+          <span class="repo-tag">Amazon Coast</span>
+          <span class="repo-tag">Bezerra et al.</span>
         </div>
       </a>
 
@@ -569,7 +548,6 @@
   </div>
 </section>
 
-<!-- ARCHITECTURE -->
 <section id="architecture">
   <div class="container">
     <div class="arch-wrap">
@@ -609,7 +587,7 @@
 <span class="c-green">│  FastAPI                        │</span>
 <span class="c-blue">│   ├── POST /submit_job          │</span>
 <span class="c-blue">│   ├── GET  /job/{id}            │</span>
-<span class="c-blue">│   └── POST /experiments/repro  │</span>
+<span class="c-blue">│   └── POST /experiments/repro   │</span>
 <span class="c-dim">│                                 │</span>
 <span class="c-green">│  Worker                         │</span>
 <span class="c-blue">│   ├── ExecutorRegistry          │</span>
@@ -623,17 +601,15 @@
   </div>
 </section>
 
-<!-- USE CASE -->
 <section id="usecase">
   <div class="container">
     <p class="section-label">Reference Application</p>
-    <h2 class="section-title">Coastal dynamics on the Amazon coast</h2>
+    <h2 class="section-title">Coastal dynamics & Mangrove migration</h2>
     <p class="section-desc" style="margin-bottom:3.5rem;">
-      The <code>coastal-dynamics</code> repository demonstrates DisSModel on real data from Maranhão, Brazil —
-      flood propagation and mangrove migration. Models and executors are deliberately separate concerns.
+      The <code>brmangue-dissmodel</code> repository demonstrates DisSModel on real data from Maranhão, Brazil — 
+      implementing flood propagation and mangrove migration based on <strong>Bezerra et al. (2014)</strong>.
     </p>
 
-    <!-- 1. MODEL -->
     <div class="usecase-sub">
       <div class="usecase-sub-label">
         <span class="sub-badge blue">Model</span>
@@ -644,45 +620,33 @@
 <span class="c-white">env</span> = <span class="c-fn">Environment</span>(<span class="c-white">start_time</span>=<span class="c-str">2008</span>, <span class="c-white">end_time</span>=<span class="c-str">2030</span>)
 
 <span class="c-comment"># Models attach themselves to env on instantiation</span>
-<span class="c-fn">FloodModel</span>(<span class="c-white">gdf</span>=gdf, <span class="c-white">taxa_elevacao</span>=<span class="c-str">0.5</span>, <span class="c-white">attr_uso</span>=<span class="c-str">"uso"</span>, <span class="c-white">attr_alt</span>=<span class="c-str">"alt"</span>)
-<span class="c-fn">MangroveModel</span>(<span class="c-white">gdf</span>=gdf, <span class="c-white">altura_mare</span>=<span class="c-str">6.0</span>, <span class="c-white">attr_uso</span>=<span class="c-str">"uso"</span>, <span class="c-white">attr_alt</span>=<span class="c-str">"alt"</span>, <span class="c-white">attr_solo</span>=<span class="c-str">"solo"</span>)
+<span class="c-fn">FloodModel</span>(<span class="c-white">gdf</span>=gdf, <span class="c-white">taxa_elevacao</span>=<span class="c-str">0.5</span>, <span class="c-white">attr_uso</span>=<span class="c-str">"uso"</span>)
+<span class="c-fn">MangroveModel</span>(<span class="c-white">gdf</span>=gdf, <span class="c-white">altura_mare</span>=<span class="c-str">6.0</span>, <span class="c-white">attr_solo</span>=<span class="c-str">"solo"</span>)
 
 <span class="c-white">env</span>.<span class="c-fn">run</span>()</pre>
     </div>
 
-    <!-- divider -->
     <div class="usecase-arrow">↓</div>
 
-    <!-- 2. EXECUTOR -->
     <div class="usecase-sub">
       <div class="usecase-sub-label">
         <span class="sub-badge green">ModelExecutor</span>
-        <p>Wraps the model with I/O, column mapping, provenance, and platform integration — without touching the model logic.</p>
+        <p>Wraps the model with I/O, column mapping, provenance, and platform integration.</p>
       </div>
       <pre class="usecase-code"><span class="c-kw">class</span> <span class="c-fn">CoastalVectorExecutor</span>(<span class="c-white">ModelExecutor</span>):
-    name = <span class="c-str">"coastal_vector"</span>
+    name = <span class="c-str">"brmangue_vector"</span>
 
     <span class="c-kw">def</span> <span class="c-fn">load</span>(<span class="c-white">self</span>, record: <span class="c-white">ExperimentRecord</span>) -> <span class="c-white">GeoDataFrame</span>:
         <span class="c-comment"># load data + apply column_map → canonical names</span>
         ...
 
-    <span class="c-kw">def</span> <span class="c-fn">validate</span>(<span class="c-white">self</span>, record: <span class="c-white">ExperimentRecord</span>) -> <span class="c-white">None</span>:
-        <span class="c-comment"># stateless pre-flight checks, no data loading</span>
-        ...
-
     <span class="c-kw">def</span> <span class="c-fn">run</span>(<span class="c-white">self</span>, data: <span class="c-white">GeoDataFrame</span>, record: <span class="c-white">ExperimentRecord</span>) -> <span class="c-white">GeoDataFrame</span>:
         <span class="c-comment"># build env + models, call env.run()</span>
-        ...
-
-    <span class="c-kw">def</span> <span class="c-fn">save</span>(<span class="c-white">self</span>, result: <span class="c-white">GeoDataFrame</span>, record: <span class="c-white">ExperimentRecord</span>) -> <span class="c-white">ExperimentRecord</span>:
-        <span class="c-comment"># persist output, fill output_path + sha256</span>
         ...</pre>
     </div>
 
-    <!-- divider -->
     <div class="usecase-arrow">↓</div>
 
-    <!-- 3. EXECUTION TABS -->
     <div class="usecase-sub">
       <div class="usecase-sub-label">
         <span class="sub-badge gray">Run</span>
@@ -693,33 +657,23 @@
           <button class="tab-btn active" onclick="switchTab('local')">🖥️ Local / CLI</button>
           <button class="tab-btn"        onclick="switchTab('api')"  >🌐 Platform API</button>
         </div>
-        <pre class="usecase-code tab-panel" id="tab-local"><span class="c-white">python</span> examples/main_vector.py run \
-  --input  examples/data/input/synthetic_grid_60x60_shp.zip \
-  --output examples/data/output/saida.gpkg \
-  --param  <span class="c-white">interactive</span>=<span class="c-str">true</span> \
-  --param  <span class="c-white">end_time</span>=<span class="c-str">20</span></pre>
+        <pre class="usecase-code tab-panel" id="tab-local"><span class="c-white">python</span> main.py run \
+  --input  data/input/mangue_grid.zip \
+  --output data/output/simulation.gpkg \
+  --param  <span class="c-white">end_time</span>=<span class="c-str">2030</span></pre>
 
         <pre class="usecase-code tab-panel" id="tab-api" style="display:none;"><span class="c-fn">curl</span> -X POST http://localhost:8000/submit_job \
-  -H <span class="c-str">"X-API-Key: chave-sergio"</span> \
-  -H <span class="c-str">"Content-Type: application/json"</span> \
   -d <span class="c-str">'{
-    "model_name":    "coastal_vector",
-    "input_dataset": "s3://dissmodel-inputs/mangue_grid.shp",
-    "parameters":    {"end_time": 88, "taxa_elevacao": 0.011}
-  }'</span>
-
-<span class="c-comment"># Check status</span>
-<span class="c-fn">curl</span> http://localhost:8000/job/<span class="c-white">abc123</span>
-
-<span class="c-comment"># Reproduce any past experiment exactly</span>
-<span class="c-fn">curl</span> -X POST http://localhost:8000/experiments/<span class="c-white">abc123</span>/reproduce</pre>
+    "model_name":    "brmangue_vector",
+    "input_dataset": "s3://inputs/grid.shp",
+    "parameters":    {"end_time": 2050}
+  }'</span></pre>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -733,7 +687,7 @@
         <li><a href="https://github.com/dissmodel/dissmodel-ca">dissmodel-ca</a></li>
         <li><a href="https://github.com/dissmodel/dissmodel-sysdyn">dissmodel-sysdyn</a></li>
         <li><a href="https://github.com/dissmodel/dissmodel-platform">dissmodel-platform</a></li>
-        <li><a href="https://github.com/dissmodel/coastal-dynamics">coastal-dynamics</a></li>
+        <li><a href="https://github.com/DisSModel/brmangue-dissmodel">brmangue-dissmodel</a></li>
       </ul>
     </div>
     <div class="footer-col">
