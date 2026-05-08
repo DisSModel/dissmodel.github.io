@@ -121,6 +121,17 @@
       animation: fadeUp .7s .1s ease both;
     }
 
+    .hero h1 {
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 800;
+      line-height: 1;
+      letter-spacing: -.02em;
+      animation: fadeUp .7s .15s ease both;
+    }
+    .hero h1 .dis  { color: var(--blue-dark); }
+    .hero h1 .s    { color: var(--blue-mid); }
+    .hero h1 .model{ color: var(--blue-dark); }
+
     .hero-sub {
       font-size: clamp(1rem, 2.5vw, 1.25rem);
       color: var(--muted); font-weight: 300;
@@ -357,9 +368,8 @@
     .repo-icon.blue   { background: #e8f0fb; }
     .repo-icon.green  { background: #e8f4e8; }
     .repo-icon.purple { background: #f0ebfb; }
+    .repo-icon.teal { background: #e8f7f7; }
     .repo-icon.orange { background: #fdf0e8; }
-    .repo-icon.teal   { background: #e8f7f7; }
-    .repo-icon.amber  { background: #fdf5e0; }
     .repo-card.featured .repo-icon { background: rgba(255,255,255,.15); }
 
     .repo-arrow { color: var(--muted); font-size: 1.1rem; transition: transform .2s; }
@@ -533,13 +543,6 @@
       font-size: .8rem; color: #4a6a88;
     }
 
-    /* ── RESPONSIVE ── */
-    @media (max-width: 900px) {
-      .stats-inner { grid-template-columns: repeat(2,1fr); }
-      .problem-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .problem-cards { grid-template-columns: 1fr; }
-      .comparison-grid { grid-template-columns: repeat(2, 1fr); }
-    }
     @media (max-width: 768px) {
       nav { padding: 0 1.25rem; }
       .nav-links { display: none; }
@@ -555,7 +558,6 @@
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a class="nav-logo" href="#">
     <img src="logo.png" alt="DisSModel" style="width:32px;height:32px;object-fit:contain;">
@@ -569,7 +571,6 @@
   </ul>
 </nav>
 
-<!-- HERO -->
 <section class="hero">
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
@@ -604,120 +605,6 @@
   </div>
 </section>
 
-<!-- STATS STRIP -->
-<div class="stats-strip">
-  <div class="stats-inner">
-    <div class="stat-item">
-      <div class="stat-number">39.4×</div>
-      <div class="stat-label">Raster speedup vs Vector<br>(brmangue · 97K cells)</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">99.8%</div>
-      <div class="stat-label">Accuracy match<br>vs TerraME baseline</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">3.9×</div>
-      <div class="stat-label">Speedup on DisSLUCC<br>CLUE allocation</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-number">MIT</div>
-      <div class="stat-label">Open Source License<br>FAIR · Zenodo DOI</div>
-    </div>
-  </div>
-</div>
-
-<!-- PROBLEM -->
-<section id="problem">
-  <div class="problem-inner">
-    <div class="problem-stat">
-      <div class="big-num">70%</div>
-      <p>of researchers cannot reproduce experiments from other groups.</p>
-      <div class="source">Baker (2016) · Nature</div>
-    </div>
-    <div>
-      <p class="section-label" style="color:#7aa8d4;">The Problem</p>
-      <h2 class="section-title" style="color:#fff;">Science is not reproducible.<br>This is a documented crisis.</h2>
-      <div class="problem-cards">
-        <div class="problem-card">
-          <div class="problem-card-icon red">🚫</div>
-          <h4>Code doesn't run</h4>
-          <p>Implicit environments — the experiment only works on the author's machine.</p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-card-icon amber">☁️</div>
-          <h4>Data is missing</h4>
-          <p>Input data not versioned. Without original data, the result cannot be audited.</p>
-        </div>
-        <div class="problem-card">
-          <div class="problem-card-icon purple">⚙️</div>
-          <h4>Parameters unknown</h4>
-          <p>Configs live in ad hoc scripts or researcher's memory — not formal records.</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- COMPARISON -->
-<section id="comparison">
-  <div class="container">
-    <p class="section-label">Context</p>
-    <h2 class="section-title">Key Brazilian geospatial tools</h2>
-    <p class="section-desc">Existing tools are powerful — but they weren't built for reproducibility at scale or modern cloud ecosystems.</p>
-
-    <div class="comparison-grid">
-      <div class="cmp-card">
-        <div class="cmp-header">
-          <div class="cmp-name">Dinamica EGO</div>
-          <div class="cmp-org">UFMG · since 2002</div>
-        </div>
-        <div class="cmp-row"><span class="tick yes">✓</span><span class="label">No-code visual interface</span></div>
-        <div class="cmp-row"><span class="tick yes">✓</span><span class="label">Academic benchmark</span></div>
-        <div class="cmp-row"><span class="tick no">✗</span><span class="label">Manual reproducibility</span></div>
-        <div class="cmp-row"><span class="tick no">✗</span><span class="label">Scalability issues</span></div>
-        <div class="cmp-row"><span class="tick no">✗</span><span class="label">No Python / API integration</span></div>
-      </div>
-
-      <div class="cmp-card">
-        <div class="cmp-header">
-          <div class="cmp-name">TerraME</div>
-          <div class="cmp-org">INPE · last release 2020</div>
-        </div>
-        <div class="cmp-row"><span class="tick yes">✓</span><span class="label">Native Agent/Space logic</span></div>
-        <div class="cmp-row"><span class="tick yes">✓</span><span class="label">PostGIS integration</span></div>
-        <div class="cmp-row"><span class="tick no">✗</span><span class="label">Lua · TerraLib unmaintained</span></div>
-        <div class="cmp-row"><span class="tick no">✗</span><span class="label">No BDC/STAC support</span></div>
-        <div class="cmp-row"><span class="tick no">✗</span><span class="label">No cloud / Docker support</span></div>
-      </div>
-
-      <div class="cmp-card">
-        <div class="cmp-header">
-          <div class="cmp-name">LuccME</div>
-          <div class="cmp-org">INPE · built on TerraME</div>
-        </div>
-        <div class="cmp-row"><span class="tick yes">✓</span><span class="label">Interchangeable components</span></div>
-        <div class="cmp-row"><span class="tick yes">✓</span><span class="label">CLUE methodology</span></div>
-        <div class="cmp-row"><span class="tick no">✗</span><span class="label">Inherits Lua constraints</span></div>
-        <div class="cmp-row"><span class="tick no">✗</span><span class="label">Weak Python integration</span></div>
-        <div class="cmp-row"><span class="tick no">✗</span><span class="label">No formal experiment record</span></div>
-      </div>
-
-      <div class="cmp-card highlight">
-        <div class="cmp-header">
-          <div class="cmp-name">DisSModel</div>
-          <div class="cmp-org">UFMA / LambdaGeo · 2025–</div>
-        </div>
-        <div class="cmp-row"><span class="tick yes">✓</span><span class="label">Pure Python · GeoPandas / NumPy</span></div>
-        <div class="cmp-row"><span class="tick yes">✓</span><span class="label">SHA-256 experiment records</span></div>
-        <div class="cmp-row"><span class="tick yes">✓</span><span class="label">Cloud-native · Docker · MinIO</span></div>
-        <div class="cmp-row"><span class="tick yes">✓</span><span class="label">BDC/STAC-ready (roadmap)</span></div>
-        <div class="cmp-row"><span class="tick yes">✓</span><span class="label">FAIR · Zenodo DOI · REST API</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- REPOS -->
 <section id="repos">
   <div class="container">
     <div class="repos-header">
@@ -728,7 +615,6 @@
 
     <div class="repos-grid">
 
-      <!-- FEATURED: core -->
       <a href="https://github.com/dissmodel/dissmodel" class="repo-card featured">
         <div class="repo-top">
           <div class="repo-icon blue">🧩</div>
@@ -745,22 +631,6 @@
         </div>
       </a>
 
-      <!-- CONFIGS -->
-      <a href="https://github.com/dissmodel/dissmodel-configs" class="repo-card">
-        <div class="repo-top">
-          <div class="repo-icon amber">📋</div>
-          <span class="repo-arrow">↗</span>
-        </div>
-        <div class="repo-name">dissmodel-configs</div>
-        <p class="repo-desc">The single source of truth. TOML manifests per model — versioned, PR-reviewed, citeable by git hash. Separates calibrated coefficients from code.</p>
-        <div class="repo-tags">
-          <span class="repo-tag">catalog</span>
-          <span class="repo-tag">TOML</span>
-          <span class="repo-tag">governance</span>
-        </div>
-      </a>
-
-      <!-- CA -->
       <a href="https://github.com/dissmodel/dissmodel-ca" class="repo-card">
         <div class="repo-top">
           <div class="repo-icon green">⬡</div>
@@ -775,7 +645,6 @@
         </div>
       </a>
 
-      <!-- SYSDYN -->
       <a href="https://github.com/dissmodel/dissmodel-sysdyn" class="repo-card">
         <div class="repo-top">
           <div class="repo-icon purple">〜</div>
@@ -790,7 +659,6 @@
         </div>
       </a>
 
-      <!-- PLATFORM -->
       <a href="https://github.com/dissmodel/dissmodel-platform" class="repo-card">
         <div class="repo-top">
           <div class="repo-icon teal">⚙</div>
@@ -805,23 +673,19 @@
         </div>
       </a>
 
-      <!-- BRMANGUE -->
-      <a href="https://github.com/dissmodel/coastal-dynamics" class="repo-card">
+      <a href="https://github.com/DisSModel/brmangue-dissmodel" class="repo-card">
         <div class="repo-top">
-          <div class="repo-icon orange">🌊</div>
+          <div class="repo-icon green">🌿</div>
           <span class="repo-arrow">↗</span>
         </div>
-        <div class="repo-name">brmangue</div>
-        <p class="repo-desc">Flood propagation and mangrove migration on Ilha do Maranhão (97,309 cells · EPSG:31984). Validated against TerraME. Includes a QGIS plugin for direct GIS execution.</p>
-        <div class="repo-bench">
-          <span class="bench-pill">⚡ 39.4× raster speedup</span>
-          <span class="bench-pill">✓ 99.8% vs TerraME</span>
-        </div>
+        <div class="repo-name">brmangue-dissmodel</div>
+        <p class="repo-desc">
+          Spatially explicit simulation of sea-level rise impacts on mangrove ecosystems, implementing the model by <strong>Bezerra et al. (2014)</strong> on the DisSModel framework.
+        </p>
         <div class="repo-tags">
           <span class="repo-tag">mangrove</span>
-          <span class="repo-tag">LUCC</span>
-          <span class="repo-tag">QGIS plugin</span>
-          <span class="repo-tag">Brazil</span>
+          <span class="repo-tag">Amazon Coast</span>
+          <span class="repo-tag">Bezerra et al.</span>
         </div>
       </a>
 
@@ -848,7 +712,6 @@
   </div>
 </section>
 
-<!-- ARCHITECTURE -->
 <section id="architecture">
   <div class="container">
     <div class="arch-wrap">
@@ -895,7 +758,7 @@
 <span class="c-green">│  FastAPI                        │</span>
 <span class="c-blue">│   ├── POST /submit_job          │</span>
 <span class="c-blue">│   ├── GET  /job/{id}            │</span>
-<span class="c-blue">│   └── POST /experiments/repro  │</span>
+<span class="c-blue">│   └── POST /experiments/repro   │</span>
 <span class="c-dim">│                                 │</span>
 <span class="c-green">│  Worker                         │</span>
 <span class="c-blue">│   ├── ExecutorRegistry          │</span>
@@ -913,17 +776,15 @@
   </div>
 </section>
 
-<!-- USE CASE -->
 <section id="usecase">
   <div class="container">
     <p class="section-label">Reference Application</p>
-    <h2 class="section-title">Coastal dynamics on the Amazon coast</h2>
+    <h2 class="section-title">Coastal dynamics & Mangrove migration</h2>
     <p class="section-desc" style="margin-bottom:3.5rem;">
-      The <code>brmangue</code> repository demonstrates DisSModel on real data from Maranhão, Brazil —
-      flood propagation and mangrove migration. Models and executors are deliberately separate concerns.
+      The <code>brmangue-dissmodel</code> repository demonstrates DisSModel on real data from Maranhão, Brazil — 
+      implementing flood propagation and mangrove migration based on <strong>Bezerra et al. (2014)</strong>.
     </p>
 
-    <!-- 1. MODEL -->
     <div class="usecase-sub">
       <div class="usecase-sub-label">
         <span class="sub-badge blue">Model</span>
@@ -933,44 +794,34 @@
 
 <span style="color:#e8f4ff">env</span> = <span style="color:#7ac0f4">Environment</span>(<span style="color:#e8f4ff">start_time</span>=<span style="color:#f0c060">2008</span>, <span style="color:#e8f4ff">end_time</span>=<span style="color:#f0c060">2030</span>)
 
-<span style="color:#4a6a8a"># Models attach themselves to env on instantiation</span>
-<span style="color:#7ac0f4">FloodModel</span>(<span style="color:#e8f4ff">gdf</span>=gdf, <span style="color:#e8f4ff">taxa_elevacao</span>=<span style="color:#f0c060">0.5</span>, <span style="color:#e8f4ff">attr_uso</span>=<span style="color:#f0c060">"uso"</span>, <span style="color:#e8f4ff">attr_alt</span>=<span style="color:#f0c060">"alt"</span>)
-<span style="color:#7ac0f4">MangroveModel</span>(<span style="color:#e8f4ff">gdf</span>=gdf, <span style="color:#e8f4ff">altura_mare</span>=<span style="color:#f0c060">6.0</span>, <span style="color:#e8f4ff">attr_uso</span>=<span style="color:#f0c060">"uso"</span>, <span style="color:#e8f4ff">attr_alt</span>=<span style="color:#f0c060">"alt"</span>, <span style="color:#e8f4ff">attr_solo</span>=<span style="color:#f0c060">"solo"</span>)
+<span class="c-comment"># Models attach themselves to env on instantiation</span>
+<span class="c-fn">FloodModel</span>(<span class="c-white">gdf</span>=gdf, <span class="c-white">taxa_elevacao</span>=<span class="c-str">0.5</span>, <span class="c-white">attr_uso</span>=<span class="c-str">"uso"</span>)
+<span class="c-fn">MangroveModel</span>(<span class="c-white">gdf</span>=gdf, <span class="c-white">altura_mare</span>=<span class="c-str">6.0</span>, <span class="c-white">attr_solo</span>=<span class="c-str">"solo"</span>)
 
 <span style="color:#e8f4ff">env</span>.<span style="color:#7ac0f4">run</span>()</pre>
     </div>
 
     <div class="usecase-arrow">↓</div>
 
-    <!-- 2. EXECUTOR -->
     <div class="usecase-sub">
       <div class="usecase-sub-label">
         <span class="sub-badge green">ModelExecutor</span>
-        <p>Wraps the model with I/O, column mapping, provenance, and platform integration — without touching the model logic.</p>
+        <p>Wraps the model with I/O, column mapping, provenance, and platform integration.</p>
       </div>
-      <pre class="usecase-code"><span style="color:#6abf6a">class</span> <span style="color:#7ac0f4">CoastalVectorExecutor</span>(<span style="color:#e8f4ff">ModelExecutor</span>):
-    name = <span style="color:#f0c060">"coastal_vector"</span>
+      <pre class="usecase-code"><span class="c-kw">class</span> <span class="c-fn">CoastalVectorExecutor</span>(<span class="c-white">ModelExecutor</span>):
+    name = <span class="c-str">"brmangue_vector"</span>
 
     <span style="color:#6abf6a">def</span> <span style="color:#7ac0f4">load</span>(<span style="color:#e8f4ff">self</span>, record: <span style="color:#e8f4ff">ExperimentRecord</span>) -> <span style="color:#e8f4ff">GeoDataFrame</span>:
         <span style="color:#4a6a8a"># load data + apply column_map → canonical names</span>
         ...
 
-    <span style="color:#6abf6a">def</span> <span style="color:#7ac0f4">validate</span>(<span style="color:#e8f4ff">self</span>, record: <span style="color:#e8f4ff">ExperimentRecord</span>) -> <span style="color:#e8f4ff">None</span>:
-        <span style="color:#4a6a8a"># stateless pre-flight checks, no data loading</span>
-        ...
-
-    <span style="color:#6abf6a">def</span> <span style="color:#7ac0f4">run</span>(<span style="color:#e8f4ff">self</span>, data: <span style="color:#e8f4ff">GeoDataFrame</span>, record: <span style="color:#e8f4ff">ExperimentRecord</span>) -> <span style="color:#e8f4ff">GeoDataFrame</span>:
-        <span style="color:#4a6a8a"># build env + models, call env.run()</span>
-        ...
-
-    <span style="color:#6abf6a">def</span> <span style="color:#7ac0f4">save</span>(<span style="color:#e8f4ff">self</span>, result: <span style="color:#e8f4ff">GeoDataFrame</span>, record: <span style="color:#e8f4ff">ExperimentRecord</span>) -> <span style="color:#e8f4ff">ExperimentRecord</span>:
-        <span style="color:#4a6a8a"># persist output, fill output_path + sha256</span>
+    <span class="c-kw">def</span> <span class="c-fn">run</span>(<span class="c-white">self</span>, data: <span class="c-white">GeoDataFrame</span>, record: <span class="c-white">ExperimentRecord</span>) -> <span class="c-white">GeoDataFrame</span>:
+        <span class="c-comment"># build env + models, call env.run()</span>
         ...</pre>
     </div>
 
     <div class="usecase-arrow">↓</div>
 
-    <!-- 3. EXECUTION TABS -->
     <div class="usecase-sub">
       <div class="usecase-sub-label">
         <span class="sub-badge gray">Run</span>
@@ -981,41 +832,23 @@
           <button class="tab-btn active" onclick="switchTab('local')">🖥️ Local / CLI</button>
           <button class="tab-btn"        onclick="switchTab('api')"  >🌐 Platform API</button>
         </div>
-        <pre class="usecase-code tab-panel" id="tab-local"><span style="color:#e8f4ff">python</span> examples/main_vector.py run \
-  --input  examples/data/input/synthetic_grid_60x60_shp.zip \
-  --output examples/data/output/saida.gpkg \
-  --param  <span style="color:#e8f4ff">interactive</span>=<span style="color:#f0c060">true</span> \
-  --param  <span style="color:#e8f4ff">end_time</span>=<span style="color:#f0c060">20</span></pre>
+        <pre class="usecase-code tab-panel" id="tab-local"><span class="c-white">python</span> main.py run \
+  --input  data/input/mangue_grid.zip \
+  --output data/output/simulation.gpkg \
+  --param  <span class="c-white">end_time</span>=<span class="c-str">2030</span></pre>
 
-        <pre class="usecase-code tab-panel" id="tab-api" style="display:none;"><span style="color:#7ac0f4">curl</span> -X POST http://localhost:8000/submit_job \
-  -H <span style="color:#f0c060">"X-API-Key: chave-sergio"</span> \
-  -H <span style="color:#f0c060">"Content-Type: application/json"</span> \
-  -d <span style="color:#f0c060">'{
-    "model_name":    "coastal_vector",
-    "input_dataset": "s3://dissmodel-inputs/mangue_grid.shp",
-    "parameters":    {"end_time": 88, "taxa_elevacao": 0.011}
-  }'</span>
-
-<span style="color:#4a6a8a"># Check status</span>
-<span style="color:#7ac0f4">curl</span> http://localhost:8000/job/<span style="color:#e8f4ff">abc123</span>
-
-<span style="color:#4a6a8a"># Reproduce any past experiment exactly</span>
-<span style="color:#7ac0f4">curl</span> -X POST http://localhost:8000/experiments/<span style="color:#e8f4ff">abc123</span>/reproduce</pre>
+        <pre class="usecase-code tab-panel" id="tab-api" style="display:none;"><span class="c-fn">curl</span> -X POST http://localhost:8000/submit_job \
+  -d <span class="c-str">'{
+    "model_name":    "brmangue_vector",
+    "input_dataset": "s3://inputs/grid.shp",
+    "parameters":    {"end_time": 2050}
+  }'</span></pre>
       </div>
     </div>
 
   </div>
 </section>
 
-<!-- QUOTE BANNER -->
-<div class="quote-banner">
-  <blockquote>
-    "Science should not need to be rewritten to go into production."
-    <cite>— DisSModel Principle</cite>
-  </blockquote>
-</div>
-
-<!-- FOOTER -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -1030,8 +863,7 @@
         <li><a href="https://github.com/dissmodel/dissmodel-ca">dissmodel-ca</a></li>
         <li><a href="https://github.com/dissmodel/dissmodel-sysdyn">dissmodel-sysdyn</a></li>
         <li><a href="https://github.com/dissmodel/dissmodel-platform">dissmodel-platform</a></li>
-        <li><a href="https://github.com/dissmodel/coastal-dynamics">brmangue</a></li>
-        <li><a href="https://github.com/dissmodel/dissluc">DisSLUCC</a></li>
+        <li><a href="https://github.com/DisSModel/brmangue-dissmodel">brmangue-dissmodel</a></li>
       </ul>
     </div>
     <div class="footer-col">
