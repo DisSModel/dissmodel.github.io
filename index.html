@@ -15,6 +15,8 @@
       --blue-light: #4a9fd4;
       --green:      #4a9e4a;
       --green-light:#6abf6a;
+      --amber:      #e8a020;
+      --red:        #c0392b;
       --bg:         #f5f7f2;
       --bg-card:    #ffffff;
       --text:       #1a2e4a;
@@ -185,6 +187,36 @@
     .copy-confirm { font-size: .75rem; color: var(--green-light); opacity: 0; transition: opacity .3s; }
     .copy-confirm.show { opacity: 1; }
 
+    /* ── HERO STATS STRIP ── */
+    .stats-strip {
+      width: 100%;
+      background: var(--blue-dark);
+      padding: 1.5rem 2rem;
+    }
+    .stats-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    .stat-item {
+      text-align: center;
+      border-right: 1px solid rgba(255,255,255,.1);
+      padding: 0.5rem 1rem;
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-number {
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--green-light);
+      line-height: 1;
+      font-family: 'DM Mono', monospace;
+    }
+    .stat-label {
+      font-size: .78rem; color: #7aa8d4;
+      font-weight: 500; margin-top: .3rem;
+      letter-spacing: .04em;
+    }
+
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -209,8 +241,86 @@
     }
     .container { max-width: 1120px; margin: 0 auto; }
 
+    /* ── PROBLEM SECTION ── */
+    #problem { background: var(--blue-dark); padding: 80px 2rem; }
+    .problem-inner {
+      max-width: 1120px; margin: 0 auto;
+      display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center;
+    }
+    .problem-stat .big-num {
+      font-size: clamp(4rem, 10vw, 8rem);
+      font-weight: 800; color: var(--amber);
+      line-height: 1; font-family: 'DM Mono', monospace;
+    }
+    .problem-stat p {
+      color: #a0c0e0; font-size: 1rem; line-height: 1.6;
+      margin-top: .75rem; max-width: 220px;
+    }
+    .problem-stat .source {
+      font-size: .75rem; color: #4a6a88; margin-top: .5rem;
+      font-family: 'DM Mono', monospace;
+    }
+    .problem-cards {
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
+    }
+    .problem-card {
+      background: rgba(255,255,255,.05);
+      border: 1px solid rgba(255,255,255,.1);
+      border-radius: 12px; padding: 1.5rem;
+    }
+    .problem-card-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.1rem; margin-bottom: .75rem;
+    }
+    .problem-card-icon.red   { background: rgba(192,57,43,.2); }
+    .problem-card-icon.amber { background: rgba(232,160,32,.2); }
+    .problem-card-icon.purple{ background: rgba(120,80,180,.2); }
+    .problem-card h4 { color: #fff; font-size: .95rem; font-weight: 600; margin-bottom: .4rem; }
+    .problem-card p  { color: #7a9ab8; font-size: .83rem; line-height: 1.6; }
+
+    /* ── COMPARISON ── */
+    #comparison { background: #fff; padding: 80px 2rem; }
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1.5rem;
+      margin-top: 3rem;
+    }
+    .cmp-card {
+      border-radius: 12px; padding: 1.5rem;
+      border: 1.5px solid var(--border);
+    }
+    .cmp-card.highlight {
+      background: var(--blue-dark); border-color: transparent;
+      position: relative; overflow: hidden;
+    }
+    .cmp-card.highlight::before {
+      content: '★ Modern Python';
+      position: absolute; top: 0; right: 0;
+      background: var(--green); color: #fff;
+      font-size: .7rem; font-weight: 700;
+      padding: 4px 10px; border-radius: 0 10px 0 8px;
+      letter-spacing: .05em;
+    }
+    .cmp-header { margin-bottom: 1rem; }
+    .cmp-name { font-size: 1rem; font-weight: 700; color: var(--blue-dark); }
+    .cmp-card.highlight .cmp-name { color: #fff; }
+    .cmp-org { font-size: .75rem; color: var(--muted); margin-top: 2px; }
+    .cmp-card.highlight .cmp-org { color: #7aa8d4; }
+    .cmp-row {
+      display: flex; gap: .5rem; align-items: flex-start;
+      font-size: .82rem; margin-bottom: .4rem;
+    }
+    .cmp-row .tick { flex-shrink: 0; width: 16px; }
+    .tick.yes { color: var(--green); }
+    .tick.no  { color: #c0392b; }
+    .tick.partial { color: var(--amber); }
+    .cmp-row .label { color: var(--muted); line-height: 1.4; }
+    .cmp-card.highlight .cmp-row .label { color: #a0c0e0; }
+
     /* ── REPOS ── */
-    #repos { background: #fff; }
+    #repos { background: var(--bg); }
     .repos-header { margin-bottom: 3.5rem; }
 
     .repos-grid {
@@ -220,7 +330,7 @@
     }
 
     .repo-card {
-      background: var(--bg);
+      background: #fff;
       border: 1.5px solid var(--border);
       border-radius: 14px;
       padding: 1.75rem;
@@ -255,8 +365,8 @@
       display: flex; align-items: center; justify-content: center;
       font-size: 1.4rem; flex-shrink: 0;
     }
-    .repo-icon.blue { background: #e8f0fb; }
-    .repo-icon.green { background: #e8f4e8; }
+    .repo-icon.blue   { background: #e8f0fb; }
+    .repo-icon.green  { background: #e8f4e8; }
     .repo-icon.purple { background: #f0ebfb; }
     .repo-icon.teal { background: #e8f7f7; }
     .repo-icon.orange { background: #fdf0e8; }
@@ -282,8 +392,21 @@
       padding: 3px 10px; border-radius: 999px;
     }
 
+    /* bench strip inside card */
+    .repo-bench {
+      display: flex; gap: .75rem; margin-top: .25rem; flex-wrap: wrap;
+    }
+    .bench-pill {
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(74,158,74,.12); color: var(--green);
+      border: 1px solid rgba(74,158,74,.25);
+      font-size: .72rem; font-weight: 700;
+      padding: 3px 10px; border-radius: 999px;
+      font-family: 'DM Mono', monospace;
+    }
+
     /* ── ARCHITECTURE ── */
-    #architecture { background: var(--bg); }
+    #architecture { background: #fff; }
     .arch-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
     .arch-diagram {
       background: var(--blue-dark);
@@ -310,11 +433,12 @@
     }
     .arch-dot.blue  { background: var(--blue-mid); }
     .arch-dot.green { background: var(--green); }
+    .arch-dot.amber { background: var(--amber); }
     .arch-point-text h4 { font-size: .95rem; font-weight: 600; margin-bottom: .2rem; }
     .arch-point-text p  { font-size: .88rem; color: var(--muted); line-height: 1.6; }
 
     /* ── USE CASE ── */
-    #usecase { background: #fff; }
+    #usecase { background: var(--bg); }
 
     .usecase-sub {
       display: grid;
@@ -374,6 +498,25 @@
       .usecase-arrow { padding-left: 0; }
     }
 
+    /* ── QUOTE BANNER ── */
+    .quote-banner {
+      background: var(--blue-mid);
+      padding: 60px 2rem;
+      text-align: center;
+    }
+    .quote-banner blockquote {
+      max-width: 780px; margin: 0 auto;
+      font-size: clamp(1.2rem, 3vw, 1.75rem);
+      font-weight: 700; color: #fff;
+      line-height: 1.4; letter-spacing: -.01em;
+    }
+    .quote-banner cite {
+      display: block; margin-top: 1rem;
+      font-size: .85rem; font-weight: 400;
+      color: rgba(255,255,255,.7); font-style: normal;
+      letter-spacing: .08em; text-transform: uppercase;
+    }
+
     /* ── FOOTER ── */
     footer {
       background: var(--blue-dark); color: #a0c0e0;
@@ -407,6 +550,9 @@
       .arch-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: .75rem; text-align: center; }
+      .stats-inner { grid-template-columns: repeat(2,1fr); }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
     }
   </style>
 </head>
@@ -463,7 +609,7 @@
   <div class="container">
     <div class="repos-header">
       <p class="section-label">Ecosystem</p>
-      <h2 class="section-title">Five repositories,<br>one coherent framework</h2>
+      <h2 class="section-title">Seven repositories,<br>one coherent framework</h2>
       <p class="section-desc">Each package has a focused role. Use the core alone or combine extensions for complex geospatial simulations.</p>
     </div>
 
@@ -491,7 +637,7 @@
           <span class="repo-arrow">↗</span>
         </div>
         <div class="repo-name">dissmodel-ca</div>
-        <p class="repo-desc">Cellular Automata library supporting GeoDataFrame-based (vector) and NumPy-based (raster) substrates with interactive Streamlit explorers.</p>
+        <p class="repo-desc">Cellular Automata library — Game of Life, Forest Fire, Snow — on GeoDataFrame (vector) and NumPy (raster) substrates with interactive Streamlit explorers.</p>
         <div class="repo-tags">
           <span class="repo-tag">cellular automata</span>
           <span class="repo-tag">geospatial</span>
@@ -519,7 +665,7 @@
           <span class="repo-arrow">↗</span>
         </div>
         <div class="repo-name">dissmodel-platform</div>
-        <p class="repo-desc">Scalable execution platform — JupyterLab, FastAPI, distributed workers, and S3-compatible storage via Docker Compose. For production LUCC runs.</p>
+        <p class="repo-desc">Scalable execution platform — JupyterLab, FastAPI, distributed workers, Redis queue and S3-compatible storage via Docker Compose. For production LUCC runs.</p>
         <div class="repo-tags">
           <span class="repo-tag">FastAPI</span>
           <span class="repo-tag">Docker</span>
@@ -537,10 +683,28 @@
           Spatially explicit simulation of sea-level rise impacts on mangrove ecosystems, implementing the model by <strong>Bezerra et al. (2014)</strong> on the DisSModel framework.
         </p>
         <div class="repo-tags">
-          <span class="repo-tag">LUCC</span>
           <span class="repo-tag">mangrove</span>
           <span class="repo-tag">Amazon Coast</span>
           <span class="repo-tag">Bezerra et al.</span>
+        </div>
+      </a>
+
+      <!-- DISSLUCC -->
+      <a href="https://github.com/dissmodel/dissluc" class="repo-card">
+        <div class="repo-top">
+          <div class="repo-icon blue">🗺</div>
+          <span class="repo-arrow">↗</span>
+        </div>
+        <div class="repo-name">DisSLUCC</div>
+        <p class="repo-desc">Continuous CLUE-type Land Use &amp; Cover Change allocation. Demand → Potential → Allocation pipeline validated on LuccME AC dataset (2008–2014 · 6,574 cells).</p>
+        <div class="repo-bench">
+          <span class="bench-pill">⚡ 3.9× raster speedup</span>
+          <span class="bench-pill">MAE 0.002276</span>
+        </div>
+        <div class="repo-tags">
+          <span class="repo-tag">CLUE</span>
+          <span class="repo-tag">LUCC</span>
+          <span class="repo-tag">MapBiomas</span>
         </div>
       </a>
 
@@ -561,21 +725,28 @@
             <div class="arch-dot blue"></div>
             <div class="arch-point-text">
               <h4>Experiment as first-class object</h4>
-              <p>Each run produces an immutable <code>ExperimentRecord</code> capturing provenance, input checksums, and model commit — ready to cite in a paper.</p>
+              <p>Each run produces an immutable <code>ExperimentRecord</code> capturing provenance, input SHA-256 checksums, and model commit — ready to cite in a paper.</p>
+            </div>
+          </div>
+          <div class="arch-point">
+            <div class="arch-dot amber"></div>
+            <div class="arch-point-text">
+              <h4>Configuration separated from code</h4>
+              <p>Calibrated coefficients live in versioned TOML files in <code>dissmodel-configs</code>, reviewed via PR before publication. Never hardcoded, always citeable by git hash.</p>
             </div>
           </div>
           <div class="arch-point">
             <div class="arch-dot green"></div>
             <div class="arch-point-text">
-              <h4>Configuration separated from code</h4>
-              <p>Calibrated coefficients live in versioned TOML files in <code>dissmodel-configs</code>, never hardcoded. Citeable by git hash.</p>
+              <h4>Two-layer architecture</h4>
+              <p>Science logic stays pure in the <code>Model</code> layer. The <code>ModelExecutor</code> wraps I/O, column mapping, and provenance — without touching the science.</p>
             </div>
           </div>
           <div class="arch-point">
             <div class="arch-dot blue"></div>
             <div class="arch-point-text">
               <h4>Production-ready infrastructure</h4>
-              <p>Built on JupyterLab, FastAPI, Redis, and MinIO via Docker Compose. Pangeo integration is planned for a future release.</p>
+              <p>Built on JupyterLab, FastAPI, Redis, and MinIO via Docker Compose. Pangeo / BDC integration planned for a future release.</p>
             </div>
           </div>
         </div>
@@ -593,6 +764,10 @@
 <span class="c-blue">│   ├── ExecutorRegistry          │</span>
 <span class="c-blue">│   ├── ModelExecutor ABC         │</span>
 <span class="c-blue">│   └── Redis Queue               │</span>
+<span class="c-dim">├─────────────────────────────────┤</span>
+<span class="c-green">│  dissmodel-configs              │</span>
+<span class="c-blue">│   ├── models/brmangue.toml      │</span>
+<span class="c-blue">│   └── models/dissluc.toml       │</span>
 <span class="c-dim">├─────────────────────────────────┤</span>
 <span class="c-white">│  Infrastructure                 │</span>
 <span class="c-dim">│  JupyterLab · MinIO · Redis     │</span>
@@ -615,15 +790,15 @@
         <span class="sub-badge blue">Model</span>
         <p>Pure simulation logic — no I/O, no infrastructure. Works standalone in a notebook or script.</p>
       </div>
-      <pre class="usecase-code"><span class="c-kw">from</span> <span class="c-white">dissmodel</span> <span class="c-kw">import</span> <span class="c-white">Environment</span>
+      <pre class="usecase-code"><span style="color:#6abf6a">from</span> <span style="color:#e8f4ff">dissmodel</span> <span style="color:#6abf6a">import</span> <span style="color:#e8f4ff">Environment</span>
 
-<span class="c-white">env</span> = <span class="c-fn">Environment</span>(<span class="c-white">start_time</span>=<span class="c-str">2008</span>, <span class="c-white">end_time</span>=<span class="c-str">2030</span>)
+<span style="color:#e8f4ff">env</span> = <span style="color:#7ac0f4">Environment</span>(<span style="color:#e8f4ff">start_time</span>=<span style="color:#f0c060">2008</span>, <span style="color:#e8f4ff">end_time</span>=<span style="color:#f0c060">2030</span>)
 
 <span class="c-comment"># Models attach themselves to env on instantiation</span>
 <span class="c-fn">FloodModel</span>(<span class="c-white">gdf</span>=gdf, <span class="c-white">taxa_elevacao</span>=<span class="c-str">0.5</span>, <span class="c-white">attr_uso</span>=<span class="c-str">"uso"</span>)
 <span class="c-fn">MangroveModel</span>(<span class="c-white">gdf</span>=gdf, <span class="c-white">altura_mare</span>=<span class="c-str">6.0</span>, <span class="c-white">attr_solo</span>=<span class="c-str">"solo"</span>)
 
-<span class="c-white">env</span>.<span class="c-fn">run</span>()</pre>
+<span style="color:#e8f4ff">env</span>.<span style="color:#7ac0f4">run</span>()</pre>
     </div>
 
     <div class="usecase-arrow">↓</div>
@@ -636,8 +811,8 @@
       <pre class="usecase-code"><span class="c-kw">class</span> <span class="c-fn">CoastalVectorExecutor</span>(<span class="c-white">ModelExecutor</span>):
     name = <span class="c-str">"brmangue_vector"</span>
 
-    <span class="c-kw">def</span> <span class="c-fn">load</span>(<span class="c-white">self</span>, record: <span class="c-white">ExperimentRecord</span>) -> <span class="c-white">GeoDataFrame</span>:
-        <span class="c-comment"># load data + apply column_map → canonical names</span>
+    <span style="color:#6abf6a">def</span> <span style="color:#7ac0f4">load</span>(<span style="color:#e8f4ff">self</span>, record: <span style="color:#e8f4ff">ExperimentRecord</span>) -> <span style="color:#e8f4ff">GeoDataFrame</span>:
+        <span style="color:#4a6a8a"># load data + apply column_map → canonical names</span>
         ...
 
     <span class="c-kw">def</span> <span class="c-fn">run</span>(<span class="c-white">self</span>, data: <span class="c-white">GeoDataFrame</span>, record: <span class="c-white">ExperimentRecord</span>) -> <span class="c-white">GeoDataFrame</span>:
@@ -678,12 +853,13 @@
   <div class="footer-inner">
     <div class="footer-brand">
       <h3>DisSModel</h3>
-      <p>A modular Python ecosystem for discrete spatial modeling, developed at LambdaGEO / UFMA.</p>
+      <p>A modular Python ecosystem for discrete spatial modeling, developed at LambdaGEO / UFMA. Designed as the innovation laboratory for LuccME++ at CCST/INPE.</p>
     </div>
     <div class="footer-col">
       <h4>Repositories</h4>
       <ul>
         <li><a href="https://github.com/dissmodel/dissmodel">dissmodel</a></li>
+        <li><a href="https://github.com/dissmodel/dissmodel-configs">dissmodel-configs</a></li>
         <li><a href="https://github.com/dissmodel/dissmodel-ca">dissmodel-ca</a></li>
         <li><a href="https://github.com/dissmodel/dissmodel-sysdyn">dissmodel-sysdyn</a></li>
         <li><a href="https://github.com/dissmodel/dissmodel-platform">dissmodel-platform</a></li>
