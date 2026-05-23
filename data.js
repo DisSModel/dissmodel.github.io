@@ -7,45 +7,61 @@ const REPO_EXTRAS = {
     icon: "🧩",
     featured: true,
     order: 0,
-    pills: []
+    pills: [],
+    links: [
+      { label: "📖 Docs", url: "https://dissmodel.github.io/dissmodel/" }
+    ]
   },
   "dissmodel-ca": {
     icon: "⬡",
     order: 1,
-    pills: []
+    pills: [],
+    links: [
+      { label: "📖 Docs", url: "https://dissmodel.github.io/dissmodel-ca/" },
+      { label: "🚀 Demo", url: "https://huggingface.co/spaces/profsergiocosta/dissmodel-ca-demo" }
+    ]
   },
   "dissmodel-sysdyn": {
     icon: "〜",
     order: 2,
-    pills: []
+    pills: [],
+    links: [
+      { label: "📖 Docs", url: "https://dissmodel.github.io/dissmodel-sysdyn/" },
+      { label: "🚀 Demo", url: "https://huggingface.co/spaces/profsergiocosta/dissmodel-sysdyn-demo" }
+    ]
   },
   "dissmodel-platform": {
     icon: "⚙",
     order: 3,
-    pills: []
+    pills: [],
+    links: []
   },
   "brmangue-dissmodel": {
     icon: "🌿",
     order: 4,
-    pills: []
+    pills: [],
+    links: []
   },
   "dissluc": {
     icon: "🗺",
     order: 5,
-    pills: ["⚡ 3.9× raster speedup", "MAE 0.002276"]
+    pills: ["⚡ 3.9× raster speedup", "MAE 0.002276"],
+    links: []
   },
   "disscube": {
     icon: "🗄",
     order: 6,
-    pills: []
+    pills: [],
+    links: []
   },
   "coastal-dynamics": {
     icon: "🌊",
     order: 7,
-    pills: []
+    pills: [],
+    links: []
   }
   // Qualquer repo público da org não listado aqui
-  // aparece automaticamente com icon "📦" e sem pills.
+  // aparece automaticamente com icon "📦" e sem pills/links.
 };
 
 // Repos a esconder (ex: forks utilitários, templates internos)
