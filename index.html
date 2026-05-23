@@ -72,7 +72,6 @@
       position: relative;
       overflow: hidden;
     }
-
     .hero::before {
       content: '';
       position: absolute; inset: 0;
@@ -83,7 +82,6 @@
       opacity: .5;
       pointer-events: none;
     }
-
     .blob {
       position: absolute; border-radius: 50%;
       filter: blur(80px); pointer-events: none; opacity: .18;
@@ -120,17 +118,6 @@
       margin-bottom: 1.5rem;
       animation: fadeUp .7s .1s ease both;
     }
-
-    .hero h1 {
-      font-size: clamp(2.8rem, 7vw, 5.5rem);
-      font-weight: 800;
-      line-height: 1;
-      letter-spacing: -.02em;
-      animation: fadeUp .7s .15s ease both;
-    }
-    .hero h1 .dis  { color: var(--blue-dark); }
-    .hero h1 .s    { color: var(--blue-mid); }
-    .hero h1 .model{ color: var(--blue-dark); }
 
     .hero-sub {
       font-size: clamp(1rem, 2.5vw, 1.25rem);
@@ -187,7 +174,7 @@
     .copy-confirm { font-size: .75rem; color: var(--green-light); opacity: 0; transition: opacity .3s; }
     .copy-confirm.show { opacity: 1; }
 
-    /* ── HERO STATS STRIP ── */
+    /* ── STATS STRIP ── */
     .stats-strip {
       width: 100%;
       background: var(--blue-dark);
@@ -241,87 +228,30 @@
     }
     .container { max-width: 1120px; margin: 0 auto; }
 
-    /* ── PROBLEM SECTION ── */
-    #problem { background: var(--blue-dark); padding: 80px 2rem; }
-    .problem-inner {
-      max-width: 1120px; margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 2fr; gap: 4rem; align-items: center;
-    }
-    .problem-stat .big-num {
-      font-size: clamp(4rem, 10vw, 8rem);
-      font-weight: 800; color: var(--amber);
-      line-height: 1; font-family: 'DM Mono', monospace;
-    }
-    .problem-stat p {
-      color: #a0c0e0; font-size: 1rem; line-height: 1.6;
-      margin-top: .75rem; max-width: 220px;
-    }
-    .problem-stat .source {
-      font-size: .75rem; color: #4a6a88; margin-top: .5rem;
-      font-family: 'DM Mono', monospace;
-    }
-    .problem-cards {
-      display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;
-    }
-    .problem-card {
-      background: rgba(255,255,255,.05);
-      border: 1px solid rgba(255,255,255,.1);
-      border-radius: 12px; padding: 1.5rem;
-    }
-    .problem-card-icon {
-      width: 36px; height: 36px; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.1rem; margin-bottom: .75rem;
-    }
-    .problem-card-icon.red   { background: rgba(192,57,43,.2); }
-    .problem-card-icon.amber { background: rgba(232,160,32,.2); }
-    .problem-card-icon.purple{ background: rgba(120,80,180,.2); }
-    .problem-card h4 { color: #fff; font-size: .95rem; font-weight: 600; margin-bottom: .4rem; }
-    .problem-card p  { color: #7a9ab8; font-size: .83rem; line-height: 1.6; }
-
-    /* ── COMPARISON ── */
-    #comparison { background: #fff; padding: 80px 2rem; }
-    .comparison-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 1.5rem;
-      margin-top: 3rem;
-    }
-    .cmp-card {
-      border-radius: 12px; padding: 1.5rem;
-      border: 1.5px solid var(--border);
-    }
-    .cmp-card.highlight {
-      background: var(--blue-dark); border-color: transparent;
-      position: relative; overflow: hidden;
-    }
-    .cmp-card.highlight::before {
-      content: '★ Modern Python';
-      position: absolute; top: 0; right: 0;
-      background: var(--green); color: #fff;
-      font-size: .7rem; font-weight: 700;
-      padding: 4px 10px; border-radius: 0 10px 0 8px;
-      letter-spacing: .05em;
-    }
-    .cmp-header { margin-bottom: 1rem; }
-    .cmp-name { font-size: 1rem; font-weight: 700; color: var(--blue-dark); }
-    .cmp-card.highlight .cmp-name { color: #fff; }
-    .cmp-org { font-size: .75rem; color: var(--muted); margin-top: 2px; }
-    .cmp-card.highlight .cmp-org { color: #7aa8d4; }
-    .cmp-row {
-      display: flex; gap: .5rem; align-items: flex-start;
-      font-size: .82rem; margin-bottom: .4rem;
-    }
-    .cmp-row .tick { flex-shrink: 0; width: 16px; }
-    .tick.yes { color: var(--green); }
-    .tick.no  { color: #c0392b; }
-    .tick.partial { color: var(--amber); }
-    .cmp-row .label { color: var(--muted); line-height: 1.4; }
-    .cmp-card.highlight .cmp-row .label { color: #a0c0e0; }
-
     /* ── REPOS ── */
     #repos { background: var(--bg); }
     .repos-header { margin-bottom: 3.5rem; }
+
+    /* loading state */
+    .repos-loading {
+      display: flex; align-items: center; gap: 12px;
+      color: var(--muted); font-size: .95rem;
+      padding: 2rem 0;
+    }
+    .spinner {
+      width: 20px; height: 20px;
+      border: 2px solid var(--border);
+      border-top-color: var(--blue-mid);
+      border-radius: 50%;
+      animation: spin .7s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .repos-error {
+      background: #fff3f3; border: 1px solid #f5c6c6;
+      border-radius: 10px; padding: 1.25rem 1.5rem;
+      color: var(--red); font-size: .9rem;
+    }
 
     .repos-grid {
       display: grid;
@@ -356,7 +286,8 @@
       grid-column: span 2;
     }
     .repo-card.featured .repo-desc { color: #a0c0e0; }
-    .repo-card.featured .repo-tag { background: rgba(255,255,255,.12); color: #c0dcf4; }
+    .repo-card.featured .repo-tag  { background: rgba(255,255,255,.12); color: #c0dcf4; }
+    .repo-card.featured .repo-meta { color: #5a8ab8; }
     .repo-card.featured::after { background: linear-gradient(90deg, var(--green-light), var(--blue-light)); }
 
     .repo-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
@@ -364,12 +295,8 @@
       width: 44px; height: 44px; border-radius: 10px;
       display: flex; align-items: center; justify-content: center;
       font-size: 1.4rem; flex-shrink: 0;
+      background: #e8f0fb;
     }
-    .repo-icon.blue   { background: #e8f0fb; }
-    .repo-icon.green  { background: #e8f4e8; }
-    .repo-icon.purple { background: #f0ebfb; }
-    .repo-icon.teal { background: #e8f7f7; }
-    .repo-icon.orange { background: #fdf0e8; }
     .repo-card.featured .repo-icon { background: rgba(255,255,255,.15); }
 
     .repo-arrow { color: var(--muted); font-size: 1.1rem; transition: transform .2s; }
@@ -377,13 +304,13 @@
     .repo-card.featured .repo-arrow { color: #a0c0e0; }
 
     .repo-name {
-      font-size: 1.1rem; font-weight: 700;
+      font-size: 1.05rem; font-weight: 700;
       font-family: 'DM Mono', monospace;
       color: var(--blue-dark);
     }
     .repo-card.featured .repo-name { color: #fff; }
 
-    .repo-desc { font-size: .9rem; color: var(--muted); line-height: 1.6; }
+    .repo-desc { font-size: .9rem; color: var(--muted); line-height: 1.6; flex: 1; }
 
     .repo-tags { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .25rem; }
     .repo-tag {
@@ -392,10 +319,7 @@
       padding: 3px 10px; border-radius: 999px;
     }
 
-    /* bench strip inside card */
-    .repo-bench {
-      display: flex; gap: .75rem; margin-top: .25rem; flex-wrap: wrap;
-    }
+    .repo-bench { display: flex; gap: .75rem; flex-wrap: wrap; }
     .bench-pill {
       display: inline-flex; align-items: center; gap: 5px;
       background: rgba(74,158,74,.12); color: var(--green);
@@ -404,6 +328,12 @@
       padding: 3px 10px; border-radius: 999px;
       font-family: 'DM Mono', monospace;
     }
+
+    .repo-meta {
+      font-size: .78rem; color: var(--muted);
+      display: flex; align-items: center; gap: 12px;
+    }
+    .repo-meta-item { display: flex; align-items: center; gap: 4px; }
 
     /* ── ARCHITECTURE ── */
     #architecture { background: #fff; }
@@ -439,7 +369,6 @@
 
     /* ── USE CASE ── */
     #usecase { background: var(--bg); }
-
     .usecase-sub {
       display: grid;
       grid-template-columns: 280px 1fr;
@@ -466,7 +395,6 @@
       text-align: center; padding: .5rem 0 1.5rem;
       padding-left: 280px;
     }
-
     .usecase-code {
       background: var(--blue-dark);
       border-radius: 10px;
@@ -478,7 +406,6 @@
       border: 1px solid rgba(255,255,255,.06);
       box-shadow: 0 8px 30px rgba(26,46,74,.12);
     }
-
     .tabs-wrap { width: 100%; }
     .tab-btns { display: flex; gap: .5rem; margin-bottom: 0; }
     .tab-btn {
@@ -493,30 +420,6 @@
     .tab-btn:not(.active):hover { border-color: var(--blue-mid); color: var(--blue-mid); }
     .tab-panel { border-radius: 0 8px 8px 8px !important; }
 
-    @media (max-width: 768px) {
-      .usecase-sub { grid-template-columns: 1fr; }
-      .usecase-arrow { padding-left: 0; }
-    }
-
-    /* ── QUOTE BANNER ── */
-    .quote-banner {
-      background: var(--blue-mid);
-      padding: 60px 2rem;
-      text-align: center;
-    }
-    .quote-banner blockquote {
-      max-width: 780px; margin: 0 auto;
-      font-size: clamp(1.2rem, 3vw, 1.75rem);
-      font-weight: 700; color: #fff;
-      line-height: 1.4; letter-spacing: -.01em;
-    }
-    .quote-banner cite {
-      display: block; margin-top: 1rem;
-      font-size: .85rem; font-weight: 400;
-      color: rgba(255,255,255,.7); font-style: normal;
-      letter-spacing: .08em; text-transform: uppercase;
-    }
-
     /* ── FOOTER ── */
     footer {
       background: var(--blue-dark); color: #a0c0e0;
@@ -526,12 +429,12 @@
       max-width: 1120px; margin: 0 auto;
       display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
     }
-    .footer-brand h3 {
-      font-size: 1.2rem; font-weight: 700; color: #fff;
-      margin-bottom: .5rem;
+    .footer-brand h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: .5rem; }
+    .footer-brand p  { font-size: .88rem; line-height: 1.7; max-width: 280px; }
+    .footer-col h4 {
+      font-size: .8rem; font-weight: 700; letter-spacing: .1em;
+      text-transform: uppercase; color: #fff; margin-bottom: 1rem;
     }
-    .footer-brand p { font-size: .88rem; line-height: 1.7; max-width: 280px; }
-    .footer-col h4 { font-size: .8rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: #fff; margin-bottom: 1rem; }
     .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
     .footer-col a { color: #7a9ab8; text-decoration: none; font-size: .88rem; transition: color .2s; }
     .footer-col a:hover { color: #fff; }
@@ -542,6 +445,8 @@
       display: flex; justify-content: space-between; align-items: center;
       font-size: .8rem; color: #4a6a88;
     }
+    /* repo list in footer — populated dynamically */
+    #footer-repo-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
 
     @media (max-width: 768px) {
       nav { padding: 0 1.25rem; }
@@ -551,16 +456,18 @@
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: .75rem; text-align: center; }
       .stats-inner { grid-template-columns: repeat(2,1fr); }
-      .comparison-grid { grid-template-columns: 1fr; }
       .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
+      .usecase-sub { grid-template-columns: 1fr; }
+      .usecase-arrow { padding-left: 0; }
     }
   </style>
 </head>
 <body>
 
+<!-- ── NAV ── -->
 <nav>
   <a class="nav-logo" href="#">
-    <img src="logo.png" alt="DisSModel" style="width:32px;height:32px;object-fit:contain;">
+    <img src="dissmodel_transparent.png" alt="DisSModel" style="width:32px;height:32px;object-fit:contain;">
     DisSModel
   </a>
   <ul class="nav-links">
@@ -571,6 +478,7 @@
   </ul>
 </nav>
 
+<!-- ── HERO ── -->
 <section class="hero">
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
@@ -587,12 +495,8 @@
   </p>
 
   <div class="hero-actions">
-    <a href="https://dissmodel.github.io/dissmodel/" class="btn btn-primary">
-      📖 Documentation
-    </a>
-    <a href="https://github.com/dissmodel" class="btn btn-secondary">
-      ⭐ GitHub Organization
-    </a>
+    <a href="https://dissmodel.github.io/dissmodel/" class="btn btn-primary">📖 Documentation</a>
+    <a href="https://github.com/DisSModel" class="btn btn-secondary">⭐ GitHub Organization</a>
   </div>
 
   <div class="pip-block">
@@ -605,113 +509,36 @@
   </div>
 </section>
 
+<!-- ── STATS STRIP ── -->
+<div class="stats-strip">
+  <div class="stats-inner" id="stats-strip">
+    <!-- populated by JS after GitHub fetch -->
+    <div class="stat-item"><div class="stat-number">—</div><div class="stat-label">Repositories</div></div>
+    <div class="stat-item"><div class="stat-number">100k</div><div class="stat-label">Cells · BR-MANGUE</div></div>
+    <div class="stat-item"><div class="stat-number">100m</div><div class="stat-label">Resolution</div></div>
+    <div class="stat-item"><div class="stat-number">MIT</div><div class="stat-label">License</div></div>
+  </div>
+</div>
+
+<!-- ── REPOS ── -->
 <section id="repos">
   <div class="container">
     <div class="repos-header">
       <p class="section-label">Ecosystem</p>
-      <h2 class="section-title">Seven repositories,<br>one coherent framework</h2>
+      <h2 class="section-title" id="repos-title">Repositories</h2>
       <p class="section-desc">Each package has a focused role. Use the core alone or combine extensions for complex geospatial simulations.</p>
     </div>
 
-    <div class="repos-grid">
-
-      <a href="https://github.com/dissmodel/dissmodel" class="repo-card featured">
-        <div class="repo-top">
-          <div class="repo-icon blue">🧩</div>
-          <span class="repo-arrow">↗</span>
-        </div>
-        <div class="repo-name">dissmodel</div>
-        <p class="repo-desc">
-          The core framework. Provides the <code>Environment</code>, <code>Model</code>, and discrete event engine that power every simulation in the ecosystem. Start here.
-        </p>
-        <div class="repo-tags">
-          <span class="repo-tag">core</span>
-          <span class="repo-tag">PyPI</span>
-          <span class="repo-tag">MIT</span>
-        </div>
-      </a>
-
-      <a href="https://github.com/dissmodel/dissmodel-ca" class="repo-card">
-        <div class="repo-top">
-          <div class="repo-icon green">⬡</div>
-          <span class="repo-arrow">↗</span>
-        </div>
-        <div class="repo-name">dissmodel-ca</div>
-        <p class="repo-desc">Cellular Automata library — Game of Life, Forest Fire, Snow — on GeoDataFrame (vector) and NumPy (raster) substrates with interactive Streamlit explorers.</p>
-        <div class="repo-tags">
-          <span class="repo-tag">cellular automata</span>
-          <span class="repo-tag">geospatial</span>
-          <span class="repo-tag">streamlit</span>
-        </div>
-      </a>
-
-      <a href="https://github.com/dissmodel/dissmodel-sysdyn" class="repo-card">
-        <div class="repo-top">
-          <div class="repo-icon purple">〜</div>
-          <span class="repo-arrow">↗</span>
-        </div>
-        <div class="repo-name">dissmodel-sysdyn</div>
-        <p class="repo-desc">Classic System Dynamics models — SIR, Lorenz, Predator–Prey — built on DisSModel with interactive Streamlit explorers and CLI tools.</p>
-        <div class="repo-tags">
-          <span class="repo-tag">system dynamics</span>
-          <span class="repo-tag">SIR</span>
-          <span class="repo-tag">Lorenz</span>
-        </div>
-      </a>
-
-      <a href="https://github.com/dissmodel/dissmodel-platform" class="repo-card">
-        <div class="repo-top">
-          <div class="repo-icon teal">⚙</div>
-          <span class="repo-arrow">↗</span>
-        </div>
-        <div class="repo-name">dissmodel-platform</div>
-        <p class="repo-desc">Scalable execution platform — JupyterLab, FastAPI, distributed workers, Redis queue and S3-compatible storage via Docker Compose. For production LUCC runs.</p>
-        <div class="repo-tags">
-          <span class="repo-tag">FastAPI</span>
-          <span class="repo-tag">Docker</span>
-          <span class="repo-tag">JupyterLab</span>
-        </div>
-      </a>
-
-      <a href="https://github.com/DisSModel/brmangue-dissmodel" class="repo-card">
-        <div class="repo-top">
-          <div class="repo-icon green">🌿</div>
-          <span class="repo-arrow">↗</span>
-        </div>
-        <div class="repo-name">brmangue-dissmodel</div>
-        <p class="repo-desc">
-          Spatially explicit simulation of sea-level rise impacts on mangrove ecosystems, implementing the model by <strong>Bezerra et al. (2014)</strong> on the DisSModel framework.
-        </p>
-        <div class="repo-tags">
-          <span class="repo-tag">mangrove</span>
-          <span class="repo-tag">Amazon Coast</span>
-          <span class="repo-tag">Bezerra et al.</span>
-        </div>
-      </a>
-
-      <!-- DISSLUCC -->
-      <a href="https://github.com/dissmodel/dissluc" class="repo-card">
-        <div class="repo-top">
-          <div class="repo-icon blue">🗺</div>
-          <span class="repo-arrow">↗</span>
-        </div>
-        <div class="repo-name">DisSLUCC</div>
-        <p class="repo-desc">Continuous CLUE-type Land Use &amp; Cover Change allocation. Demand → Potential → Allocation pipeline validated on LuccME AC dataset (2008–2014 · 6,574 cells).</p>
-        <div class="repo-bench">
-          <span class="bench-pill">⚡ 3.9× raster speedup</span>
-          <span class="bench-pill">MAE 0.002276</span>
-        </div>
-        <div class="repo-tags">
-          <span class="repo-tag">CLUE</span>
-          <span class="repo-tag">LUCC</span>
-          <span class="repo-tag">MapBiomas</span>
-        </div>
-      </a>
-
+    <div id="repos-container">
+      <div class="repos-loading">
+        <div class="spinner"></div>
+        Loading repositories from GitHub…
+      </div>
     </div>
   </div>
 </section>
 
+<!-- ── ARCHITECTURE ── -->
 <section id="architecture">
   <div class="container">
     <div class="arch-wrap">
@@ -763,25 +590,26 @@
 <span class="c-green">│  Worker                         │</span>
 <span class="c-blue">│   ├── ExecutorRegistry          │</span>
 <span class="c-blue">│   ├── ModelExecutor ABC         │</span>
-<span class="c-blue">│   └── Redis Queue               │</span>
+<span class="c-blue">│   └── Dask Client               │</span>
 <span class="c-dim">├─────────────────────────────────┤</span>
 <span class="c-green">│  dissmodel-configs              │</span>
 <span class="c-blue">│   ├── models/brmangue.toml      │</span>
 <span class="c-blue">│   └── models/dissluc.toml       │</span>
 <span class="c-dim">├─────────────────────────────────┤</span>
 <span class="c-white">│  Infrastructure                 │</span>
-<span class="c-dim">│  JupyterLab · MinIO · Redis     │</span>
+<span class="c-dim">│  JupyterLab · MinIO · Dask      │</span>
 <span class="c-dim">└─────────────────────────────────┘</span></pre>
     </div>
   </div>
 </section>
 
+<!-- ── USE CASE ── -->
 <section id="usecase">
   <div class="container">
     <p class="section-label">Reference Application</p>
-    <h2 class="section-title">Coastal dynamics & Mangrove migration</h2>
+    <h2 class="section-title">Coastal dynamics &amp; Mangrove migration</h2>
     <p class="section-desc" style="margin-bottom:3.5rem;">
-      The <code>brmangue-dissmodel</code> repository demonstrates DisSModel on real data from Maranhão, Brazil — 
+      The <code>brmangue-dissmodel</code> repository demonstrates DisSModel on real data from Maranhão, Brazil —
       implementing flood propagation and mangrove migration based on <strong>Bezerra et al. (2014)</strong>.
     </p>
 
@@ -792,13 +620,12 @@
       </div>
       <pre class="usecase-code"><span style="color:#6abf6a">from</span> <span style="color:#e8f4ff">dissmodel</span> <span style="color:#6abf6a">import</span> <span style="color:#e8f4ff">Environment</span>
 
-<span style="color:#e8f4ff">env</span> = <span style="color:#7ac0f4">Environment</span>(<span style="color:#e8f4ff">start_time</span>=<span style="color:#f0c060">2008</span>, <span style="color:#e8f4ff">end_time</span>=<span style="color:#f0c060">2030</span>)
+env = Environment(start_time=2008, end_time=2030)
 
-<span class="c-comment"># Models attach themselves to env on instantiation</span>
-<span class="c-fn">FloodModel</span>(<span class="c-white">gdf</span>=gdf, <span class="c-white">taxa_elevacao</span>=<span class="c-str">0.5</span>, <span class="c-white">attr_uso</span>=<span class="c-str">"uso"</span>)
-<span class="c-fn">MangroveModel</span>(<span class="c-white">gdf</span>=gdf, <span class="c-white">altura_mare</span>=<span class="c-str">6.0</span>, <span class="c-white">attr_solo</span>=<span class="c-str">"solo"</span>)
+FloodModel(gdf=gdf, taxa_elevacao=0.5, attr_uso="uso")
+MangroveModel(gdf=gdf, altura_mare=6.0, attr_solo="solo")
 
-<span style="color:#e8f4ff">env</span>.<span style="color:#7ac0f4">run</span>()</pre>
+env.run()</pre>
     </div>
 
     <div class="usecase-arrow">↓</div>
@@ -808,15 +635,15 @@
         <span class="sub-badge green">ModelExecutor</span>
         <p>Wraps the model with I/O, column mapping, provenance, and platform integration.</p>
       </div>
-      <pre class="usecase-code"><span class="c-kw">class</span> <span class="c-fn">CoastalVectorExecutor</span>(<span class="c-white">ModelExecutor</span>):
-    name = <span class="c-str">"brmangue_vector"</span>
+      <pre class="usecase-code">class CoastalVectorExecutor(ModelExecutor):
+    name = "brmangue_vector"
 
-    <span style="color:#6abf6a">def</span> <span style="color:#7ac0f4">load</span>(<span style="color:#e8f4ff">self</span>, record: <span style="color:#e8f4ff">ExperimentRecord</span>) -> <span style="color:#e8f4ff">GeoDataFrame</span>:
-        <span style="color:#4a6a8a"># load data + apply column_map → canonical names</span>
+    def load(self, record: ExperimentRecord) -> GeoDataFrame:
+        # load + apply column_map → canonical names
         ...
 
-    <span class="c-kw">def</span> <span class="c-fn">run</span>(<span class="c-white">self</span>, data: <span class="c-white">GeoDataFrame</span>, record: <span class="c-white">ExperimentRecord</span>) -> <span class="c-white">GeoDataFrame</span>:
-        <span class="c-comment"># build env + models, call env.run()</span>
+    def run(self, data, record: ExperimentRecord):
+        # build env + models, call env.run()
         ...</pre>
     </div>
 
@@ -832,23 +659,23 @@
           <button class="tab-btn active" onclick="switchTab('local')">🖥️ Local / CLI</button>
           <button class="tab-btn"        onclick="switchTab('api')"  >🌐 Platform API</button>
         </div>
-        <pre class="usecase-code tab-panel" id="tab-local"><span class="c-white">python</span> main.py run \
+        <pre class="usecase-code tab-panel" id="tab-local">python main.py run \
   --input  data/input/mangue_grid.zip \
   --output data/output/simulation.gpkg \
-  --param  <span class="c-white">end_time</span>=<span class="c-str">2030</span></pre>
-
-        <pre class="usecase-code tab-panel" id="tab-api" style="display:none;"><span class="c-fn">curl</span> -X POST http://localhost:8000/submit_job \
-  -d <span class="c-str">'{
+  --param  end_time=2030</pre>
+        <pre class="usecase-code tab-panel" id="tab-api" style="display:none;">curl -X POST http://localhost:8000/submit_job \
+  -d '{
     "model_name":    "brmangue_vector",
     "input_dataset": "s3://inputs/grid.shp",
     "parameters":    {"end_time": 2050}
-  }'</span></pre>
+  }'</pre>
       </div>
     </div>
 
   </div>
 </section>
 
+<!-- ── FOOTER ── -->
 <footer>
   <div class="footer-inner">
     <div class="footer-brand">
@@ -857,21 +684,16 @@
     </div>
     <div class="footer-col">
       <h4>Repositories</h4>
-      <ul>
-        <li><a href="https://github.com/dissmodel/dissmodel">dissmodel</a></li>
-        <li><a href="https://github.com/dissmodel/dissmodel-configs">dissmodel-configs</a></li>
-        <li><a href="https://github.com/dissmodel/dissmodel-ca">dissmodel-ca</a></li>
-        <li><a href="https://github.com/dissmodel/dissmodel-sysdyn">dissmodel-sysdyn</a></li>
-        <li><a href="https://github.com/dissmodel/dissmodel-platform">dissmodel-platform</a></li>
-        <li><a href="https://github.com/DisSModel/brmangue-dissmodel">brmangue-dissmodel</a></li>
+      <ul id="footer-repo-list">
+        <!-- populated dynamically -->
       </ul>
     </div>
     <div class="footer-col">
       <h4>Resources</h4>
       <ul>
         <li><a href="https://dissmodel.github.io/dissmodel/">Documentation</a></li>
-        <li><a href="https://github.com/dissmodel">GitHub Organization</a></li>
-        <li><a href="https://github.com/dissmodel/dissmodel/blob/main/LICENSE">MIT License</a></li>
+        <li><a href="https://github.com/DisSModel">GitHub Organization</a></li>
+        <li><a href="https://github.com/DisSModel/dissmodel/blob/main/LICENSE">MIT License</a></li>
         <li><a href="https://lambdageo.github.io">LambdaGEO / UFMA</a></li>
       </ul>
     </div>
@@ -882,7 +704,11 @@
   </div>
 </footer>
 
+<!-- ── data.js must be loaded before this script ── -->
+<script src="data.js"></script>
 <script>
+  // ── Helpers ──────────────────────────────────────────────────────────────
+
   function copyPip() {
     navigator.clipboard.writeText('pip install dissmodel');
     const el = document.getElementById('copy-confirm');
@@ -897,6 +723,149 @@
       btn.classList.toggle('active', (tab === 'local' && i === 0) || (tab === 'api' && i === 1));
     });
   }
+
+  // ── GitHub API fetch ──────────────────────────────────────────────────────
+
+  const ORG = 'DisSModel';
+  const API = `https://api.github.com/orgs/${ORG}/repos?per_page=100&sort=updated&type=public`;
+
+  async function loadRepos() {
+    try {
+      const res = await fetch(API, {
+        headers: { 'Accept': 'application/vnd.github+json' }
+      });
+
+      if (!res.ok) throw new Error(`GitHub API responded ${res.status}`);
+
+      const allRepos = await res.json();
+
+      // Filter archived and hidden
+      const repos = allRepos.filter(r =>
+        !r.archived &&
+        !r.fork &&
+        !(REPO_HIDDEN || []).includes(r.name)
+      );
+
+      renderRepos(repos);
+      updateStats(repos);
+      updateFooter(repos);
+
+    } catch (err) {
+      document.getElementById('repos-container').innerHTML = `
+        <div class="repos-error">
+          ⚠️ Could not load repositories from GitHub API. 
+          <a href="https://github.com/orgs/${ORG}/repositories" style="color:var(--red)">View on GitHub →</a>
+          <br><small style="opacity:.7;font-size:.8rem">${err.message}</small>
+        </div>`;
+    }
+  }
+
+  // ── Render repos grid ─────────────────────────────────────────────────────
+
+  function renderRepos(repos) {
+    // Sort: featured first, then by REPO_EXTRAS order, then alphabetical
+    const sorted = [...repos].sort((a, b) => {
+      const ea = REPO_EXTRAS[a.name] || {};
+      const eb = REPO_EXTRAS[b.name] || {};
+      if (ea.featured && !eb.featured) return -1;
+      if (!ea.featured && eb.featured) return 1;
+      const oa = ea.order ?? 999;
+      const ob = eb.order ?? 999;
+      if (oa !== ob) return oa - ob;
+      return a.name.localeCompare(b.name);
+    });
+
+    // Update section title
+    document.getElementById('repos-title').textContent =
+      `${sorted.length} repositories, one coherent framework`;
+
+    const grid = document.createElement('div');
+    grid.className = 'repos-grid';
+
+    sorted.forEach(repo => {
+      const extras = REPO_EXTRAS[repo.name] || {};
+      const icon   = extras.icon || '📦';
+      const pills  = extras.pills || [];
+      const featured = extras.featured || false;
+
+      // topics → tags
+      const topics = (repo.topics || []).slice(0, 4);
+
+      // stars / language
+      const meta = [
+        repo.stargazers_count > 0 ? `★ ${repo.stargazers_count}` : null,
+        repo.language || null
+      ].filter(Boolean);
+
+      const card = document.createElement('a');
+      card.href   = repo.html_url;
+      card.target = '_blank';
+      card.rel    = 'noopener noreferrer';
+      card.className = 'repo-card' + (featured ? ' featured' : '');
+
+      card.innerHTML = `
+        <div class="repo-top">
+          <div class="repo-icon">${icon}</div>
+          <span class="repo-arrow">↗</span>
+        </div>
+        <div class="repo-name">${repo.name}</div>
+        <p class="repo-desc">${repo.description || 'No description yet.'}</p>
+        ${pills.length ? `<div class="repo-bench">${pills.map(p => `<span class="bench-pill">${p}</span>`).join('')}</div>` : ''}
+        ${topics.length ? `<div class="repo-tags">${topics.map(t => `<span class="repo-tag">${t}</span>`).join('')}</div>` : ''}
+        ${meta.length   ? `<div class="repo-meta">${meta.map(m => `<span class="repo-meta-item">${m}</span>`).join('')}</div>` : ''}
+      `;
+
+      grid.appendChild(card);
+    });
+
+    const container = document.getElementById('repos-container');
+    container.innerHTML = '';
+    container.appendChild(grid);
+  }
+
+  // ── Stats strip ───────────────────────────────────────────────────────────
+
+  function updateStats(repos) {
+    const strip = document.getElementById('stats-strip');
+    strip.innerHTML = `
+      <div class="stat-item">
+        <div class="stat-number">${repos.length}</div>
+        <div class="stat-label">Repositories</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100k</div>
+        <div class="stat-label">Cells · BR-MANGUE</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">100m</div>
+        <div class="stat-label">Spatial Resolution</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-number">MIT</div>
+        <div class="stat-label">License</div>
+      </div>
+    `;
+  }
+
+  // ── Footer repo list ──────────────────────────────────────────────────────
+
+  function updateFooter(repos) {
+    const list = document.getElementById('footer-repo-list');
+    // Sort: extras order first, rest alphabetical
+    const sorted = [...repos].sort((a, b) => {
+      const oa = (REPO_EXTRAS[a.name] || {}).order ?? 999;
+      const ob = (REPO_EXTRAS[b.name] || {}).order ?? 999;
+      if (oa !== ob) return oa - ob;
+      return a.name.localeCompare(b.name);
+    });
+
+    list.innerHTML = sorted
+      .map(r => `<li><a href="${r.html_url}" target="_blank" rel="noopener">${r.name}</a></li>`)
+      .join('');
+  }
+
+  // ── Boot ──────────────────────────────────────────────────────────────────
+  loadRepos();
 </script>
 
 </body>
