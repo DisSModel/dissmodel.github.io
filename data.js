@@ -12,18 +12,33 @@ const REPO_EXTRAS = {
       { label: "📖 Docs", url: "https://dissmodel.github.io/dissmodel/" }
     ]
   },
+  "dissmodel-book": {
+    icon: "📚",
+    featured: true,
+    order: 1,
+    pills: [],
+    links: [
+      { label: "📖 Read the Book", url: "https://dissmodel.github.io/dissmodel-book/" }
+    ]
+  },
   "dissmodel-ca": {
     icon: "⬡",
-    order: 1,
+    order: 2,
     pills: [],
     links: [
       { label: "📖 Docs", url: "https://dissmodel.github.io/dissmodel-ca/" },
       { label: "🚀 Demo", url: "https://huggingface.co/spaces/profsergiocosta/dissmodel-ca-demo" }
     ]
   },
+  "dissmodel-abm": {
+    icon: "🐜",
+    order: 3,
+    pills: [],
+    links: []
+  },
   "dissmodel-sysdyn": {
     icon: "〜",
-    order: 2,
+    order: 4,
     pills: [],
     links: [
       { label: "📖 Docs", url: "https://dissmodel.github.io/dissmodel-sysdyn/" },
@@ -32,31 +47,41 @@ const REPO_EXTRAS = {
   },
   "dissmodel-platform": {
     icon: "⚙",
-    order: 3,
+    order: 5,
     pills: [],
-    links: []
+    links: [
+      { label: "📖 Docs", url: "https://dissmodel.github.io/dissmodel-platform/" }
+    ]
   },
   "brmangue-dissmodel": {
     icon: "🌿",
-    order: 4,
-    pills: [],
-    links: []
-  },
-  "dissluc": {
-    icon: "🗺",
-    order: 5,
-    pills: ["⚡ 3.9× raster speedup", "MAE 0.002276"],
-    links: []
-  },
-  "disscube": {
-    icon: "🗄",
     order: 6,
     pills: [],
     links: []
   },
+  "disslucc-continuous": {
+    icon: "🗺",
+    order: 7,
+    pills: [],
+    links: []
+  },
+  "disslucc-discrete": {
+    icon: "🗺",
+    order: 8,
+    pills: [],
+    links: []
+  },
+  "disscube": {
+    icon: "🗄",
+    order: 9,
+    pills: [],
+    links: [
+      { label: "📖 Docs", url: "https://dissmodel.github.io/disscube/" }
+    ]
+  },
   "coastal-dynamics": {
     icon: "🌊",
-    order: 7,
+    order: 10,
     pills: [],
     links: []
   }
