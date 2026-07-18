@@ -7,45 +7,86 @@ const REPO_EXTRAS = {
     icon: "🧩",
     featured: true,
     order: 0,
-    pills: []
+    pills: [],
+    links: [
+      { label: "📖 Docs", url: "https://dissmodel.github.io/dissmodel/" }
+    ]
+  },
+  "dissmodel-book": {
+    icon: "📚",
+    featured: true,
+    order: 1,
+    pills: [],
+    links: [
+      { label: "📖 Read the Book", url: "https://dissmodel.github.io/dissmodel-book/" }
+    ]
   },
   "dissmodel-ca": {
     icon: "⬡",
-    order: 1,
-    pills: []
+    order: 2,
+    pills: [],
+    links: [
+      { label: "📖 Docs", url: "https://dissmodel.github.io/dissmodel-ca/" },
+      { label: "🚀 Demo", url: "https://huggingface.co/spaces/profsergiocosta/dissmodel-ca-demo" }
+    ]
+  },
+  "dissmodel-abm": {
+    icon: "🐜",
+    order: 3,
+    pills: [],
+    links: []
   },
   "dissmodel-sysdyn": {
     icon: "〜",
-    order: 2,
-    pills: []
+    order: 4,
+    pills: [],
+    links: [
+      { label: "📖 Docs", url: "https://dissmodel.github.io/dissmodel-sysdyn/" },
+      { label: "🚀 Demo", url: "https://huggingface.co/spaces/profsergiocosta/dissmodel-sysdyn-demo" }
+    ]
   },
   "dissmodel-platform": {
     icon: "⚙",
-    order: 3,
-    pills: []
+    order: 5,
+    pills: [],
+    links: [
+      { label: "📖 Docs", url: "https://dissmodel.github.io/dissmodel-platform/" }
+    ]
   },
   "brmangue-dissmodel": {
     icon: "🌿",
-    order: 4,
-    pills: []
+    order: 6,
+    pills: [],
+    links: []
   },
-  "dissluc": {
+  "disslucc-continuous": {
     icon: "🗺",
-    order: 5,
-    pills: ["⚡ 3.9× raster speedup", "MAE 0.002276"]
+    order: 7,
+    pills: [],
+    links: []
+  },
+  "disslucc-discrete": {
+    icon: "🗺",
+    order: 8,
+    pills: [],
+    links: []
   },
   "disscube": {
     icon: "🗄",
-    order: 6,
-    pills: []
+    order: 9,
+    pills: [],
+    links: [
+      { label: "📖 Docs", url: "https://dissmodel.github.io/disscube/" }
+    ]
   },
   "coastal-dynamics": {
     icon: "🌊",
-    order: 7,
-    pills: []
+    order: 10,
+    pills: [],
+    links: []
   }
   // Qualquer repo público da org não listado aqui
-  // aparece automaticamente com icon "📦" e sem pills.
+  // aparece automaticamente com icon "📦" e sem pills/links.
 };
 
 // Repos a esconder (ex: forks utilitários, templates internos)

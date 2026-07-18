@@ -335,6 +335,37 @@
     }
     .repo-meta-item { display: flex; align-items: center; gap: 4px; }
 
+    /* ── repo extra links ── */
+    .repo-links {
+      display: flex; gap: .5rem; flex-wrap: wrap;
+      margin-top: .25rem;
+    }
+    .repo-link {
+      display: inline-flex; align-items: center; gap: 4px;
+      font-size: .75rem; font-weight: 600;
+      padding: 4px 12px; border-radius: 6px;
+      text-decoration: none;
+      background: var(--bg); color: var(--blue-mid);
+      border: 1.5px solid var(--border);
+      transition: all .2s;
+      /* stop the card's <a> from swallowing the click */
+      position: relative; z-index: 1;
+    }
+    .repo-link:hover {
+      background: var(--blue-mid); color: #fff;
+      border-color: var(--blue-mid);
+      transform: translateY(-1px);
+    }
+    .repo-card.featured .repo-link {
+      background: rgba(255,255,255,.1);
+      color: #c0dcf4;
+      border-color: rgba(255,255,255,.2);
+    }
+    .repo-card.featured .repo-link:hover {
+      background: rgba(255,255,255,.25); color: #fff;
+      border-color: rgba(255,255,255,.4);
+    }
+
     /* ── ARCHITECTURE ── */
     #architecture { background: #fff; }
     .arch-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
@@ -474,6 +505,7 @@
     <li><a href="#repos">Repositories</a></li>
     <li><a href="#architecture">Architecture</a></li>
     <li><a href="#usecase">Use Cases</a></li>
+    <li><a href="https://dissmodel.github.io/dissmodel-book/">Book</a></li>
     <li><a href="https://dissmodel.github.io/dissmodel/" class="nav-cta">Documentation</a></li>
   </ul>
 </nav>
@@ -496,6 +528,7 @@
 
   <div class="hero-actions">
     <a href="https://dissmodel.github.io/dissmodel/" class="btn btn-primary">📖 Documentation</a>
+    <a href="https://dissmodel.github.io/dissmodel-book/" class="btn btn-secondary">📚 Read the Book</a>
     <a href="https://github.com/DisSModel" class="btn btn-secondary">⭐ GitHub Organization</a>
   </div>
 
@@ -783,25 +816,23 @@ env.run()</pre>
     grid.className = 'repos-grid';
 
     sorted.forEach(repo => {
-      const extras = REPO_EXTRAS[repo.name] || {};
-      const icon   = extras.icon || '📦';
-      const pills  = extras.pills || [];
+      const extras   = REPO_EXTRAS[repo.name] || {};
+      const icon     = extras.icon  || '📦';
+      const pills    = extras.pills || [];
+      const links    = extras.links || [];
       const featured = extras.featured || false;
 
-      // topics → tags
       const topics = (repo.topics || []).slice(0, 4);
-
-      // stars / language
       const meta = [
         repo.stargazers_count > 0 ? `★ ${repo.stargazers_count}` : null,
         repo.language || null
       ].filter(Boolean);
 
-      const card = document.createElement('a');
-      card.href   = repo.html_url;
-      card.target = '_blank';
-      card.rel    = 'noopener noreferrer';
+      // Card is a div so inner <a> links work independently
+      const card = document.createElement('div');
       card.className = 'repo-card' + (featured ? ' featured' : '');
+      card.style.cursor = 'pointer';
+      card.addEventListener('click', () => window.open(repo.html_url, '_blank', 'noopener'));
 
       card.innerHTML = `
         <div class="repo-top">
@@ -810,9 +841,12 @@ env.run()</pre>
         </div>
         <div class="repo-name">${repo.name}</div>
         <p class="repo-desc">${repo.description || 'No description yet.'}</p>
-        ${pills.length ? `<div class="repo-bench">${pills.map(p => `<span class="bench-pill">${p}</span>`).join('')}</div>` : ''}
+        ${pills.length  ? `<div class="repo-bench">${pills.map(p => `<span class="bench-pill">${p}</span>`).join('')}</div>` : ''}
         ${topics.length ? `<div class="repo-tags">${topics.map(t => `<span class="repo-tag">${t}</span>`).join('')}</div>` : ''}
         ${meta.length   ? `<div class="repo-meta">${meta.map(m => `<span class="repo-meta-item">${m}</span>`).join('')}</div>` : ''}
+        ${links.length  ? `<div class="repo-links">${links.map(l =>
+          `<a class="repo-link" href="${l.url}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${l.label}</a>`
+        ).join('')}</div>` : ''}
       `;
 
       grid.appendChild(card);
