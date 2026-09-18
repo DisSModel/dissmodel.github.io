@@ -105,13 +105,13 @@
 
     .hero-badge {
       display: inline-flex; align-items: center; gap: 8px;
-      background: #e8f4e8; border: 1px solid #b8ddb8;
-      color: var(--green); border-radius: 999px;
+      background: #fdf3e0; border: 1px solid #f0d9a8;
+      color: #a86f0c; border-radius: 999px;
       font-size: .78rem; font-weight: 600; letter-spacing: .04em;
       padding: 5px 14px; margin-bottom: 2rem;
       animation: fadeUp .6s ease both;
     }
-    .hero-badge span { width: 6px; height: 6px; background: var(--green); border-radius: 50%; display: inline-block; }
+    .hero-badge span { width: 6px; height: 6px; background: var(--amber); border-radius: 50%; display: inline-block; }
 
     .hero-logo-wrap {
       display: flex; align-items: center; justify-content: center; gap: 20px;
@@ -164,6 +164,10 @@
       border: 1px solid rgba(255,255,255,.08);
     }
     .pip-cmd .pip-label { color: var(--green-light); }
+    .pip-note {
+      margin-top: .9rem;
+      font-size: .82rem; color: var(--muted);
+    }
     .copy-btn {
       background: none; border: none; cursor: pointer;
       color: #7aa8d4; font-size: 1rem;
@@ -227,6 +231,19 @@
       max-width: 560px; line-height: 1.7;
     }
     .container { max-width: 1120px; margin: 0 auto; }
+
+    /* ── STATUS NOTE ── */
+    .status-note {
+      margin-top: 1.5rem;
+      max-width: 620px;
+      background: #fdf3e0; border: 1px solid #f0d9a8;
+      border-left: 4px solid var(--amber);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      font-size: .9rem; line-height: 1.6;
+      color: #6b4a0a;
+    }
+    .status-note a { color: #6b4a0a; font-weight: 600; }
 
     /* ── REPOS ── */
     #repos { background: var(--bg); }
@@ -461,7 +478,7 @@
       display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem;
     }
     .footer-brand h3 { font-size: 1.2rem; font-weight: 700; color: #fff; margin-bottom: .5rem; }
-    .footer-brand p  { font-size: .88rem; line-height: 1.7; max-width: 280px; }
+    .footer-brand p  { font-size: .88rem; line-height: 1.7; max-width: 300px; }
     .footer-col h4 {
       font-size: .8rem; font-weight: 700; letter-spacing: .1em;
       text-transform: uppercase; color: #fff; margin-bottom: 1rem;
@@ -504,7 +521,7 @@
   <ul class="nav-links">
     <li><a href="#repos">Repositories</a></li>
     <li><a href="#architecture">Architecture</a></li>
-    <li><a href="#usecase">Use Cases</a></li>
+    <li><a href="#usecase">Case Study</a></li>
     <li><a href="https://lambdageo.github.io/geospatial-modeling-python/">Book</a></li>
     <li><a href="https://dissmodel.github.io/dissmodel/" class="nav-cta">Documentation</a></li>
   </ul>
@@ -515,21 +532,21 @@
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
 
-  <div class="hero-badge"><span></span> Open Source · MIT License · PyPI</div>
+  <div class="hero-badge"><span></span> Work in progress · Open Source · MIT License</div>
 
   <div class="hero-logo-wrap">
     <img src="dissmodel_transparent.png" alt="DisSModel — Discrete Spatial Modeling Ecosystem" style="height:190px; object-fit:contain;">
   </div>
 
   <p class="hero-sub" style="margin-top:0.5rem;">
-    A modular Python ecosystem for spatially explicit dynamic modeling —
-    Cellular Automata, System Dynamics, and Land Use &amp; Cover Change simulation.
+    A Python ecosystem, still under development, for spatially explicit dynamic modeling —
+    we are exploring Cellular Automata, System Dynamics, and Land Use &amp; Cover Change simulation.
   </p>
 
   <div class="hero-actions">
     <a href="https://dissmodel.github.io/dissmodel/" class="btn btn-primary">📖 Documentation</a>
-    <a href="https://lambdageo.github.io/geospatial-modeling-python/" class="btn btn-secondary">📚 Read the Book</a>
-    <a href="https://github.com/DisSModel" class="btn btn-secondary">⭐ GitHub Organization</a>
+    <a href="https://lambdageo.github.io/geospatial-modeling-python/" class="btn btn-secondary">📚 Book (in progress)</a>
+    <a href="https://github.com/DisSModel" class="btn btn-secondary">💻 GitHub Organization</a>
   </div>
 
   <div class="pip-block">
@@ -539,6 +556,7 @@
       <button class="copy-btn" onclick="copyPip()" title="Copy to clipboard">⧉</button>
       <span class="copy-confirm" id="copy-confirm">Copied!</span>
     </div>
+    <p class="pip-note">Early-stage releases — APIs may change between versions.</p>
   </div>
 </section>
 
@@ -546,10 +564,10 @@
 <div class="stats-strip">
   <div class="stats-inner" id="stats-strip">
     <!-- populated by JS after GitHub fetch -->
-    <div class="stat-item"><div class="stat-number">—</div><div class="stat-label">Repositories</div></div>
-    <div class="stat-item"><div class="stat-number">100k</div><div class="stat-label">Cells · BR-MANGUE</div></div>
-    <div class="stat-item"><div class="stat-number">100m</div><div class="stat-label">Resolution</div></div>
-    <div class="stat-item"><div class="stat-number">MIT</div><div class="stat-label">License</div></div>
+    <div class="stat-item"><div class="stat-number">—</div><div class="stat-label">Repositories (and counting)</div></div>
+    <div class="stat-item"><div class="stat-number">100k</div><div class="stat-label">Cells · BR-MANGUE case study</div></div>
+    <div class="stat-item"><div class="stat-number">100m</div><div class="stat-label">Case-study resolution</div></div>
+    <div class="stat-item"><div class="stat-number">MIT</div><div class="stat-label">Open license</div></div>
   </div>
 </div>
 
@@ -559,7 +577,12 @@
     <div class="repos-header">
       <p class="section-label">Ecosystem</p>
       <h2 class="section-title" id="repos-title">Repositories</h2>
-      <p class="section-desc">Each package has a focused role. Use the core alone or combine extensions for complex geospatial simulations.</p>
+      <p class="section-desc">Each package aims to have a focused role. The core can be used on its own, and the extensions can be combined as the ecosystem matures. Some packages are more mature than others.</p>
+      <div class="status-note">
+        <strong>Project status:</strong> DisSModel is under active development. APIs, documentation, and results may change, and there are rough edges we are still smoothing out.
+        Feedback, bug reports, and contributions are very welcome —
+        <a href="https://github.com/DisSModel">come say hello on GitHub</a>.
+      </div>
     </div>
 
     <div id="repos-container">
@@ -577,43 +600,43 @@
     <div class="arch-wrap">
       <div>
         <p class="section-label">Design</p>
-        <h2 class="section-title">Built for modularity and reproducibility</h2>
-        <p class="section-desc">Every simulation is a traceable experiment. Coefficients live in versioned TOML files, not buried in code.</p>
+        <h2 class="section-title">Designed with modularity and reproducibility in mind</h2>
+        <p class="section-desc">We aim to make every simulation a traceable experiment, keeping coefficients in versioned TOML files rather than buried in code. These are design goals we are working toward, and they are still evolving.</p>
 
         <div class="arch-points">
           <div class="arch-point">
             <div class="arch-dot blue"></div>
             <div class="arch-point-text">
-              <h4>Experiment as first-class object</h4>
-              <p>Each run produces an immutable <code>ExperimentRecord</code> capturing provenance, input SHA-256 checksums, and model commit — ready to cite in a paper.</p>
+              <h4>Experiment as a first-class object</h4>
+              <p>Each run is meant to produce an <code>ExperimentRecord</code> capturing provenance, input SHA-256 checksums, and the model commit, to support citing results in a paper.</p>
             </div>
           </div>
           <div class="arch-point">
             <div class="arch-dot amber"></div>
             <div class="arch-point-text">
               <h4>Configuration separated from code</h4>
-              <p>Calibrated coefficients live in versioned TOML files in <code>dissmodel-configs</code>, reviewed via PR before publication. Never hardcoded, always citeable by git hash.</p>
+              <p>Calibrated coefficients live in versioned TOML files in <code>dissmodel-configs</code> and are reviewed via PR before publication. The goal is to keep them out of the code and citeable by git hash.</p>
             </div>
           </div>
           <div class="arch-point">
             <div class="arch-dot green"></div>
             <div class="arch-point-text">
               <h4>Two-layer architecture</h4>
-              <p>Science logic stays pure in the <code>Model</code> layer. The <code>ModelExecutor</code> wraps I/O, column mapping, and provenance — without touching the science.</p>
+              <p>Science logic stays in the <code>Model</code> layer, while the <code>ModelExecutor</code> handles I/O, column mapping, and provenance, so that the science code stays as untouched as possible.</p>
             </div>
           </div>
           <div class="arch-point">
             <div class="arch-dot blue"></div>
             <div class="arch-point-text">
-              <h4>Production-ready infrastructure</h4>
-              <p>Built on JupyterLab, FastAPI, Redis, and MinIO via Docker Compose. Pangeo / BDC integration planned for a future release.</p>
+              <h4>Infrastructure for experimentation</h4>
+              <p>A prototype platform built on JupyterLab, FastAPI, Redis, and MinIO via Docker Compose. It is not yet hardened for production use; Pangeo / BDC integration is planned for a future release.</p>
             </div>
           </div>
         </div>
       </div>
 
       <pre class="arch-diagram"><span class="c-dim">┌─────────────────────────────────┐</span>
-<span class="c-white">│  DisSModel Platform             │</span>
+<span class="c-white">│  DisSModel Platform (prototype) │</span>
 <span class="c-dim">│                                 │</span>
 <span class="c-green">│  FastAPI                        │</span>
 <span class="c-blue">│   ├── POST /submit_job          │</span>
@@ -639,17 +662,17 @@
 <!-- ── USE CASE ── -->
 <section id="usecase">
   <div class="container">
-    <p class="section-label">Reference Application</p>
+    <p class="section-label">Case Study</p>
     <h2 class="section-title">Coastal dynamics &amp; Mangrove migration</h2>
     <p class="section-desc" style="margin-bottom:3.5rem;">
-      The <code>brmangue-dissmodel</code> repository demonstrates DisSModel on real data from Maranhão, Brazil —
-      implementing flood propagation and mangrove migration based on <strong>Bezerra et al. (2014)</strong>.
+      The <code>brmangue-dissmodel</code> repository is our first case study, applying DisSModel to data from Maranhão, Brazil.
+      It is an ongoing implementation of flood propagation and mangrove migration based on <strong>Bezerra et al. (2014)</strong>, and we are still validating and refining it.
     </p>
 
     <div class="usecase-sub">
       <div class="usecase-sub-label">
         <span class="sub-badge blue">Model</span>
-        <p>Pure simulation logic — no I/O, no infrastructure. Works standalone in a notebook or script.</p>
+        <p>Simulation logic kept separate from I/O and infrastructure, so it can be used in a notebook or script.</p>
       </div>
       <pre class="usecase-code"><span style="color:#6abf6a">from</span> <span style="color:#e8f4ff">dissmodel</span> <span style="color:#6abf6a">import</span> <span style="color:#e8f4ff">Environment</span>
 
@@ -685,7 +708,7 @@ env.run()</pre>
     <div class="usecase-sub">
       <div class="usecase-sub-label">
         <span class="sub-badge gray">Run</span>
-        <p>The same executor runs locally via CLI or remotely via the platform API.</p>
+        <p>The same executor can run locally via CLI or through the platform API (the API is still experimental).</p>
       </div>
       <div class="tabs-wrap">
         <div class="tab-btns">
@@ -713,7 +736,7 @@ env.run()</pre>
   <div class="footer-inner">
     <div class="footer-brand">
       <h3>DisSModel</h3>
-      <p>A modular Python ecosystem for discrete spatial modeling, developed at LambdaGEO / UFMA. Designed as the innovation laboratory for LuccME++ at CCST/INPE.</p>
+      <p>A Python ecosystem for discrete spatial modeling, under active development at LambdaGEO / UFMA. Conceived as an experimental laboratory for ideas around LuccME++ at CCST/INPE.</p>
     </div>
     <div class="footer-col">
       <h4>Repositories</h4>
@@ -733,7 +756,7 @@ env.run()</pre>
   </div>
   <div class="footer-bottom">
     <span>© 2026 DisSModel — LambdaGEO, UFMA</span>
-    <span>Built with Python · MIT License</span>
+    <span>Work in progress · MIT License</span>
   </div>
 </footer>
 
@@ -810,7 +833,7 @@ env.run()</pre>
 
     // Update section title
     document.getElementById('repos-title').textContent =
-      `${sorted.length} repositories, one coherent framework`;
+      `${sorted.length} repositories, still taking shape`;
 
     const grid = document.createElement('div');
     grid.className = 'repos-grid';
@@ -864,19 +887,19 @@ env.run()</pre>
     strip.innerHTML = `
       <div class="stat-item">
         <div class="stat-number">${repos.length}</div>
-        <div class="stat-label">Repositories</div>
+        <div class="stat-label">Repositories (and counting)</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">100k</div>
-        <div class="stat-label">Cells · BR-MANGUE</div>
+        <div class="stat-label">Cells · BR-MANGUE case study</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">100m</div>
-        <div class="stat-label">Spatial Resolution</div>
+        <div class="stat-label">Case-study resolution</div>
       </div>
       <div class="stat-item">
         <div class="stat-number">MIT</div>
-        <div class="stat-label">License</div>
+        <div class="stat-label">Open license</div>
       </div>
     `;
   }
