@@ -178,36 +178,6 @@
     .copy-confirm { font-size: .75rem; color: var(--green-light); opacity: 0; transition: opacity .3s; }
     .copy-confirm.show { opacity: 1; }
 
-    /* ── STATS STRIP ── */
-    .stats-strip {
-      width: 100%;
-      background: var(--blue-dark);
-      padding: 1.5rem 2rem;
-    }
-    .stats-inner {
-      max-width: 1120px; margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr);
-      gap: 1rem;
-    }
-    .stat-item {
-      text-align: center;
-      border-right: 1px solid rgba(255,255,255,.1);
-      padding: 0.5rem 1rem;
-    }
-    .stat-item:last-child { border-right: none; }
-    .stat-number {
-      font-size: clamp(1.6rem, 3vw, 2.4rem);
-      font-weight: 800;
-      color: var(--green-light);
-      line-height: 1;
-      font-family: 'DM Mono', monospace;
-    }
-    .stat-label {
-      font-size: .78rem; color: #7aa8d4;
-      font-weight: 500; margin-top: .3rem;
-      letter-spacing: .04em;
-    }
-
     @keyframes fadeUp {
       from { opacity: 0; transform: translateY(24px); }
       to   { opacity: 1; transform: translateY(0); }
@@ -503,8 +473,6 @@
       .arch-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: .75rem; text-align: center; }
-      .stats-inner { grid-template-columns: repeat(2,1fr); }
-      .stat-item { border-right: none; border-bottom: 1px solid rgba(255,255,255,.1); }
       .usecase-sub { grid-template-columns: 1fr; }
       .usecase-arrow { padding-left: 0; }
     }
@@ -543,6 +511,13 @@
     we are exploring Cellular Automata, System Dynamics, and Land Use &amp; Cover Change simulation.
   </p>
 
+  <p class="hero-sub" style="margin-top:0.9rem; font-size:0.95rem; max-width:640px;">
+    An independent, unofficial Python alternative to
+    <a href="https://github.com/terrame" target="_blank" rel="noopener" style="color:inherit; font-weight:700; text-decoration:underline;">TerraME</a> — with equivalent
+    packages taking shape for Cellular Automata (<code>dissmodel-ca</code>), System Dynamics
+    (<code>dissmodel-sysdyn</code>), and Agent-Based Modeling (<code>dissmodel-abm</code>).
+  </p>
+
   <div class="hero-actions">
     <a href="https://dissmodel.github.io/dissmodel/" class="btn btn-primary">📖 Documentation</a>
     <a href="https://lambdageo.github.io/geospatial-modeling-python/" class="btn btn-secondary">📚 Book (in progress)</a>
@@ -559,17 +534,6 @@
     <p class="pip-note">Early-stage releases — APIs may change between versions.</p>
   </div>
 </section>
-
-<!-- ── STATS STRIP ── -->
-<div class="stats-strip">
-  <div class="stats-inner" id="stats-strip">
-    <!-- populated by JS after GitHub fetch -->
-    <div class="stat-item"><div class="stat-number">—</div><div class="stat-label">Repositories (and counting)</div></div>
-    <div class="stat-item"><div class="stat-number">100k</div><div class="stat-label">Cells · BR-MANGUE case study</div></div>
-    <div class="stat-item"><div class="stat-number">100m</div><div class="stat-label">Case-study resolution</div></div>
-    <div class="stat-item"><div class="stat-number">MIT</div><div class="stat-label">Open license</div></div>
-  </div>
-</div>
 
 <!-- ── REPOS ── -->
 <section id="repos">
@@ -803,7 +767,6 @@ env.run()</pre>
       );
 
       renderRepos(repos);
-      updateStats(repos);
       updateFooter(repos);
 
     } catch (err) {
@@ -878,30 +841,6 @@ env.run()</pre>
     const container = document.getElementById('repos-container');
     container.innerHTML = '';
     container.appendChild(grid);
-  }
-
-  // ── Stats strip ───────────────────────────────────────────────────────────
-
-  function updateStats(repos) {
-    const strip = document.getElementById('stats-strip');
-    strip.innerHTML = `
-      <div class="stat-item">
-        <div class="stat-number">${repos.length}</div>
-        <div class="stat-label">Repositories (and counting)</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">100k</div>
-        <div class="stat-label">Cells · BR-MANGUE case study</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">100m</div>
-        <div class="stat-label">Case-study resolution</div>
-      </div>
-      <div class="stat-item">
-        <div class="stat-number">MIT</div>
-        <div class="stat-label">Open license</div>
-      </div>
-    `;
   }
 
   // ── Footer repo list ──────────────────────────────────────────────────────
