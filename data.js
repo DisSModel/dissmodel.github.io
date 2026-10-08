@@ -12,15 +12,6 @@ const REPO_EXTRAS = {
       { label: "📖 Docs", url: "https://dissmodel.github.io/dissmodel/" }
     ]
   },
-  "dissmodel-book": {
-    icon: "📚",
-    featured: true,
-    order: 1,
-    pills: [],
-    links: [
-      { label: "📖 Read the Book", url: "https://dissmodel.github.io/dissmodel-book/" }
-    ]
-  },
   "dissmodel-ca": {
     icon: "⬡",
     order: 2,
@@ -57,33 +48,27 @@ const REPO_EXTRAS = {
     icon: "🌿",
     order: 6,
     pills: [],
-    links: []
+    links: [
+      { label: "🧪 Validation", url: "https://github.com/DisSModel/brmangue-dissmodel#-testing--validation" }
+    ]
   },
-  "disslucc-continuous": {
+  "disslucc": {
     icon: "🗺",
     order: 7,
     pills: [],
-    links: []
-  },
-  "disslucc-discrete": {
-    icon: "🗺",
-    order: 8,
-    pills: [],
-    links: []
+    links: [
+      { label: "📖 Docs", url: "https://dissmodel.github.io/disslucc/" },
+      { label: "🧪 Benchmark", url: "https://github.com/LambdaGeo/disslucc-benchmark" }
+    ]
   },
   "disscube": {
     icon: "🗄",
     order: 9,
     pills: [],
     links: [
-      { label: "📖 Docs", url: "https://dissmodel.github.io/disscube/" }
+      { label: "📖 Docs", url: "https://dissmodel.github.io/disscube/" },
+      { label: "🧪 Benchmark", url: "https://github.com/LambdaGeo/disscube-benchmark" }
     ]
-  },
-  "coastal-dynamics": {
-    icon: "🌊",
-    order: 10,
-    pills: [],
-    links: []
   }
   // Qualquer repo público da org não listado aqui
   // aparece automaticamente com icon "📦" e sem pills/links.

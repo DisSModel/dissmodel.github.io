@@ -501,22 +501,22 @@
   <div class="blob blob-1"></div>
   <div class="blob blob-2"></div>
 
-  <div class="hero-badge"><span></span> Work in progress · Open Source · MIT License</div>
+  <div class="hero-badge"><span></span> Open Source · MIT License · Actively developed</div>
 
   <div class="hero-logo-wrap">
     <img src="dissmodel_transparent.png" alt="DisSModel — Discrete Spatial Modeling Ecosystem" style="height:190px; object-fit:contain;">
   </div>
 
   <p class="hero-sub" style="margin-top:0.5rem;">
-    A Python ecosystem, still under development, for spatially explicit dynamic modeling —
-    we are exploring Cellular Automata, System Dynamics, and Land Use &amp; Cover Change simulation.
+    A Python ecosystem for spatially explicit dynamic modeling —
+    Cellular Automata, System Dynamics, and Land Use &amp; Cover Change simulation.
   </p>
 
   <p class="hero-sub" style="margin-top:0.9rem; font-size:0.95rem; max-width:640px;">
     An independent, unofficial Python alternative to
     <a href="https://github.com/terrame" target="_blank" rel="noopener" style="color:inherit; font-weight:700; text-decoration:underline;">TerraME</a> — with equivalent
-    packages taking shape for Cellular Automata (<code>dissmodel-ca</code>), System Dynamics
-    (<code>dissmodel-sysdyn</code>), and Agent-Based Modeling (<code>dissmodel-abm</code>).
+    packages for Cellular Automata (<code>dissmodel-ca</code>) and System Dynamics
+    (<code>dissmodel-sysdyn</code>), and Agent-Based Modeling (<code>dissmodel-abm</code>) on the way.
   </p>
 
   <div class="hero-actions">
@@ -532,7 +532,8 @@
       <button class="copy-btn" onclick="copyPip()" title="Copy to clipboard">⧉</button>
       <span class="copy-confirm" id="copy-confirm">Copied!</span>
     </div>
-    <p class="pip-note">Early-stage releases — APIs may change between versions.</p>
+    <p class="pip-note">Release notes in the <a href="https://github.com/DisSModel/dissmodel/blob/main/CHANGELOG.md" style="color:inherit; text-decoration:underline;">changelog</a>.</p>
+    <p class="pip-note" style="margin-top:.35rem;">If DisSModel is useful in your work, you can cite it: <a href="https://doi.org/10.5281/zenodo.23246106" style="color:inherit; text-decoration:underline;">doi:10.5281/zenodo.23246106</a></p>
   </div>
 </section>
 
@@ -541,11 +542,11 @@
   <div class="container">
     <p class="section-label">Ecosystem map</p>
     <h2 class="section-title">How the pieces fit together, so far</h2>
-    <p class="section-desc">DisSModel is an independent Python alternative that takes TerraME as its conceptual basis. The <code>dissmodel</code> core is the most mature piece; the other packages are at an early stage and still taking shape. This map shows where things stand today, and we expect it to change as the work progresses.</p>
+    <p class="section-desc">DisSModel is an independent Python alternative that takes TerraME as its conceptual basis. The <code>dissmodel</code> core is the most mature piece, and the packages marked in green have been checked against TerraME and LuccME outputs. This map shows where things stand today.</p>
     <div style="margin-top:2.5rem; overflow-x:auto;">
 <svg xmlns="http://www.w3.org/2000/svg" style="display:block; min-width:720px; height:auto;" viewBox="0 0 1120 706" width="100%" role="img" font-family="Outfit, sans-serif">
   <title>DisSModel ecosystem map</title>
-  <desc>DisSModel mirrors the TerraME ecosystem from INPE as an independent Python alternative: TerraME is the conceptual basis for the dissmodel core; TerraME's cellular automata, system dynamics and agent-based packages correspond to dissmodel-ca, dissmodel-sysdyn and dissmodel-abm; LuccME corresponds to disslucc; fillCell corresponds to disscube. haloexec and dissmodel-platform are new infrastructure for scale and reproducible execution.</desc>
+  <desc>DisSModel mirrors the TerraME ecosystem from INPE as an independent Python alternative: TerraME is the conceptual basis for the dissmodel core; TerraME's cellular automata, system dynamics and agent-based packages correspond to dissmodel-ca, dissmodel-sysdyn and dissmodel-abm; LuccME corresponds to disslucc, and brmangue-dissmodel reimplements the BR-MANGUE coastal model; fillCell corresponds to disscube. haloexec and dissmodel-platform are new infrastructure for scale and reproducible execution.</desc>
   <defs>
     <marker id="ah" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
       <path d="M2 1L8 5L2 9" fill="none" stroke="context-stroke" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/>
@@ -612,10 +613,15 @@
   <text class="note" x="310" y="317" text-anchor="middle">alternative</text>
   <path d="M266 330 L352 330" fill="none" stroke="#9fb0c6" stroke-dasharray="4 4" stroke-width="1.4" marker-end="url(#ah)"/>
 
-  <rect x="360" y="282" width="474" height="72" rx="10" fill="#e8f4e8" stroke="#bfdcbf"/>
-  <circle class="early" cx="818" cy="298" r="5"/>
+  <rect x="360" y="282" width="228" height="72" rx="10" fill="#e8f4e8" stroke="#bfdcbf"/>
+  <circle class="ok" cx="572" cy="298" r="5"/>
   <text class="nm" x="376" y="312">disslucc</text>
-  <text class="ds" x="376" y="336">Land use &amp; cover change · Demand · Potential · Allocation</text>
+  <text class="ds" x="376" y="336">Land use &amp; cover change</text>
+
+  <rect x="606" y="282" width="228" height="72" rx="10" fill="#e8f4e8" stroke="#bfdcbf"/>
+  <circle class="ok" cx="818" cy="298" r="5"/>
+  <text class="nm" x="622" y="312">brmangue-dissmodel</text>
+  <text class="ds" x="622" y="336">Coastal flooding · mangroves</text>
 
   <!-- Row D: data preparation -->
   <text class="lbl" x="360" y="388">DATA PREPARATION · CELLULAR SPACES</text>
@@ -627,7 +633,7 @@
   <path d="M266 442 L352 442" fill="none" stroke="#9fb0c6" stroke-dasharray="4 4" stroke-width="1.4" marker-end="url(#ah)"/>
 
   <rect x="360" y="400" width="474" height="72" rx="10" fill="#ffffff" stroke="#dde4ee" stroke-width="1.5"/>
-  <circle class="early" cx="818" cy="416" r="5"/>
+  <circle class="ok" cx="818" cy="416" r="5"/>
   <text class="nm" x="376" y="430">disscube</text>
   <text class="ds" x="376" y="454">Chunked raster cubes · grid alignment · cell filling</text>
 
@@ -651,10 +657,10 @@
 
   <!-- Legend -->
   <line x1="40" y1="634" x2="1080" y2="634" stroke="#dde4ee"/>
-  <circle class="ok" cx="46" cy="658" r="5"/><text class="ds" x="58" y="662">More mature</text>
-  <circle class="early" cx="166" cy="658" r="5"/><text class="ds" x="178" y="662">Early stage · in development</text>
+  <circle class="ok" cx="46" cy="658" r="5"/><text class="ds" x="58" y="662">Checked against TerraME / LuccME</text>
+  <circle class="early" cx="296" cy="658" r="5"/><text class="ds" x="308" y="662">In development</text>
   <text class="note" x="1080" y="662" text-anchor="end">All packages build on the dissmodel core.</text>
-  <text class="note" x="40" y="690">An early snapshot: most packages are just getting started, and boundaries and APIs will change. Feedback is very welcome.</text>
+  <text class="note" x="40" y="690">Packages evolve at different speeds, and feedback is very welcome.</text>
 </svg>
     </div>
   </div>
@@ -668,7 +674,6 @@
       <h2 class="section-title" id="repos-title">Repositories</h2>
       <p class="section-desc">Each package aims to have a focused role. The core can be used on its own, and the extensions can be combined as the ecosystem matures. Some packages are more mature than others.</p>
       <div class="status-note">
-        <strong>Project status:</strong> DisSModel is under active development. APIs, documentation, and results may change, and there are rough edges we are still smoothing out.
         Feedback, bug reports, and contributions are very welcome —
         <a href="https://github.com/DisSModel">come say hello on GitHub</a>.
       </div>
@@ -690,21 +695,21 @@
       <div>
         <p class="section-label">Design</p>
         <h2 class="section-title">Designed with modularity and reproducibility in mind</h2>
-        <p class="section-desc">We aim to make every simulation a traceable experiment, keeping coefficients in versioned TOML files rather than buried in code. These are design goals we are working toward, and they are still evolving.</p>
+        <p class="section-desc">Every simulation is a traceable experiment, with coefficients kept in versioned TOML files rather than buried in code.</p>
 
         <div class="arch-points">
           <div class="arch-point">
             <div class="arch-dot blue"></div>
             <div class="arch-point-text">
               <h4>Experiment as a first-class object</h4>
-              <p>Each run is meant to produce an <code>ExperimentRecord</code> capturing provenance, input SHA-256 checksums, and the model commit, to support citing results in a paper.</p>
+              <p>Each run produces an <code>ExperimentRecord</code> capturing provenance, input SHA-256 checksums, parameters, and the code version, so results can be cited in a paper.</p>
             </div>
           </div>
           <div class="arch-point">
             <div class="arch-dot amber"></div>
             <div class="arch-point-text">
               <h4>Configuration separated from code</h4>
-              <p>Calibrated coefficients live in versioned TOML files in <code>dissmodel-configs</code> and are reviewed via PR before publication. The goal is to keep them out of the code and citeable by git hash.</p>
+              <p>Calibrated coefficients live in versioned TOML files in <code>dissmodel-configs</code> and are reviewed via PR before publication. This keeps them out of the code and citeable by git hash.</p>
             </div>
           </div>
           <div class="arch-point">
@@ -718,7 +723,7 @@
             <div class="arch-dot blue"></div>
             <div class="arch-point-text">
               <h4>Infrastructure for experimentation</h4>
-              <p>A prototype platform built on JupyterLab, FastAPI, Redis, and MinIO via Docker Compose. It is not yet hardened for production use; Pangeo / BDC integration is planned for a future release.</p>
+              <p>A platform prototype built on JupyterLab, FastAPI, Redis, and MinIO via Docker Compose, not yet production-ready. On the data side, <code>disscube</code> can already read Brazil Data Cube collections through their STAC catalog.</p>
             </div>
           </div>
         </div>
@@ -739,7 +744,7 @@
 <span class="c-dim">├─────────────────────────────────┤</span>
 <span class="c-green">│  dissmodel-configs              │</span>
 <span class="c-blue">│   ├── models/brmangue.toml      │</span>
-<span class="c-blue">│   └── models/dissluc.toml       │</span>
+<span class="c-blue">│   └── models/disslucc.toml      │</span>
 <span class="c-dim">├─────────────────────────────────┤</span>
 <span class="c-white">│  Infrastructure                 │</span>
 <span class="c-dim">│  JupyterLab · MinIO · Dask      │</span>
@@ -754,8 +759,10 @@
     <p class="section-label">Case Study</p>
     <h2 class="section-title">Coastal dynamics &amp; Mangrove migration</h2>
     <p class="section-desc" style="margin-bottom:3.5rem;">
-      The <code>brmangue-dissmodel</code> repository is our first case study, applying DisSModel to data from Maranhão, Brazil.
-      It is an ongoing implementation of flood propagation and mangrove migration based on <strong>Bezerra et al. (2014)</strong>, and we are still validating and refining it.
+      The <code>brmangue-dissmodel</code> repository is our first case study, applying DisSModel to data from Maranhão, Brazil:
+      flood propagation and mangrove migration based on <strong>Bezerra et al. (2013)</strong>.
+      So far it has been compared with a TerraME 2.0 adaptation of the original model in two scenarios, with land use and soil
+      matching in the baseline one. More scenarios are on the way.
     </p>
 
     <div class="usecase-sub">
@@ -763,12 +770,14 @@
         <span class="sub-badge blue">Model</span>
         <p>Simulation logic kept separate from I/O and infrastructure, so it can be used in a notebook or script.</p>
       </div>
-      <pre class="usecase-code"><span style="color:#6abf6a">from</span> <span style="color:#e8f4ff">dissmodel</span> <span style="color:#6abf6a">import</span> <span style="color:#e8f4ff">Environment</span>
+      <pre class="usecase-code"><span style="color:#6abf6a">from</span> <span style="color:#e8f4ff">dissmodel.core</span> <span style="color:#6abf6a">import</span> <span style="color:#e8f4ff">Environment</span>
+<span style="color:#6abf6a">from</span> <span style="color:#e8f4ff">brmangue.models.vector.flood_model</span> <span style="color:#6abf6a">import</span> <span style="color:#e8f4ff">FloodModel</span>
+<span style="color:#6abf6a">from</span> <span style="color:#e8f4ff">brmangue.models.vector.mangrove_model</span> <span style="color:#6abf6a">import</span> <span style="color:#e8f4ff">MangroveModel</span>
 
-env = Environment(start_time=2008, end_time=2030)
+env = Environment(start_time=1, end_time=88)
 
-FloodModel(gdf=gdf, taxa_elevacao=0.5, attr_uso="uso")
-MangroveModel(gdf=gdf, altura_mare=6.0, attr_solo="solo")
+FloodModel(gdf=gdf, sea_level_rise_rate=0.5)
+MangroveModel(gdf=gdf, sea_level_rise_rate=0.5, tide_height=6.0)
 
 env.run()</pre>
     </div>
@@ -780,7 +789,7 @@ env.run()</pre>
         <span class="sub-badge green">ModelExecutor</span>
         <p>Wraps the model with I/O, column mapping, provenance, and platform integration.</p>
       </div>
-      <pre class="usecase-code">class CoastalVectorExecutor(ModelExecutor):
+      <pre class="usecase-code">class BrmangueVectorExecutor(ModelExecutor):
     name = "brmangue_vector"
 
     def load(self, record: ExperimentRecord) -> GeoDataFrame:
@@ -797,22 +806,23 @@ env.run()</pre>
     <div class="usecase-sub">
       <div class="usecase-sub-label">
         <span class="sub-badge gray">Run</span>
-        <p>The same executor can run locally via CLI or through the platform API (the API is still experimental).</p>
+        <p>The same executor can run locally via CLI or through the platform API (the API is experimental).</p>
       </div>
       <div class="tabs-wrap">
         <div class="tab-btns">
           <button class="tab-btn active" onclick="switchTab('local')">🖥️ Local / CLI</button>
           <button class="tab-btn"        onclick="switchTab('api')"  >🌐 Platform API</button>
         </div>
-        <pre class="usecase-code tab-panel" id="tab-local">python main.py run \
-  --input  data/input/mangue_grid.zip \
-  --output data/output/simulation.gpkg \
-  --param  end_time=2030</pre>
+        <pre class="usecase-code tab-panel" id="tab-local">python examples/main_vector.py run \
+  --input  examples/data/input/synthetic_grid_60x60_shp.zip \
+  --output examples/data/output/simulation.gpkg \
+  --param  end_time=88 \
+  --param  sea_level_rise_rate=0.5</pre>
         <pre class="usecase-code tab-panel" id="tab-api" style="display:none;">curl -X POST http://localhost:8000/submit_job \
   -d '{
     "model_name":    "brmangue_vector",
     "input_dataset": "s3://inputs/grid.shp",
-    "parameters":    {"end_time": 2050}
+    "parameters":    {"end_time": 88}
   }'</pre>
       </div>
     </div>
@@ -825,7 +835,7 @@ env.run()</pre>
   <div class="footer-inner">
     <div class="footer-brand">
       <h3>DisSModel</h3>
-      <p>A Python ecosystem for discrete spatial modeling, under active development at LambdaGEO / UFMA. Conceived as an experimental laboratory for ideas around LuccME++ at CCST/INPE.</p>
+      <p>A Python ecosystem for discrete spatial modeling, developed at LambdaGEO / UFMA, building on the TerraME and LuccME tradition from INPE.</p>
     </div>
     <div class="footer-col">
       <h4>Repositories</h4>
@@ -839,13 +849,14 @@ env.run()</pre>
         <li><a href="https://dissmodel.github.io/dissmodel/">Documentation</a></li>
         <li><a href="https://github.com/DisSModel">GitHub Organization</a></li>
         <li><a href="https://github.com/DisSModel/dissmodel/blob/main/LICENSE">MIT License</a></li>
+        <li><a href="https://doi.org/10.5281/zenodo.23246106">How to cite (Zenodo)</a></li>
         <li><a href="https://lambdageo.github.io">LambdaGEO / UFMA</a></li>
       </ul>
     </div>
   </div>
   <div class="footer-bottom">
     <span>© 2026 DisSModel — LambdaGEO, UFMA</span>
-    <span>Work in progress · MIT License</span>
+    <span>Open source · MIT License</span>
   </div>
 </footer>
 
@@ -921,7 +932,7 @@ env.run()</pre>
 
     // Update section title
     document.getElementById('repos-title').textContent =
-      `${sorted.length} repositories, still taking shape`;
+      `${sorted.length} repositories`;
 
     const grid = document.createElement('div');
     grid.className = 'repos-grid';
