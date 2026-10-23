@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>DisSModel — Repository map</title>
+  <meta name="description" content="How the repositories of the DisSModel and LambdaGeo organizations connect: TerraME/LuccME reference outputs, benchmarks, packages, study cases, workflow and book.">
+  <link rel="icon" href="dissmodel_transparent.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Outfit:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* Same palette and type as index.html */
+    :root {
+      --blue-dark:  #1a2e4a;
+      --blue-mid:   #2e6fb5;
+      --blue-pale:  #e8f0fb;
+      --green:      #4a9e4a;
+      --amber:      #e8a020;
+      --bg:         #f5f7f2;
+      --bg-card:    #ffffff;
+      --text:       #1a2e4a;
+      --muted:      #5a7090;
+      --border:     #dde4ee;
+      --cell:       #edf1ea;
+      /* bands */
+      --band-a:#eef1f5; --band-b:#f8efe9; --band-c:#e9f1fb; --band-d:#eef4ea; --band-e:#f2eff6;
+      /* relations */
+      --e-dep:#1a2e4a; --e-ver:#c0392b; --e-gen:#8796a8; --e-port:#4a9e4a;
+      --e-data:#1f8a8a; --e-doc:#7a55a8; --e-plan:#c8891a;
+    }
+
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Outfit', sans-serif; background: var(--bg); color: var(--text); line-height: 1.55; }
+    a { color: var(--blue-mid); }
+    code, .mono { font-family: 'DM Mono', monospace; font-size: .92em; }
+
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      padding: 0 max(16px, 3rem); height: 64px;
+      background: rgba(245,247,242,0.9); backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo { display: flex; align-items: center; gap: 10px; font-size: 1.15rem; font-weight: 700; color: var(--blue-dark); text-decoration: none; }
+    .nav-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; }
+    .nav-links a { text-decoration: none; color: var(--muted); font-size: .9rem; font-weight: 500; }
+    .nav-links a:hover { color: var(--blue-mid); }
+    @media (max-width: 640px) { .nav-links li:not(:first-child) { display: none; } }
+
+    .wrap { max-width: 1440px; margin: 0 auto; padding: 2.5rem max(16px, 2rem) 4rem; display: grid; gap: 1.75rem; }
+    .section-label { font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--blue-mid); }
+    h1 { font-size: clamp(2rem, 4vw, 2.8rem); font-weight: 800; line-height: 1.1; letter-spacing: -.01em; margin-top: .35rem; text-wrap: balance; }
+    h2 { font-size: 1.4rem; font-weight: 700; text-wrap: balance; }
+    h3 { font-size: .78rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+    .lede { color: var(--muted); max-width: 72ch; margin-top: .75rem; font-size: 1.05rem; }
+
+    .legend { display: flex; flex-wrap: wrap; gap: .6rem 1.4rem; font-size: .85rem; color: var(--muted); align-items: center; }
+    .legend span { display: inline-flex; align-items: center; gap: .5rem; }
+    .legend svg { flex: none; }
+    .legend .sep { width: 1px; height: 18px; background: var(--border); }
+
+    .stage { display: grid; grid-template-columns: minmax(0,1fr) 330px; gap: 1.25rem; align-items: start; }
+    @media (max-width: 1100px) { .stage { grid-template-columns: minmax(0,1fr); } }
+    .scroller { overflow-x: auto; border: 1px solid var(--border); border-radius: 12px; background: var(--bg-card); min-width: 0; }
+    #map { display: block; width: 100%; min-width: 960px; height: auto; }
+    .hint { font-size: .82rem; color: var(--muted); margin-top: .5rem; }
+
+    .panel { border: 1px solid var(--border); border-radius: 12px; background: var(--bg-card); padding: 1.25rem; display: grid; gap: .8rem; position: sticky; top: 80px; min-width: 0; }
+    @media (max-width: 1100px) { .panel { position: static; } }
+    .panel .org { font: 500 .78rem 'DM Mono', monospace; color: var(--muted); }
+    .panel .name { font: 500 1.15rem 'DM Mono', monospace; word-break: break-word; }
+    .panel ul { padding-left: 1.1rem; display: grid; gap: .25rem; font-size: .92rem; }
+    .panel .rels { list-style: none; padding: 0; gap: .4rem; }
+    .panel .rels li { display: flex; gap: .5rem; align-items: baseline; }
+    .panel .rels i { flex: none; width: 18px; height: 3px; border-radius: 2px; transform: translateY(-3px); }
+    .panel button { justify-self: start; font: 500 .85rem 'Outfit', sans-serif; background: none; border: 1px solid var(--border); color: var(--text); border-radius: 6px; padding: .35rem .8rem; cursor: pointer; }
+    .panel button:hover { border-color: var(--blue-mid); color: var(--blue-mid); }
+    .panel button:focus-visible, .node:focus-visible { outline: 2px solid var(--blue-mid); outline-offset: 2px; }
+
+    /* SVG */
+    .band-label { font: 700 11px 'Outfit', sans-serif; letter-spacing: .1em; fill: var(--blue-mid); }
+    .band-note  { font: 400 11.5px 'Outfit', sans-serif; fill: var(--muted); }
+    .edge { fill: none; stroke-width: 1.6; transition: opacity .15s; }
+    .edge.dep  { stroke: var(--e-dep); }
+    .edge.ver  { stroke: var(--e-ver); stroke-dasharray: 6 4; }
+    .edge.gen  { stroke: var(--e-gen); stroke-dasharray: 2 4; }
+    .edge.port { stroke: var(--e-port); stroke-dasharray: 10 4 2 4; stroke-width: 1.9; }
+    .edge.data { stroke: var(--e-data); }
+    .edge.doc  { stroke: var(--e-doc); opacity: .5; }
+    .edge.plan { stroke: var(--e-plan); stroke-dasharray: 3 3; }
+    .mk-dep{fill:var(--e-dep)} .mk-ver{fill:var(--e-ver)} .mk-gen{fill:var(--e-gen)} .mk-port{fill:var(--e-port)}
+    .mk-data{fill:var(--e-data)} .mk-doc{fill:var(--e-doc)} .mk-plan{fill:var(--e-plan)}
+    .node { cursor: pointer; outline: none; }
+    .node rect { stroke-width: 1.4; transition: opacity .15s; }
+    .node.org-dissmodel rect { fill: var(--blue-pale); stroke: var(--blue-mid); }
+    .node.org-dissmodel.core rect { fill: var(--blue-dark); stroke: var(--blue-dark); }
+    .node.org-dissmodel.core .t { fill: #fff; } .node.org-dissmodel.core .s, .node.org-dissmodel.core .tag { fill: #a0c0e0; }
+    .node.org-lambdageo rect { fill: #fff; stroke: var(--blue-dark); }
+    .node.org-personal rect { fill: #fff; stroke: var(--blue-dark); stroke-dasharray: 5 3; }
+    .node.org-external rect { fill: #fff; stroke: #9fb0c6; stroke-dasharray: 2 3; }
+    .node.archived rect { opacity: .55; }
+    .node.planned rect { fill: #fdf3e0; stroke: var(--amber); stroke-dasharray: 4 3; }
+    .node .t   { font: 500 13px 'DM Mono', monospace; fill: var(--text); }
+    .node.core .t { font-size: 17px; }
+    .node .s   { font: 400 11.5px 'Outfit', sans-serif; fill: var(--muted); }
+    .node .tag { font: 500 9.5px 'DM Mono', monospace; letter-spacing: .04em; fill: var(--muted); }
+    svg.has-sel .edge { opacity: .07; }
+    svg.has-sel .edge.on { opacity: 1; stroke-width: 2.4; }
+    svg.has-sel .node { opacity: .28; }
+    svg.has-sel .node.on { opacity: 1; }
+    svg.has-sel .node.sel rect { stroke-width: 3; }
+    .group-box { fill: none; stroke: #c9d3e0; stroke-dasharray: 4 4; }
+
+    .lists { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr)); gap: 1.5rem; }
+    .lists section { display: grid; gap: .7rem; align-content: start; min-width: 0; }
+    .lists dl { display: grid; gap: .7rem; }
+    .lists dt { font: 500 .88rem 'DM Mono', monospace; word-break: break-word; }
+    .lists dt a { color: var(--text); text-decoration: none; }
+    .lists dt a:hover { color: var(--blue-mid); }
+    .lists dt small { font: 400 .72rem 'DM Mono', monospace; color: var(--muted); margin-left: .4rem; }
+    .lists dd { margin-top: .1rem; font-size: .92rem; color: var(--muted); }
+    .outside { border-top: 1px solid var(--border); padding-top: 1.5rem; display: grid; gap: .7rem; max-width: 90ch; }
+    .outside p { color: var(--muted); font-size: .92rem; }
+    footer { border-top: 1px solid var(--border); padding: 1.5rem max(16px, 2rem); color: var(--muted); font-size: .85rem; display: flex; justify-content: space-between; flex-wrap: wrap; gap: .5rem; max-width: 1440px; margin: 0 auto; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .edge, .node rect { transition: none; } }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="./">
+    <img src="dissmodel_transparent.png" alt="" style="width:32px;height:32px;object-fit:contain;">
+    DisSModel
+  </a>
+  <ul class="nav-links">
+    <li><a href="./">← Home</a></li>
+    <li><a href="./#ecosystem">Ecosystem</a></li>
+    <li><a href="https://github.com/DisSModel">DisSModel on GitHub</a></li>
+    <li><a href="https://github.com/LambdaGeo">LambdaGeo on GitHub</a></li>
+  </ul>
+</nav>
+
+<main class="wrap">
+  <header>
+    <p class="section-label">Repository map</p>
+    <h1>How the repositories connect</h1>
+    <p class="lede">DisSModel spans two GitHub organizations. The packages live in <a href="https://github.com/DisSModel">DisSModel</a>; the reference outputs, benchmarks, study cases, workflow and book live in <a href="https://github.com/LambdaGeo">LambdaGeo</a>. Together they form one chain: TerraME and LuccME provide the reference, the goldens and benchmarks check the packages against it, the core runs the models, and the cases, workflow and book show everything working with open data.</p>
+  </header>
+
+  <div class="legend" aria-label="Legend">
+    <span><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="var(--e-dep)" stroke-width="2"/></svg>depends on</span>
+    <span><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="var(--e-ver)" stroke-width="2" stroke-dasharray="6 4"/></svg>checked against</span>
+    <span><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="var(--e-gen)" stroke-width="2" stroke-dasharray="2 4"/></svg>generates reference</span>
+    <span><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="var(--e-port)" stroke-width="2" stroke-dasharray="10 4 2 4"/></svg>ported to / succeeded by</span>
+    <span><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="var(--e-data)" stroke-width="2"/></svg>provides data</span>
+    <span><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="var(--e-doc)" stroke-width="2"/></svg>teaches / documents</span>
+    <span><svg width="34" height="10" aria-hidden="true"><line x1="0" y1="5" x2="34" y2="5" stroke="var(--e-plan)" stroke-width="2" stroke-dasharray="3 3"/></svg>planned</span>
+    <i class="sep"></i>
+    <span><svg width="22" height="14" aria-hidden="true"><rect x="1" y="1" width="20" height="12" rx="3" fill="var(--blue-pale)" stroke="var(--blue-mid)"/></svg>DisSModel org</span>
+    <span><svg width="22" height="14" aria-hidden="true"><rect x="1" y="1" width="20" height="12" rx="3" fill="#fff" stroke="var(--blue-dark)"/></svg>LambdaGeo org</span>
+    <span><svg width="22" height="14" aria-hidden="true"><rect x="1" y="1" width="20" height="12" rx="3" fill="#fff" stroke="var(--blue-dark)" stroke-dasharray="5 3"/></svg>personal account</span>
+    <span><svg width="22" height="14" aria-hidden="true"><rect x="1" y="1" width="20" height="12" rx="3" fill="#fff" stroke="#9fb0c6" stroke-dasharray="2 3"/></svg>external</span>
+  </div>
+
+  <div class="stage">
+    <div>
+      <div class="scroller"><svg id="map" viewBox="0 0 1400 1000" role="img" aria-label="Diagram of the relations between the repositories of the DisSModel ecosystem"></svg></div>
+      <p class="hint">Click or tap a repository to highlight its connections. Arrows point from the repository that uses, checks or ports to its target.</p>
+    </div>
+    <aside class="panel" id="panel" aria-live="polite"></aside>
+  </div>
+
+  <div class="lists" id="lists"></div>
+
+  <div class="outside">
+    <h2>Not on this map</h2>
+    <p>LambdaGeo also hosts repositories from other lines of work (functional programming, academic Linked Data, one-off analyses) that have no link to DisSModel. They are left out so the map shows only what connects. See the full list on <a href="https://github.com/orgs/LambdaGeo/repositories">GitHub</a>.</p>
+  </div>
+</main>
+
+<footer>
+  <span>© 2026 DisSModel — LambdaGEO, UFMA</span>
+  <span>Map updated October 2026</span>
+</footer>
+
+<script>
+const GH = {dissmodel:"https://github.com/DisSModel/", lambdageo:"https://github.com/LambdaGeo/", personal:"https://github.com/profsergiocosta/"};
+const ORG = {dissmodel:"DisSModel", lambdageo:"LambdaGeo", personal:"profsergiocosta (personal)", external:"external"};
+
+const bands = [
+  {y:20,  h:160, fill:"--band-a", label:"REFERENCE · TERRAME AND LUCCME", note:"The models and algorithms the ecosystem takes as its reference"},
+  {y:190, h:115, fill:"--band-b", label:"VERIFICATION", note:"Cell-by-cell comparison with the reference outputs"},
+  {y:315, h:245, fill:"--band-c", label:"CORE · PACKAGES", note:"Framework, data, LUCC and extensions (PyPI and GitHub)"},
+  {y:570, h:240, fill:"--band-d", label:"APPLICATIONS, CASES AND EXECUTION", note:"What runs on top of the packages"},
+  {y:820, h:165, fill:"--band-e", label:"TEACHING, OUTREACH AND NEIGHBOURING LINES", note:""}
+];
+
+// x, y = node centre
+const N = [
+  {id:"terrame", name:"TerraME + LuccME", org:"external", x:130, y:105, sub:"INPE · Lua", tag:"REFERENCE",
+   desc:"INPE's dynamic modelling platform (with TerraLAB/UFOP) and the LuccME LUCC framework. They remain the reference; DisSModel is a Python alternative, not a replacement.",
+   facts:["Versions used: TerraME 2.0.1 and LuccME 3.1"], url:"https://github.com/terrame"},
+  {id:"terrame-docker", name:"terrame-docker", org:"personal", x:370, y:105, sub:"image pinned by digest", tag:"0.4.2",
+   desc:"Docker image with TerraME and LuccME, published on Docker Hub. All reference outputs are generated in this one environment.",
+   facts:["Version 0.4.2, pinned by digest","Generates the LuccME and TerraME goldens"]},
+  {id:"luccme-goldens", name:"luccme-goldens", org:"lambdageo", x:610, y:105, sub:"21 labs · fill · SHA-256", tag:"v1.2.0",
+   desc:"Canonical outputs of TerraME + LuccME: the 21 labs, per-year outputs, fill datasets (Itaituba, Amazonia, Emas) and timings, pinned by SHA-256.",
+   facts:["Reference for both benchmarks","Generated in terrame-docker"]},
+  {id:"terrame-goldens", name:"terrame-goldens", org:"lambdageo", x:850, y:105, sub:"ca, sysdyn and logo packages", tag:"v0.1.0",
+   desc:"Goldens of TerraME runs of the ca, sysdyn and logo packages. They are used to check dissmodel-ca, dissmodel-sysdyn and dissmodel-abm.",
+   facts:["DOI 10.5281/zenodo.23592970","Generated in terrame-docker 0.4.2"]},
+  {id:"brmangue-terrame", name:"brmangue-terrame", org:"lambdageo", x:1190, y:105, sub:"original BR-MANGUE in Lua", tag:"TERRAME",
+   desc:"The BR-MANGUE model in TerraME/Lua: a cellular automaton of sea-level rise impacts on mangroves along the Brazilian coast.",
+   facts:["Source of brmangue-dissmodel"]},
+
+  {id:"disscube-benchmark", name:"disscube-benchmark", org:"lambdageo", x:430, y:250, sub:"spatial parity (fill)", tag:"E2",
+   desc:"Compares DisSCube with the TerraME fill goldens cell by cell, with spatial metrics and timings, reproducible in CI.",
+   facts:["Difference classes A/B/C","Includes network_cost (cost to ports)"]},
+  {id:"disslucc-benchmark", name:"disslucc-benchmark", org:"lambdageo", x:790, y:250, sub:"dynamic parity of the labs", tag:"E3",
+   desc:"Runs the LuccME labs with DisSLUCC and compares them year by year with the goldens.",
+   facts:["Same approach as disscube-benchmark","Covered and uncovered labs are documented"]},
+
+  {id:"sources", name:"Open data", org:"external", x:120, y:395, sub:"BDC · MapBiomas · PRODES · IBGE", tag:"SOURCES",
+   desc:"Sources read by DisSCube: Brazil Data Cube (STAC), MapBiomas, PRODES, IBGE, OSM, DEMs, and files declared with URL and hash.",
+   facts:["Read in blocks of rows and columns"], url:null},
+  {id:"disscube", name:"disscube", org:"dissmodel", x:370, y:395, sub:"declarative spatial data cubes", tag:"PyPI 0.6.0",
+   desc:"DisSCube: Declarative spatial data cubes. Brings sources onto one common grid (what TerraME called fill) from a TOML file with [[source]], [[derive]] and [export].",
+   facts:["CLI: validate, fetch, run, export, plot","Provenance via spec_hash, content_hash and source_checksum","Hands a RasterBackend to DisSModel"]},
+  {id:"dissmodel", name:"dissmodel", org:"dissmodel", x:640, y:395, sub:"spatial simulation framework", tag:"PyPI 0.6.6", core:true, w:236, h:74,
+   desc:"The core of the ecosystem: Environment, models, RasterBackend, ModelExecutor and ExperimentRecord. Every other package builds on it.",
+   facts:["DOI 10.5281/zenodo.23246106","Cellular automata, system dynamics, LUCC"]},
+  {id:"disslucc", name:"disslucc", org:"dissmodel", x:900, y:395, sub:"LUCC potential + allocation", tag:"PyPI 0.5.0",
+   desc:"DisSLUCC: LUCC modelling in the LuccME style, with continuous, discrete and saturation allocation in a single package.",
+   facts:["Succeeds disslucc-continuous and disslucc-discrete","Checked in disslucc-benchmark"]},
+  {id:"disslucc-continuous", name:"disslucc-continuous", org:"dissmodel", x:1180, y:368, sub:"archived", tag:"ARCHIVED", archived:true, h:44,
+   desc:"First implementation of continuous allocation. Archived; the code moved to disslucc.", facts:[]},
+  {id:"disslucc-discrete", name:"disslucc-discrete", org:"dissmodel", x:1180, y:422, sub:"archived", tag:"ARCHIVED", archived:true, h:44,
+   desc:"First implementation of discrete (CLUE-S-like) allocation. Archived; the code moved to disslucc.", facts:[]},
+  {id:"dissmodel-ca", name:"dissmodel-ca", org:"dissmodel", x:470, y:505, sub:"cellular automata", tag:"v0.2",
+   desc:"Cellular automata library and examples (vector and raster), with Streamlit explorers.",
+   facts:["Compared with TerraME's ca package","DOI 10.5281/zenodo.23241654 (v0.1.0)"]},
+  {id:"dissmodel-sysdyn", name:"dissmodel-sysdyn", org:"dissmodel", x:680, y:505, sub:"system dynamics", tag:"v0.2",
+   desc:"Classic system dynamics models (SIR, Lorenz, Daisyworld and others), with Streamlit explorers and CLI tools.",
+   facts:["Bit-for-bit identical to TerraME","DOI 10.5281/zenodo.23242935 (v0.1.0)"]},
+  {id:"dissmodel-abm", name:"dissmodel-abm", org:"dissmodel", x:890, y:505, sub:"agent-based models", tag:"v0.2",
+   desc:"Agent-based extension with a Society/Agent API inspired by TerraME's logo package: RandomWalk, PredatorPrey, Schelling, Disease.",
+   facts:["Compared by distribution with 50 TerraME runs"]},
+  {id:"haloexec", name:"haloexec", org:"dissmodel", x:1140, y:505, sub:"blocks + halo, raster > RAM", tag:"ENGINE",
+   desc:"Domain decomposition (blocks with ghost cells) to run cellular automata on rasters larger than memory.",
+   facts:["Integrated with dissmodel"]},
+
+  {id:"disscube-grids", name:"disscube-grids", org:"lambdageo", x:150, y:655, sub:"study-area grids", tag:"v1.1.0",
+   desc:"Study-area cases (Pará, Legal Amazon, Brazil, Maranhão Island), one TOML per grid, using MapBiomas, PRODES and the Brazil Data Cube.",
+   facts:["DOI 10.5281/zenodo.23502247","Measured runs at scale (Brazil: 22.6 billion pixels)"]},
+  {id:"open-lucc-workflow", name:"open-lucc-workflow", org:"lambdageo", x:420, y:655, sub:"end-to-end LUCC experiment", tag:"v1.1.0",
+   desc:"Traceable land-use change experiment from open data: declared sources, a grid on the Brazil Data Cube mesh (10.56 and 5.28 km), a verification model and acceptance criteria.",
+   facts:["DOI 10.5281/zenodo.23415814","Uses DisSModel, DisSCube and DisSLUCC from PyPI","Repeated on five computers"]},
+  {id:"brmangue-dissmodel", name:"brmangue-dissmodel", org:"dissmodel", x:700, y:655, sub:"BR-MANGUE on DisSModel", tag:"v0.5.0",
+   desc:"Coupled flooding and mangrove succession (the model by Bezerra et al.) on the DisSModel framework.",
+   facts:["DOI 10.5281/zenodo.23240385","Port of brmangue-terrame"]},
+  {id:"dissmodel-platform", name:"dissmodel-platform", org:"dissmodel", x:980, y:655, sub:"FastAPI · workers · MinIO", tag:"OPTIONAL",
+   desc:"Execution platform: JupyterLab, FastAPI, workers and S3 storage via Docker Compose. Optional; the reproducible path does not depend on it.",
+   facts:["Runs registered ModelExecutors","ExperimentRecord with provenance"]},
+  {id:"brmangue-qgis", name:"brmangue-qgis", org:"dissmodel", x:1240, y:655, sub:"QGIS interface", tag:"PLUGIN",
+   desc:"QGIS interface for BR-MANGUE: jobs run on the platform and results load in the map canvas.", facts:[]},
+  {id:"disscube-qgis", name:"disscube-qgis", org:"lambdageo", x:150, y:760, sub:"grids and TOML on the map", tag:"PLANNED", planned:true,
+   desc:"Planned QGIS plugin to build DisSCube grids and TOML files on the map and call disscube externally. It follows the structure of qgissparql.",
+   facts:["Not yet a repository"], url:null},
+  {id:"dissmodel-configs", name:"dissmodel-configs", org:"dissmodel", x:980, y:760, sub:"TOML executor registry", tag:"REGISTRY",
+   desc:"Registry of executors and model specifications in TOML, reviewed through pull requests and citable by commit.", facts:[]},
+
+  {id:"book", name:"geospatial-modeling-python", org:"lambdageo", x:430, y:905, sub:"two-volume book", tag:"BOOK", w:236,
+   desc:"Book: Vol. I teaches geospatial Python from scratch; Vol. II introduces DisSModel, DisSCube, DisSLUCC, verification and the Open LUCC workflow.",
+   facts:["Notebooks executed against pinned versions","Onboarding material for undergraduate and graduate students"],
+   url:"https://lambdageo.github.io/geospatial-modeling-python/"},
+  {id:"site-dm", name:"dissmodel.github.io", org:"dissmodel", x:700, y:905, sub:"ecosystem website", tag:"SITE",
+   desc:"This website: the DisSModel organization page, which lists the repositories through the GitHub API.", facts:[], url:"https://dissmodel.github.io/"},
+  {id:"site-lg", name:"lambdageo.github.io", org:"lambdageo", x:930, y:905, sub:"research group website", tag:"SITE",
+   desc:"Website of LambdaGEO, the computing and geotechnology research group at UFMA.", facts:[], url:"https://lambdageo.github.io/"},
+  {id:"qgissparql", name:"qgissparql", org:"lambdageo", x:1160, y:880, sub:"Linked Data in QGIS", tag:"", w:170, h:40,
+   desc:"QGIS plugin that imports Linked Data from SPARQL endpoints. Serves as the structural template for disscube-qgis.", facts:["DOI 10.5281/zenodo.23102044"]},
+  {id:"dbcells-ontology", name:"dbcells-ontology", org:"lambdageo", x:1320, y:880, sub:"LUCC as Linked Data", tag:"", w:150, h:40,
+   desc:"RDF vocabulary for publishing land use and cover change models as Linked Data, based on the W3C Data Cube. A neighbouring line with no code dependency today.", facts:[]},
+  {id:"rdfmapper", name:"rdfmapper", org:"lambdageo", x:1160, y:932, sub:"object-RDF mapper", tag:"", w:170, h:40,
+   desc:"Declarative mapper from Python classes to RDF graphs, with SHACL validation. A neighbouring line.", facts:[]},
+  {id:"terrahs", name:"terrahs", org:"lambdageo", x:1320, y:932, sub:"GIS in Haskell", tag:"", w:150, h:40,
+   desc:"Rewrite of TerraHS (a Haskell GIS toolkit) without TerraLib. The historical root of the group's geoinformatics line.", facts:[]}
+];
+
+// [from, to, type]
+const E = [
+  ["terrame","terrame-docker","gen"],
+  ["terrame-docker","luccme-goldens","gen"],
+  ["terrame-docker","terrame-goldens","gen"],
+  ["disscube-benchmark","luccme-goldens","ver"],
+  ["disslucc-benchmark","luccme-goldens","ver"],
+  ["disscube-benchmark","disscube","ver"],
+  ["disslucc-benchmark","disslucc","ver"],
+  ["dissmodel-ca","terrame-goldens","ver"],
+  ["dissmodel-sysdyn","terrame-goldens","ver"],
+  ["dissmodel-abm","terrame-goldens","ver"],
+  ["brmangue-terrame","brmangue-dissmodel","port"],
+  ["disslucc-continuous","disslucc","port"],
+  ["disslucc-discrete","disslucc","port"],
+  ["sources","disscube","data"],
+  ["disscube","dissmodel","dep"],
+  ["disslucc","dissmodel","dep"],
+  ["dissmodel-ca","dissmodel","dep"],
+  ["dissmodel-sysdyn","dissmodel","dep"],
+  ["dissmodel-abm","dissmodel","dep"],
+  ["haloexec","dissmodel","dep"],
+  ["disscube-grids","disscube","dep"],
+  ["open-lucc-workflow","disscube","dep"],
+  ["open-lucc-workflow","dissmodel","dep"],
+  ["open-lucc-workflow","disslucc","dep"],
+  ["brmangue-dissmodel","dissmodel","dep"],
+  ["dissmodel-platform","dissmodel","dep"],
+  ["dissmodel-platform","dissmodel-configs","dep"],
+  ["brmangue-qgis","dissmodel-platform","dep"],
+  ["disscube-qgis","disscube","plan"],
+  ["qgissparql","disscube-qgis","plan"],
+  ["book","dissmodel","doc"],
+  ["book","disscube","doc"],
+  ["book","disslucc","doc"],
+  ["book","open-lucc-workflow","doc"],
+  ["book","disscube-grids","doc"],
+  ["book","brmangue-dissmodel","doc"],
+  ["site-dm","dissmodel","doc"]
+];
+
+const VERB = {
+  dep:["depends on","used by"], ver:["checked against","reference for"], gen:["generates","generated by"],
+  port:["ported to","ported from"], data:["provides data to","receives data from"],
+  doc:["teaches","taught in"], plan:["planned on","planned base of"]
+};
+const COLOR = {dep:"--e-dep",ver:"--e-ver",gen:"--e-gen",port:"--e-port",data:"--e-data",doc:"--e-doc",plan:"--e-plan"};
+
+const svg = document.getElementById("map");
+const NS = "http://www.w3.org/2000/svg";
+const el = (t,a={},p=svg)=>{const e=document.createElementNS(NS,t);for(const k in a)e.setAttribute(k,a[k]);p.appendChild(e);return e;};
+const byId = Object.fromEntries(N.map(n=>[n.id,n]));
+N.forEach(n=>{n.w=n.w||184;n.h=n.h||56;});
+const repoUrl = n => n.url !== undefined ? n.url : GH[n.org] + n.name;
+
+// background: a grid of cells
+const defs = el("defs");
+const pat = el("pattern",{id:"cells",width:20,height:20,patternUnits:"userSpaceOnUse"},defs);
+el("path",{d:"M20 0H0V20",fill:"none",stroke:"var(--cell)","stroke-width":1},pat);
+Object.keys(COLOR).forEach(t=>{
+  const m=el("marker",{id:"ar-"+t,viewBox:"0 0 10 10",refX:9,refY:5,markerWidth:7,markerHeight:7,orient:"auto-start-reverse"},defs);
+  el("path",{d:"M0 0L10 5L0 10z",class:"mk-"+t},m);
+});
+el("rect",{x:0,y:0,width:1400,height:1000,fill:"url(#cells)"});
+bands.forEach(b=>{
+  el("rect",{x:8,y:b.y,width:1384,height:b.h,rx:8,style:`fill:var(${b.fill});opacity:.9`});
+  el("text",{x:22,y:b.y+20,class:"band-label"}).textContent=b.label;
+  if(b.note) el("text",{x:22,y:b.y+36,class:"band-note"}).textContent=b.note;
+});
+el("rect",{x:1062,y:850,width:322,height:110,rx:6,class:"group-box"});
+el("text",{x:1074,y:845,class:"band-note"}).textContent="Other LambdaGeo lines (Linked Data, GIS)";
+
+// edges
+function anchor(a,b){
+  const dy=b.y-a.y, dx=b.x-a.x;
+  if(Math.abs(dy) > (a.h+b.h)/2 - 4){
+    const s=Math.sign(dy);
+    return {x1:a.x, y1:a.y+s*a.h/2, x2:b.x, y2:b.y-s*b.h/2, v:true};
+  }
+  const s=Math.sign(dx)||1;
+  return {x1:a.x+s*a.w/2, y1:a.y, x2:b.x-s*b.w/2, y2:b.y, v:false};
+}
+const gE = el("g");
+const edgeEls = E.map(([f,t,type])=>({f,t,type,path:el("path",{class:"edge "+type,"marker-end":`url(#ar-${type})`},gE)}));
+// spread several edges that leave or reach the same side of a node
+(function layout(){
+  const side=(n,p,src)=> p.v ? ((src?p.y1:p.y2)<n.y?"T":"B") : ((src?p.x1:p.x2)<n.x?"L":"R");
+  const gT={}, gS={}, off=new Map();
+  edgeEls.forEach(e=>{
+    const a=byId[e.f], b=byId[e.t], p=anchor(a,b);
+    (gT[e.t+side(b,p,false)] ||= []).push(e);
+    (gS[e.f+side(a,p,true)]  ||= []).push(e);
+  });
+  for(const arr of Object.values(gT)){ arr.sort((x,y)=>byId[x.f].x-byId[y.f].x); arr.forEach((e,i)=>{const o=off.get(e)||{};o.t=i-(arr.length-1)/2;off.set(e,o);}); }
+  for(const arr of Object.values(gS)){ arr.sort((x,y)=>byId[x.t].x-byId[y.t].x); arr.forEach((e,i)=>{const o=off.get(e)||{};o.s=i-(arr.length-1)/2;off.set(e,o);}); }
+  edgeEls.forEach(e=>{
+    const a=byId[e.f], b=byId[e.t], p=anchor(a,b), o=off.get(e);
+    if(p.v){
+      const sx=p.x1+o.s*Math.min(22,(a.w-30)/Math.max(1,Math.abs(o.s)*2+1));
+      const tx=p.x2+o.t*Math.min(22,(b.w-30)/Math.max(1,Math.abs(o.t)*2+1));
+      const my=(p.y1+p.y2)/2;
+      e.path.setAttribute("d",`M${sx} ${p.y1} C${sx} ${my} ${tx} ${my} ${tx} ${p.y2}`);
+    }else{
+      const sy=p.y1+o.s*10, ty=p.y2+o.t*10, mx=(p.x1+p.x2)/2;
+      e.path.setAttribute("d",`M${p.x1} ${sy} C${mx} ${sy} ${mx} ${ty} ${p.x2} ${ty}`);
+    }
+  });
+})();
+
+// nodes
+const nodeEls={};
+N.forEach(n=>{
+  const cls=["node","org-"+n.org]; if(n.archived)cls.push("archived"); if(n.planned)cls.push("planned"); if(n.core)cls.push("core");
+  const g=el("g",{class:cls.join(" "),tabindex:0,role:"button","aria-label":n.name});
+  el("rect",{x:n.x-n.w/2,y:n.y-n.h/2,width:n.w,height:n.h,rx:8},g);
+  const small=n.h<=44, ty=small?n.y-2:n.y-(n.core?6:4);
+  el("text",{x:n.x-n.w/2+12,y:ty,class:"t"},g).textContent=n.name;
+  el("text",{x:n.x-n.w/2+12,y:ty+(small?15:17),class:"s"},g).textContent=n.sub;
+  if(n.tag && !n.archived) el("text",{x:n.x+n.w/2-2,y:n.y-n.h/2-5,class:"tag","text-anchor":"end"},g).textContent=n.tag;
+  g.addEventListener("click",ev=>{ev.stopPropagation();select(n.id);});
+  g.addEventListener("keydown",ev=>{if(ev.key==="Enter"||ev.key===" "){ev.preventDefault();select(n.id);}});
+  nodeEls[n.id]=g;
+});
+// shrink a name that does not fit its box (after the web fonts load)
+function fitNames(){ N.forEach(n=>{const t=nodeEls[n.id].querySelector(".t");t.removeAttribute("textLength");const max=n.w-24;try{if(t.getComputedTextLength()>max){t.setAttribute("textLength",max);t.setAttribute("lengthAdjust","spacingAndGlyphs");}}catch(e){}}); }
+fitNames(); if(document.fonts&&document.fonts.ready) document.fonts.ready.then(fitNames);
+svg.addEventListener("click",()=>select(null));
+
+const panel=document.getElementById("panel");
+function linkHtml(n){ const u=repoUrl(n); return u?`<a href="${u}" target="_blank" rel="noopener">${u.replace("https://","")}</a>`:""; }
+function select(id){
+  svg.classList.toggle("has-sel",!!id);
+  Object.values(nodeEls).forEach(g=>g.classList.remove("on","sel"));
+  edgeEls.forEach(e=>e.path.classList.remove("on"));
+  if(!id){ renderOverview(); return; }
+  const n=byId[id]; nodeEls[id].classList.add("on","sel");
+  const rels=[];
+  edgeEls.forEach(e=>{
+    if(e.f===id){e.path.classList.add("on");nodeEls[e.t].classList.add("on");rels.push([e.type,VERB[e.type][0],byId[e.t].name]);}
+    if(e.t===id){e.path.classList.add("on");nodeEls[e.f].classList.add("on");rels.push([e.type,VERB[e.type][1],byId[e.f].name]);}
+  });
+  const status=[ORG[n.org]]; if(n.archived)status.push("archived"); else if(n.planned)status.push("planned"); else if(n.tag)status.push(n.tag);
+  panel.innerHTML=`
+    <div class="org">${status.join(" · ")}</div>
+    <div class="name">${n.name}</div>
+    <p>${n.desc}</p>
+    ${n.facts.length?`<ul>${n.facts.map(f=>`<li>${f}</li>`).join("")}</ul>`:""}
+    ${rels.length?`<h3>Connections</h3><ul class="rels">${rels.map(r=>`<li><i style="background:var(${COLOR[r[0]]})"></i><span>${r[1]} <span class="mono">${r[2]}</span></span></li>`).join("")}</ul>`:""}
+    ${linkHtml(n)?`<div>${linkHtml(n)}</div>`:""}
+    <button type="button" id="clear">Show the whole map</button>`;
+  document.getElementById("clear").addEventListener("click",()=>select(null));
+}
+function renderOverview(){
+  const dm=N.filter(n=>n.org==="dissmodel").length, lg=N.filter(n=>n.org==="lambdageo"&&!n.planned).length;
+  panel.innerHTML=`
+    <h3>How to read it</h3>
+    <p>Top to bottom: the reference generates the goldens, the benchmarks check the packages against them, the core runs the models, and the cases, workflow and book use the core.</p>
+    <ul>
+      <li><strong>${dm}</strong> repositories from the DisSModel organization and <strong>${lg}</strong> from LambdaGeo, plus terrame-docker on a personal account</li>
+      <li>Everything converges on <span class="mono">dissmodel</span>; verification goes through the two sets of goldens</li>
+      <li>The reproducible path is <span class="mono">open-lucc-workflow</span>; the platform is optional</li>
+    </ul>
+    <p class="hint">Select a repository to see its role and connections.</p>`;
+}
+renderOverview();
+
+// text version, by band
+const groups=[
+  ["Reference",["terrame","terrame-docker","luccme-goldens","terrame-goldens","brmangue-terrame"]],
+  ["Verification",["disscube-benchmark","disslucc-benchmark"]],
+  ["Core",["dissmodel","disscube","disslucc","dissmodel-ca","dissmodel-sysdyn","dissmodel-abm","haloexec","disslucc-continuous","disslucc-discrete"]],
+  ["Applications, cases and execution",["open-lucc-workflow","disscube-grids","brmangue-dissmodel","dissmodel-platform","dissmodel-configs","brmangue-qgis","disscube-qgis"]],
+  ["Teaching and neighbouring lines",["book","site-dm","site-lg","qgissparql","dbcells-ontology","rdfmapper","terrahs"]]
+];
+document.getElementById("lists").innerHTML=groups.map(([t,ids])=>`<section><h3>${t}</h3><dl>${ids.map(id=>{
+  const n=byId[id], u=repoUrl(n), nm=u?`<a href="${u}">${n.name}</a>`:n.name;
+  return `<div><dt>${nm}<small>${ORG[n.org]}${n.tag?" · "+n.tag:""}</small></dt><dd>${n.desc}</dd></div>`;
+}).join("")}</dl></section>`).join("");
+</script>
+</body>
+</html>
