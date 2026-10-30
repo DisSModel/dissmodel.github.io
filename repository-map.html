@@ -234,10 +234,6 @@ const N = [
   {id:"disslucc", name:"disslucc", org:"dissmodel", x:900, y:395, sub:"LUCC potential + allocation", tag:"PyPI 0.5.0",
    desc:"DisSLUCC: LUCC modelling in the LuccME style, with continuous, discrete and saturation allocation in a single package.",
    facts:["Succeeds disslucc-continuous and disslucc-discrete","Checked in disslucc-benchmark"]},
-  {id:"disslucc-continuous", name:"disslucc-continuous", org:"dissmodel", x:1180, y:368, sub:"archived", tag:"ARCHIVED", archived:true, h:44,
-   desc:"First implementation of continuous allocation. Archived; the code moved to disslucc.", facts:[]},
-  {id:"disslucc-discrete", name:"disslucc-discrete", org:"dissmodel", x:1180, y:422, sub:"archived", tag:"ARCHIVED", archived:true, h:44,
-   desc:"First implementation of discrete (CLUE-S-like) allocation. Archived; the code moved to disslucc.", facts:[]},
   {id:"dissmodel-ca", name:"dissmodel-ca", org:"dissmodel", x:470, y:505, sub:"cellular automata", tag:"v0.2",
    desc:"Cellular automata library and examples (vector and raster), with Streamlit explorers.",
    facts:["Compared with TerraME's ca package","DOI 10.5281/zenodo.23241654 (v0.1.0)"]},
@@ -302,8 +298,6 @@ const E = [
   ["dissmodel-sysdyn","terrame-goldens","ver"],
   ["dissmodel-abm","terrame-goldens","ver"],
   ["brmangue-terrame","brmangue-dissmodel","port"],
-  ["disslucc-continuous","disslucc","port"],
-  ["disslucc-discrete","disslucc","port"],
   ["sources","disscube","data"],
   ["disscube","dissmodel","dep"],
   ["disslucc","dissmodel","dep"],
@@ -459,7 +453,7 @@ renderOverview();
 const groups=[
   ["Reference",["terrame","terrame-docker","luccme-goldens","terrame-goldens","brmangue-terrame"]],
   ["Verification",["disscube-benchmark","disslucc-benchmark"]],
-  ["Core",["dissmodel","disscube","disslucc","dissmodel-ca","dissmodel-sysdyn","dissmodel-abm","haloexec","disslucc-continuous","disslucc-discrete"]],
+  ["Core",["dissmodel","disscube","disslucc","dissmodel-ca","dissmodel-sysdyn","dissmodel-abm","haloexec"]],
   ["Applications, cases and execution",["open-lucc-workflow","disscube-grids","brmangue-dissmodel","dissmodel-platform","dissmodel-configs","brmangue-qgis","disscube-qgis"]],
   ["Teaching and neighbouring lines",["book","site-dm","site-lg","qgissparql","dbcells-ontology","rdfmapper","terrahs"]]
 ];
