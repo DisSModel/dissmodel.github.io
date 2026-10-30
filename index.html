@@ -466,14 +466,51 @@
     /* repo list in footer — populated dynamically */
     #footer-repo-list { list-style: none; display: flex; flex-direction: column; gap: .5rem; }
 
+
+    /* ── DOCS DROPDOWN (nav) ── */
+    .nav-docs { position: relative; }
+    .nav-docs > a::after { content: " \25BE"; }
+    .docs-menu {
+      display: none; position: absolute; right: 0; top: 100%;
+      padding-top: 10px; min-width: 250px; list-style: none; z-index: 110;
+    }
+    .docs-menu-inner {
+      background: #fff; border: 1px solid var(--border); border-radius: 10px;
+      box-shadow: 0 12px 40px rgba(26,46,74,.15); padding: .4rem; display: flex; flex-direction: column;
+    }
+    .nav-docs:hover .docs-menu, .nav-docs:focus-within .docs-menu { display: block; }
+    .docs-menu a { display: block; padding: .55rem .8rem; border-radius: 6px; color: var(--blue-dark); font-size: .88rem; }
+    .docs-menu a small { display: block; color: var(--muted); font-weight: 400; font-size: .76rem; }
+    .docs-menu a:hover { background: var(--bg); color: var(--blue-mid); }
+
+    /* ── DOCUMENTATION SECTION ── */
+    #documentation { background: var(--bg); padding-top: 80px; padding-bottom: 80px; }
+    .docs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; margin-top: 2.5rem; }
+    .doc-card {
+      background: #fff; border: 1.5px solid var(--border); border-radius: 14px;
+      padding: 1.6rem; display: flex; flex-direction: column; gap: .7rem;
+      text-decoration: none; color: inherit; transition: all .25s;
+    }
+    .doc-card:hover { border-color: var(--blue-mid); transform: translateY(-4px); box-shadow: 0 12px 40px rgba(26,46,74,.1); }
+    .doc-card .doc-role { font-size: .72rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--blue-mid); }
+    .doc-card .doc-name { font-family: 'DM Mono', monospace; font-size: 1.15rem; font-weight: 500; color: var(--blue-dark); }
+    .doc-card p { font-size: .9rem; color: var(--muted); line-height: 1.6; flex: 1; }
+    .doc-card code.doc-pip { font-family: 'DM Mono', monospace; font-size: .8rem; background: var(--blue-dark); color: #e0eeff; padding: 6px 12px; border-radius: 6px; align-self: flex-start; }
+    .doc-card .doc-go { font-size: .85rem; font-weight: 600; color: var(--blue-mid); }
+    .docs-note { margin-top: 1.5rem; font-size: .85rem; color: var(--muted); }
+    .docs-note a { color: var(--blue-mid); }
+
     @media (max-width: 768px) {
       nav { padding: 0 1.25rem; }
-      .nav-links { display: none; }
+      .nav-links > li:not(.nav-docs) { display: none; }
+      .nav-docs > a { padding: 6px 14px; }
       .repo-card.featured { grid-column: span 1; }
       .arch-wrap { grid-template-columns: 1fr; gap: 2rem; }
       .footer-inner { grid-template-columns: 1fr; gap: 2rem; }
       .footer-bottom { flex-direction: column; gap: .75rem; text-align: center; }
       .usecase-sub { grid-template-columns: 1fr; }
+      .usecase-sub > * { min-width: 0; }
+      .usecase-code { overflow-x: auto; }
       .usecase-arrow { padding-left: 0; }
     }
   </style>
@@ -493,7 +530,14 @@
     <li><a href="#architecture">Architecture</a></li>
     <li><a href="#usecase">Case Study</a></li>
     <li><a href="https://lambdageo.github.io/geospatial-modeling-python/">Book</a></li>
-    <li><a href="https://dissmodel.github.io/dissmodel/" class="nav-cta">Documentation</a></li>
+    <li class="nav-docs">
+      <a href="#documentation" class="nav-cta" aria-haspopup="true">Documentation</a>
+      <ul class="docs-menu"><li class="docs-menu-inner">
+        <a href="https://dissmodel.github.io/dissmodel/">dissmodel<small>Core framework</small></a>
+        <a href="https://dissmodel.github.io/disscube/">disscube<small>Data cubes and model-ready grids</small></a>
+        <a href="https://dissmodel.github.io/disslucc/">disslucc<small>Land use and cover change</small></a>
+      </li></ul>
+    </li>
   </ul>
 </nav>
 
@@ -521,7 +565,7 @@
   </p>
 
   <div class="hero-actions">
-    <a href="https://dissmodel.github.io/dissmodel/" class="btn btn-primary">📖 Documentation</a>
+    <a href="#documentation" class="btn btn-primary">📖 Documentation</a>
     <a href="https://lambdageo.github.io/geospatial-modeling-python/" class="btn btn-secondary">📚 Book (in progress)</a>
     <a href="https://github.com/DisSModel" class="btn btn-secondary">💻 GitHub Organization</a>
   </div>
@@ -535,6 +579,39 @@
     </div>
     <p class="pip-note">Release notes in the <a href="https://github.com/DisSModel/dissmodel/blob/main/CHANGELOG.md" style="color:inherit; text-decoration:underline;">changelog</a>.</p>
     <p class="pip-note" style="margin-top:.35rem;">If DisSModel is useful in your work, you can cite it: <a href="https://doi.org/10.5281/zenodo.23246106" style="color:inherit; text-decoration:underline;">doi:10.5281/zenodo.23246106</a></p>
+  </div>
+</section>
+
+<!-- ── DOCUMENTATION ── -->
+<section id="documentation">
+  <div class="container">
+    <p class="section-label">Documentation</p>
+    <h2 class="section-title">Documentation for the three libraries</h2>
+    <p class="section-desc">Each library has its own site, with the same layout: getting started, guides, architecture and reference. A typical workflow uses all three: <code>disscube</code> builds the grid, <code>dissmodel</code> runs the model, and <code>disslucc</code> provides the land-use components.</p>
+    <div class="docs-grid">
+      <a class="doc-card" href="https://dissmodel.github.io/dissmodel/">
+        <span class="doc-role">Core framework</span>
+        <span class="doc-name">dissmodel</span>
+        <p>Simulation clock, vector and raster spatial substrates, executor, I/O and visualization, for cellular automata and system dynamics.</p>
+        <code class="doc-pip">pip install dissmodel</code>
+        <span class="doc-go">Read the docs →</span>
+      </a>
+      <a class="doc-card" href="https://dissmodel.github.io/disscube/">
+        <span class="doc-role">Data preparation</span>
+        <span class="doc-name">disscube</span>
+        <p>Declarative TOML pipelines that turn raster and vector sources (MapBiomas, PRODES, Brazil Data Cube, OpenStreetMap) into model-ready grids.</p>
+        <code class="doc-pip">pip install disscube</code>
+        <span class="doc-go">Read the docs →</span>
+      </a>
+      <a class="doc-card" href="https://dissmodel.github.io/disslucc/">
+        <span class="doc-role">Land use and cover change</span>
+        <span class="doc-name">disslucc</span>
+        <p>Demand, potential and allocation components after LuccME, in continuous (CLUE-like) and discrete (CLUE-S-like) versions, checked against TerraME.</p>
+        <code class="doc-pip">pip install disslucc</code>
+        <span class="doc-go">Read the docs →</span>
+      </a>
+    </div>
+    <p class="docs-note">Extensions and the other repositories are listed <a href="#repos">below</a>. For a guided introduction, see the <a href="https://lambdageo.github.io/geospatial-modeling-python/">book</a>.</p>
   </div>
 </section>
 
@@ -575,11 +652,12 @@
   <text class="note" x="310" y="74" text-anchor="middle">conceptual basis</text>
   <path d="M266 88 L352 88" fill="none" stroke="#9fb0c6" stroke-dasharray="4 4" stroke-width="1.4" marker-end="url(#ah)"/>
 
+  <a href="https://dissmodel.github.io/dissmodel/">
   <rect x="360" y="46" width="720" height="72" rx="12" fill="#1a2e4a"/>
   <circle class="ok" cx="1062" cy="62" r="5"/>
   <text x="380" y="76" font-family="'DM Mono', monospace" font-size="19" font-weight="500" fill="#ffffff">dissmodel</text>
   <text x="380" y="100" font-size="13" fill="#a0c0e0">Core · Environment, Model, vector &amp; raster cellular spaces, scheduling</text>
-
+  </a>
   <!-- Row B: didactic packages -->
   <text class="lbl" x="360" y="152">DIDACTIC PACKAGES · MODELING PARADIGMS</text>
   <rect x="40" y="164" width="220" height="72" rx="10" fill="none" stroke="#9fb0c6" stroke-dasharray="5 4"/>
@@ -614,11 +692,12 @@
   <text class="note" x="310" y="317" text-anchor="middle">alternative</text>
   <path d="M266 330 L352 330" fill="none" stroke="#9fb0c6" stroke-dasharray="4 4" stroke-width="1.4" marker-end="url(#ah)"/>
 
+  <a href="https://dissmodel.github.io/disslucc/">
   <rect x="360" y="282" width="228" height="72" rx="10" fill="#e8f4e8" stroke="#bfdcbf"/>
   <circle class="ok" cx="572" cy="298" r="5"/>
   <text class="nm" x="376" y="312">disslucc</text>
   <text class="ds" x="376" y="336">Land use &amp; cover change</text>
-
+  </a>
   <rect x="606" y="282" width="228" height="72" rx="10" fill="#e8f4e8" stroke="#bfdcbf"/>
   <circle class="ok" cx="818" cy="298" r="5"/>
   <text class="nm" x="622" y="312">brmangue-dissmodel</text>
@@ -633,11 +712,12 @@
   <text class="note" x="310" y="428" text-anchor="middle">similar role</text>
   <path d="M266 442 L352 442" fill="none" stroke="#9fb0c6" stroke-dasharray="4 4" stroke-width="1.4" marker-end="url(#ah)"/>
 
+  <a href="https://dissmodel.github.io/disscube/">
   <rect x="360" y="400" width="474" height="72" rx="10" fill="#ffffff" stroke="#dde4ee" stroke-width="1.5"/>
   <circle class="ok" cx="818" cy="416" r="5"/>
   <text class="nm" x="376" y="430">disscube</text>
   <text class="ds" x="376" y="454">Chunked raster cubes · grid alignment · cell filling</text>
-
+  </a>
   <!-- Row E: infrastructure -->
   <text class="lbl" x="360" y="506">INFRASTRUCTURE · BEYOND TERRAME</text>
   <text class="note" x="40" y="542">No direct counterpart:</text>
@@ -851,7 +931,9 @@ env.run()</pre>
     <div class="footer-col">
       <h4>Resources</h4>
       <ul>
-        <li><a href="https://dissmodel.github.io/dissmodel/">Documentation</a></li>
+        <li><a href="https://dissmodel.github.io/dissmodel/">Docs: dissmodel</a></li>
+        <li><a href="https://dissmodel.github.io/disscube/">Docs: disscube</a></li>
+        <li><a href="https://dissmodel.github.io/disslucc/">Docs: disslucc</a></li>
         <li><a href="https://github.com/DisSModel">GitHub Organization</a></li>
         <li><a href="https://github.com/DisSModel/dissmodel/blob/main/LICENSE">MIT License</a></li>
         <li><a href="https://doi.org/10.5281/zenodo.23246106">How to cite (Zenodo)</a></li>
